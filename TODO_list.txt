@@ -1,0 +1,19 @@
+TABELAS 
+- CHECK designação da Secção (4 nomes possíveis)
+- Chave designação da Secção UNIQUE para ser referenciada por estado de Processa
+
+
+STORED PROCEDURES
+- Remover 1 funcionário (verificar se é gerente e se for ativa o trigger em baixo)
+
+
+UDFs
+- Nº funcionários numa Secção
+- Quantidade de Produto (itens) numa Encomenda
+
+
+TRIGGER
+- Não permitir que 1 funcionário seja gestor de mais que 1 departamento??
+- Algo para avisar que 1 secção está sem gerente e que tem que ser nomeado 1 
+(talvez o que tiver ID mais baixo por estar lá há mais tempo I guess)??
+
