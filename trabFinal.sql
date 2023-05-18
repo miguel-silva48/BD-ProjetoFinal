@@ -27,7 +27,7 @@ CREATE TABLE Empresa.Fornecedor(
 
 -- MateriaPrima
 CREATE TABLE Empresa.MateriaPrima(
-	nome					VARCHAR(40), --este n tinha mas acho que faz sentido
+	nome					VARCHAR(40),
 	qualidade				VARCHAR(20),
 	quant_armazem			INT,
 	codigo					INT		PRIMARY KEY	NOT NULL,
@@ -35,8 +35,8 @@ CREATE TABLE Empresa.MateriaPrima(
 
 -- Fornece
 CREATE TABLE Empresa.Fornece(
-	nif_fornecedor			INT		FOREIGN KEY REFERENCES Empresa.Fornecedor(nif),
-	codigo_materia_prima	INT		FOREIGN KEY REFERENCES Empresa.MateriaPrima(codigo),
+	nif_fornecedor			INT		NOT NULL	FOREIGN KEY REFERENCES Empresa.Fornecedor(nif),
+	codigo_materia_prima	INT		NOT NULL	FOREIGN KEY REFERENCES Empresa.MateriaPrima(codigo),
 	PRIMARY KEY(nif_fornecedor, codigo_materia_prima),
 );
 
@@ -63,7 +63,7 @@ CREATE TABLE Empresa.Seccao(
 
 -- Funcionario
 CREATE TABLE Empresa.Funcionario(
-	nif 			INT,
+	nif 			INT		CHECK (nif BETWEEN 0000000 AND 9999999),
 	salario			DECIMAL(5,2),
 	morada			VARCHAR(50),
 	numeroCC		INT,
@@ -85,16 +85,16 @@ CREATE TABLE Empresa.Operario(
 
 -- Processa
 CREATE TABLE Empresa.Processa(
-	codigo_materia_prima	INT		FOREIGN KEY REFERENCES Empresa.MateriaPrima(codigo),
-	estado 					VARCHAR(20),
-	ID_funcionario			INT		FOREIGN KEY REFERENCES Empresa.Funcionario(ID),
+	codigo_materia_prima	INT		NOT NULL	FOREIGN KEY REFERENCES Empresa.MateriaPrima(codigo),
+	estado 					VARCHAR(20)			CHECK (estado LIKE 'inicial' OR estado LIKE 'feito'),
+	ID_funcionario			INT		NOT NULL	FOREIGN KEY REFERENCES Empresa.Funcionario(ID),
 	PRIMARY KEY(ID_funcionario, codigo_materia_prima),
 );
 
 -- TipoProduto
 CREATE TABLE Empresa.TipoProduto(
-	custo_fabrico			DECIMAL(3,2),
-	preco_venda				DECIMAL(4,2),
+	custo_fabrico			DECIMAL(4,2)	NOT NULL,
+	preco_venda				DECIMAL(4,2)	NOT NULL,
 	categoria				VARCHAR(40)		PRIMARY KEY			NOT NULL,
 );
 
