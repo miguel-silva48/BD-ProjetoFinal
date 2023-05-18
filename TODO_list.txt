@@ -1,15 +1,24 @@
-TABELAS 
-- CHECK designação da Secção (4 nomes possíveis)
-- Chave designação da Secção UNIQUE para ser referenciada por estado de Processa
+TABELAS
+
+
+
+MUDANÇAS NO DER/ER
+Adicionamos atributos (seccao_atual) no Processa, tiramos quant_armazem do Produto.
 
 
 STORED PROCEDURES
 - Remover 1 funcionário (verificar se é gerente e se for ativa o trigger em baixo)
+- Tipo de produto + encomendado??
+- Média salarial??
+
+//- Quantidade materiaPrima pendente Fornecedor
+//- Nº encomendas pendentes Revendedor
 
 
 UDFs
 - Nº funcionários numa Secção
 - Quantidade de Produto (itens) numa Encomenda
+- Filtrar produtos pela designacao atual, estado, tipo de produto, quant em armazem, 
 
 
 TRIGGER
@@ -17,3 +26,16 @@ TRIGGER
 - Algo para avisar que 1 secção está sem gerente e que tem que ser nomeado 1 
 (talvez o que tiver ID mais baixo por estar lá há mais tempo I guess)??
 
+
+Apresentação:
+
+- Slides (Análise de requisitos, contextualização)
+- Vídeo
+- Entregar template antes da apresentação, mas pode melhorar ate o dia oficial da entrega
+
+Submit.md :
+
+- Mudanças no DER e ER do apfe p agora com bullet points
+- Comentários nos ficheiros sql
+- Para cada formulário fazer uma secçao nova com uma imagem, introdução e queries utilizadas nesse form. 
+- Comentar udfs, triggers e stored procedures no proprio sql, n precisa justificar
