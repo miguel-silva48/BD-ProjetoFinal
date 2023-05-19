@@ -4,6 +4,7 @@ TABELAS
 
 MUDANÇAS NO DER/ER
 Adicionamos atributos (seccao_atual) no Processa, tiramos quant_armazem do Produto.
+codigo_materia_prima no Produto, n ta normalizado (?)
 
 
 STORED PROCEDURES

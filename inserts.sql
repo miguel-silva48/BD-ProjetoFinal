@@ -1,6 +1,84 @@
 USE Empresa;
 GO
 
+
+INSERT INTO Fornecedor (nif, email, morada, nome)
+	VALUES
+	(509111222,'CouroBom@gmail.com',NULL,'CouroBom'),
+	(509121212,'TextilFerreira@gmail.com','Rua do Complexo Grande - Edf 3','TextilFerreira'),
+	(509294734,'PlasticoLDA@gmail.com','Rua Poente 723','PlasticoLDA'),
+	(509827353,'PortoPlasticos@gmail.com',NULL,'PortoPlasticos'),
+	(509836433,'sinteticoscoimbra@gmail.com','Rua Sol Poente 6243','Sinteticos Coimbra'),
+	(509987654,'MaduTex@gmail.com','Estrada da Cincunvalacao 213','MaduTex'),
+	(590972623,'winiw@gmail.com', 'Rua da Recta 233','Winiw');
+
+
+INSERT INTO Fornece (nif, codigo_materia_prima)
+	VALUES
+	(509111222,101),
+	(509111222,102),
+	(509111222,103),
+	(509121212,200),
+	(509121212,600),
+	(509294734,301),
+	(509294734,302),
+	(509294734,400),
+	(509827353,502);
+
+
+INSERT INTO Encomenda (numero, _data, nif_revendedor)
+	VALUES
+	(1, '2019-01-01', 409111222),
+	(1, '2019-01-01', 409111222),
+	(1, '2019-01-01', 409836433),
+	(1, '2019-01-01', 409827353),
+	(1, '2019-01-01', 409111222),
+	(1, '2019-01-01', 490972623),
+	(1, '2019-01-01', 490972623),
+	(1, '2019-01-01', 409121212),
+	(1, '2019-01-01', 409121212);
+
+
+INSERT INTO Revendedor (nif, email, morada, nome)
+	VALUES
+	(409111222,'SapatariaBrasileira@gmail.com',NULL,'Sapataria Brasileira'),
+	(409121212,'SapatosRia@gmail.com','Rua do Complexo Pequeno - Edf 4','Sapatos Ria'),
+	(409294734,'softcalcados@gmail.com','Rua Poente 843','Soft Calçados'),
+	(409827353,'PortoCalcados@gmail.com',NULL,'PortoCalcados'),
+	(409836433,'sportsnow@gmail.com','Rua Sol 3243','Sports Now'),
+	(409987654,'playsports@gmail.com','Estrada de Fátima 263','PlaySports'),
+	(490972623,'klein@gmail.com', 'Rua da Redonda 90','Klein');
+
+
+INSERT INTO MateriaPrima (nome, qualidade, quant_armazem, codigo)
+	VALUES
+	('Couro','Primeira', 300, 101),
+    ('Couro','Segunda', 400, 102),
+    ('Couro','Terceira', 350, 103),
+    ('Couro Sintético',NULL, 300, 200),
+    ('Tecido',NULL, 300, 600),
+    ('Pele','Primeira', 300, 301),
+    ('Pele','Segunda', 300, 302),
+    ('Vinil',NULL, 200, 400),
+    ('PVC','Segunda', 140, 502);
+
+
+INSERT INTO Processa (codigo_materia_prima, estado, seccao_atual, ID_funcionario)
+	VALUES
+	(101, 'em espera', 'Corte', 105),
+	(101, 'em producao', 'Costura', 106),
+	(102, 'em espera', 'Costura', 107),
+	(103, 'em producao', 'Corte', 101),
+	(200, 'em producao', 'Corte', 109),
+	(301, 'em producao', 'Acabamento', 107),
+	(302, 'em producao', 'Montagem', 103),
+	(400, 'em producao', 'Montagem', 108),
+	(101, 'concluido', 'Acabamento', 106),
+	(101, 'concluido', 'Montagem', 103),
+	(102, 'concluido', 'Costura', 110),
+	(103, 'concluido', 'Corte', 105);
+
+
 INSERT INTO TipoProduto (custo_fabrico, preco_venda, categoria)
 	VALUES
     (50, 100, 'Bota Timber Castanha'),
@@ -24,85 +102,83 @@ INSERT INTO TipoProduto (custo_fabrico, preco_venda, categoria)
     (47, 80,'Tênis Runner Castanho'),
     (47, 80,'Tênis Runner Preto');
 
-INSERT INTO Fornecedor (nif, email, morada, nome)
-	VALUES
-	(509111222,'CouroBom@gmail.com',NULL,'CouroBom'),
-	(509121212,'TextilFerreira@gmail.com','Rua do Complexo Grande - Edf 3','TextilFerreira'),
-	(509294734,'PlasticoLDA@gmail.com','Rua Poente 723','PlasticoLDA'),
-	(509827353,'PortoPlasticos@gmail.com',NULL,'PortoPlasticos'),
-	(509836433,'sinteticoscoimbra@gmail.com','Rua Sol Poente 6243','Sinteticos Coimbra'),
-	(509987654,'MaduTex@gmail.com','Estrada da Cincunvalacao 213','MaduTex'),
-	(590972623,'winiw@gmail.com', 'Rua da Recta 233','Winiw');
 
-INSERT INTO Revendedor (nif, email, morada, nome)
-	VALUES
-	(409111222,'SapatariaBrasileira@gmail.com',NULL,'Sapataria Brasileira'),
-	(409121212,'SapatosRia@gmail.com','Rua do Complexo Pequeno - Edf 4','Sapatos Ria'),
-	(409294734,'softcalcados@gmail.com','Rua Poente 843','Soft Calçados'),
-	(409827353,'PortoCalcados@gmail.com',NULL,'PortoCalcados'),
-	(409836433,'sportsnow@gmail.com','Rua Sol 3243','Sports Now'),
-	(409987654,'playsports@gmail.com','Estrada de Fátima 263','PlaySports'),
-	(490972623,'klein@gmail.com', 'Rua da Redonda 90','Klein');
-
-INSERT INTO MateriaPrima (nome, qualidade, quant_armazem, codigo)
-	VALUES
-	('Couro','Primeira', 300, 101),
-    ('Couro','Segunda', 400, 102),
-    ('Couro','Terceira', 350, 103),
-    ('Couro Sintético',NULL, 300, 200),
-    ('Tecido',NULL, 300, 600),
-    ('Pele','Primeira', 300, 301),
-    ('Pele','Segunda', 300, 302),
-    ('Vinil',NULL, 200, 400),
-    ('PVC','Segunda', 140, 502);
-
-INSERT INTO produto (codigo, nome, preco, iva, unidades)
+INSERT INTO Produto (codigo_produto, codigo_materia_prima, categoria_tipo, num_encomenda, ID_funcionario)
     VALUES	
-	(10001,'Bife da Pa', 8.75,23,125),
-	(10002,'Laranja Algarve',1.25,23,1000),
-	(10003,'Pera Rocha',1.45,23,2000),
-	(10004,'Secretos de Porco Preto',10.15,23,342),
-	(10005,'Vinho Rose Plus',2.99,13,5232),
-	(10006,'Queijo de Cabra da Serra',15.00,23,3243),
-	(10007,'Queijo Fresco do Dia',0.65,23,452),
-	(10008,'Cerveja Preta Artesanal',1.65,13,937),
-	(10009,'Lixivia de Cor', 1.85,23,9382),
-	(10010,'Amaciador Neutro', 4.05,23,932432),
-	(10011,'Agua Natural',0.55,6,919323),
-	(10012,'Pao de Leite',0.15,6,5434),
-	(10013,'Arroz Agulha',1.00,13,7665),
-	(10014,'Iogurte Natural',0.40,13,998);
+	(10001,101,'Bota Timber Castanha', 1, 101),
+	(10002,101,'Sapatilha Kid Adventure Preta', 1, 102),
+	(10003,103,'Tênis Runner Branco', 2, 103),
+	(10004,103,'Tênis Runner Branco', 3, 104),
+	(10005,102,'Tênis Runner Castanho', 4, 102),
+	(10006,200,'Bota Timber Branca', 5, 104),
+	(10007,200,'Bota Timber Branca', 6, 101),
+	(10008,502,'Sapatilha Kid Adventure Verde', 6, 103),
+	(10009,502,'Sapatilha Kid Adventure Verde', 7, 105),
+	(10010,600,'Sandália Confort Azul', 8, 105),
+	(10011,301,'Sapato Confort Preto', 9, 106),
+	(10012,301,'Sapato Confort Preto',10, 107),
+	(10013,301,'Sapato Confort Preto',11, 108),
+	(10014,302,'Tênis Runner Preto',12, 109),
+	(10015,102,'Tênis Runner Castanho', 4, 104),
+	(10016,200,'Bota Timber Branca', 5, 108),
+	(10017,200,'Bota Timber Branca', 6, 109),
+	(10018,502,'Sapatilha Kid Adventure Verde', 6, 105),
+	(10019,502,'Sapatilha Kid Adventure Verde', 7, 103),
+	(10020,101,'Bota Timber Castanha', 1, 102),
+	(10021,101,'Bota Timber Castanha', 1, 103),
+	(10022,101,'Sapatilha Kid Adventure Preta', 1, 102),
+	(10023,103,'Tênis Runner Branco', 2, 101),
+	(10024,103,'Tênis Runner Branco', 3, 109),
+	(10025,102,'Tênis Runner Castanho', 4, 107),
+	(10026,200,'Bota Timber Branca', 5, 110),
+	(10027,200,'Bota Timber Branca', 6, 102),
+	(10028,502,'Sapatilha Kid Adventure Verde', 6, 101),
+	(10029,502,'Sapatilha Kid Adventure Verde', 7, 101),
+	(10030,600,'Sandália Confort Azul', 8, 104),
+	(10031,301,'Sapato Confort Preto', 9, 104),
+	(10032,301,'Sapato Confort Preto',10, 102),
+	(10033,301,'Sapato Confort Preto',11, 101);
 
-INSERT INTO encomenda (numero, dataEnc, fornecedor)
-	VALUES
-	(1,'2015-03-03',509111222),
-	(2,'2015-03-04',509121212),
-	(3,'2015-03-05',509987654),
-	(4,'2015-03-06',509827353),
-	(5,'2015-03-07',509294734),
-	(6,'2015-03-08',509836433),
-	(7,'2015-03-09',509121212),
-	(8,'2015-03-10',509987654),
-	(9,'2015-03-11',509836433),
-	(10,'2015-03-12',509987654);
 
-INSERT INTO item (numEnc, codProd, unidades)
+INSERT INTO Funcionario (nif, salario, morada, numeroCC, nome, ID)
 	VALUES
-	(1,10001,200),
-	(1,10004,300),
-	(2,10002,1200),
-	(2,10003,3200),
-	(3,10013,900),
-	(4,10006,50),
-	(4,10007,40),
-	(4,10014,200),
-	(5,10005,500),
-	(5,10008,10),
-	(5,10011,1000),
-	(6,10009,200),
-	(6,10010,200),
-	(7,10003,1200),
-	(8,10013,350),
-	(9,10009,100),
-	(9,10010,300),
-	(10,10012,200);
+	(609111222, 1400, NULL, 12345678, 'Nuno Miguel Farias', 101),
+	(609121212, 1500, 78931289, 'Rua do Complexo Pequeno - Edf 1','José Carlos Costa', 102),
+	(609294734, 1450, 12378791, 'Rua Poente 846','João Miguel Arruda', 103),
+	(609827353, 1300, 73828291, NULL,'Felipe Manoel do Carmo', 104),
+	(609836433, 1000, 90901111, 'Rua Sol 323','Maria Gomes de Sousa', 105),
+	(609987654, 1000, 11888912, 'Estrada de Fátima 23','Miguel Silva do Campo', 106),
+	(690972623, 900, 29309021, 'Rua da Redonda Azul 9','Jéssica Oliveira Silva', 107),
+	(609836437, 1000, 90901111, 'Rua Lua 323','Joana Gomes da Silva', 108),
+	(609987657, 1000, 11888912, 'Estrada de Santiago 23','Roberto Castro Almeida', 109),
+	(690972627, 900, 29309021, 'Rua de Coimbra 91','Inês Oliveira Silva', 110);
+
+
+INSERT INTO Seccao (designacao, codigo)
+	VALUES
+	(1,'Corte'),
+	(2,'Costura'),
+	(3,'Montagem'),
+	(4,'Acabamento');
+
+
+INSERT INTO Operario (designacao, codigo)
+	VALUES
+	(101, 1),
+	(102, 2),
+	(103, 2),
+	(104, 1),
+	(105, 1),
+	(106, 4),
+	(107, 4),
+	(108, 3),
+	(109, 1),
+	(110, 3);
+
+
+INSERT INTO Gerente (designacao, codigo)
+	VALUES
+	(101, 1),
+	(102, 2),
+	(103, 3),
+	(104, 4);
