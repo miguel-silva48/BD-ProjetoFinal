@@ -63,8 +63,8 @@ CREATE TABLE Empresa.Seccao(
 
 -- Funcionario
 CREATE TABLE Empresa.Funcionario(
-	nif 			INT		CHECK (nif BETWEEN 0000000 AND 9999999),
-	salario			DECIMAL(5,2),
+	nif 			INT		CHECK (nif BETWEEN 000000000 AND 999999999),
+	salario			DECIMAL(8,2),
 	morada			VARCHAR(50),
 	numeroCC		INT,
 	nome			VARCHAR(40),
@@ -87,15 +87,15 @@ CREATE TABLE Empresa.Operario(
 CREATE TABLE Empresa.Processa(
 	codigo_materia_prima	INT		NOT NULL	FOREIGN KEY REFERENCES Empresa.MateriaPrima(codigo),
 	estado 					VARCHAR(20)			CHECK (estado IN ('em espera', 'em producao', 'concluido')) DEFAULT 'em espera',
-	seccao_atual			VARCHAR(20)		    FOREIGN KEY REFERENCES Empresa.Seccao(designacao),
+	seccao_atual			INT			    	FOREIGN KEY REFERENCES Empresa.Seccao(codigo),
 	ID_funcionario			INT		NOT NULL	FOREIGN KEY REFERENCES Empresa.Funcionario(ID),
 	PRIMARY KEY(ID_funcionario, codigo_materia_prima),
 );
 
 -- TipoProduto
 CREATE TABLE Empresa.TipoProduto(
-	custo_fabrico			DECIMAL(4,2)	NOT NULL,
-	preco_venda				DECIMAL(4,2)	NOT NULL,
+	custo_fabrico			DECIMAL(6,2)	NOT NULL,
+	preco_venda				DECIMAL(6,2)	NOT NULL,
 	categoria				VARCHAR(40)		PRIMARY KEY			NOT NULL,
 );
 
@@ -106,5 +106,4 @@ CREATE TABLE Empresa.Produto(
 	codigo_materia_prima INT				FOREIGN KEY REFERENCES Empresa.MateriaPrima(codigo),
 	categoria_tipo		 VARCHAR(40)		FOREIGN KEY REFERENCES Empresa.TipoProduto(categoria),
 	num_encomenda		 INT				FOREIGN KEY REFERENCES Empresa.Encomenda(numero),
-	ID_funcionario		 INT				FOREIGN KEY REFERENCES Empresa.Funcionario(ID),
 );
