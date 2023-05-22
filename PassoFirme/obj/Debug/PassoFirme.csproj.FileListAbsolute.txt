@@ -1,0 +1,10 @@
+C:\Users\migue\OneDrive - Universidade de Aveiro\_UA\2º ano\2º semestre\BD\BD-ProjetoFinal\PassoFirme\bin\Debug\PassoFirme.exe.config
+C:\Users\migue\OneDrive - Universidade de Aveiro\_UA\2º ano\2º semestre\BD\BD-ProjetoFinal\PassoFirme\bin\Debug\PassoFirme.exe
+C:\Users\migue\OneDrive - Universidade de Aveiro\_UA\2º ano\2º semestre\BD\BD-ProjetoFinal\PassoFirme\bin\Debug\PassoFirme.pdb
+C:\Users\migue\OneDrive - Universidade de Aveiro\_UA\2º ano\2º semestre\BD\BD-ProjetoFinal\PassoFirme\obj\Debug\PassoFirme.csproj.AssemblyReference.cache
+C:\Users\migue\OneDrive - Universidade de Aveiro\_UA\2º ano\2º semestre\BD\BD-ProjetoFinal\PassoFirme\obj\Debug\PassoFirme.Form1.resources
+C:\Users\migue\OneDrive - Universidade de Aveiro\_UA\2º ano\2º semestre\BD\BD-ProjetoFinal\PassoFirme\obj\Debug\PassoFirme.Properties.Resources.resources
+C:\Users\migue\OneDrive - Universidade de Aveiro\_UA\2º ano\2º semestre\BD\BD-ProjetoFinal\PassoFirme\obj\Debug\PassoFirme.csproj.GenerateResource.cache
+C:\Users\migue\OneDrive - Universidade de Aveiro\_UA\2º ano\2º semestre\BD\BD-ProjetoFinal\PassoFirme\obj\Debug\PassoFirme.csproj.CoreCompileInputs.cache
+C:\Users\migue\OneDrive - Universidade de Aveiro\_UA\2º ano\2º semestre\BD\BD-ProjetoFinal\PassoFirme\obj\Debug\PassoFirme.exe
+C:\Users\migue\OneDrive - Universidade de Aveiro\_UA\2º ano\2º semestre\BD\BD-ProjetoFinal\PassoFirme\obj\Debug\PassoFirme.pdb
