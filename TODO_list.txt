@@ -5,27 +5,29 @@ TABELAS
 MUDANÇAS NO DER/ER
 Adicionamos atributos (seccao_atual) no Processa, tiramos quant_armazem do Produto.
 codigo_materia_prima no Produto, n ta normalizado (?)
+Tirar disjoint do der
 
 
 STORED PROCEDURES
-- Remover 1 funcionário (verificar se é gerente e se for ativa o trigger em baixo)
+- Remover 1 funcionário (verificar se é gerente e se for ativa o trigger em baixo) - Não vai ser mais SP
 - Tipo de produto + encomendado??
 - Média salarial??
 
 //- Quantidade materiaPrima pendente Fornecedor
-//- Nº encomendas pendentes Revendedor
 
 
 UDFs
-- Nº funcionários numa Secção
-- Quantidade de Produto (itens) numa Encomenda
+ - Nº funcionários numa Secção
+FEITO - Nº encomendas pendentes Revendedor
+FEITO - Quantidade de Produto (itens) numa Encomenda
 - Filtrar produtos pela designacao atual, estado, tipo de produto, quant em armazem, 
 
 
 TRIGGER
-- Não permitir que 1 funcionário seja gestor de mais que 1 departamento??
+FEITO - Não permitir que 1 secção tenha mais que 1 gerente
 - Algo para avisar que 1 secção está sem gerente e que tem que ser nomeado 1 
 (talvez o que tiver ID mais baixo por estar lá há mais tempo I guess)??
+- Salário de 1 oprário não pode ser superior ao do seu gestor
 
 
 Apresentação:

@@ -98,20 +98,20 @@ INSERT INTO Empresa.Operario (ID_funcionario, codigo_seccao)
 	(109, 1),
 	(110, 3);
 
-INSERT INTO Empresa.Processa (codigo_materia_prima, estado, seccao_atual, ID_funcionario)
+INSERT INTO Empresa.Processa (codigo_materia_prima, estado, ID_funcionario)
 	VALUES
-	(101, 'em espera', 1, 105),
-	(101, 'em producao', 2, 106),
-	(102, 'em espera', 2, 107),
-	(103, 'em producao', 1, 101),
-	(200, 'em producao', 1, 109),
-	(301, 'em producao', 4, 107),
-	(302, 'em producao', 3, 103),
-	(400, 'em producao', 3, 108),
-	(101, 'concluido', 3, 109),
-	(101, 'concluido', 2, 103),
-	(102, 'concluido', 1, 110),
-	(103, 'concluido', 4, 105);
+	(101, 'em espera', 105),
+	(101, 'em producao', 106),
+	(102, 'em espera', 107),
+	(103, 'em producao', 101),
+	(200, 'em producao', 109),
+	(301, 'em producao', 107),
+	(302, 'em producao', 103),
+	(400, 'em producao', 108),
+	(101, 'concluido', 109),
+	(101, 'concluido', 103),
+	(102, 'concluido', 110),
+	(103, 'concluido', 105);
 
 
 INSERT INTO Empresa.TipoProduto (custo_fabrico, preco_venda, categoria)
