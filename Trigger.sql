@@ -41,3 +41,21 @@ AS
                 WHERE codigo_seccao = @codigo_seccao;
             END;
     END;
+
+
+--TODO arranjar
+-- Impedir que salario de opearrio seja superior ao do gerente da seccao
+CREATE TRIGGER trig_salario_operario
+ON Empresa.Operario
+AFTER INSERT, UPDATE
+AS
+    BEGIN
+        IF EXISTS (SELECT * FROM inserted AS I
+                   JOIN Empresa.Gerente AS G ON I.codigo_seccao = G.codigo_seccao
+                   JOIN Empresa.Funcionario AS F ON I.ID_funcionario = F.ID
+                   WHERE I.salario > G.salario)
+            BEGIN
+                RAISERROR ('ERRO: Salario de operario nao pode ser superior ao do gerente da seccao!', 16, 1);
+                ROLLBACK TRANSACTION;
+            END;
+    END;

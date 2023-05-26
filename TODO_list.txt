@@ -17,7 +17,7 @@ STORED PROCEDURES
 
 
 UDFs
- - Nº funcionários numa Secção
+FEITO - Nº funcionários numa Secção
 FEITO - Nº encomendas pendentes Revendedor
 FEITO - Quantidade de Produto (itens) numa Encomenda
 - Filtrar produtos pela designacao atual, estado, tipo de produto, quant em armazem, 
@@ -27,7 +27,7 @@ TRIGGER
 FEITO - Não permitir que 1 secção tenha mais que 1 gerente
 - Algo para avisar que 1 secção está sem gerente e que tem que ser nomeado 1 
 (talvez o que tiver ID mais baixo por estar lá há mais tempo I guess)??
-- Salário de 1 oprário não pode ser superior ao do seu gestor
+- Salário de 1 operário não pode ser superior ao do seu gestor
 
 
 Apresentação:

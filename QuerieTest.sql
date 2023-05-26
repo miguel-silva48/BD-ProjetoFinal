@@ -1,0 +1,1 @@
+Select * From Produto Join TipoProduto Where Produto.codigo_tipo_produto = TipoProduto.codigo;
