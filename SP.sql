@@ -2,7 +2,7 @@
 CREATE PROCEDURE getNumEstadoBySeccao (@codigo INT, @estado VARCHAR(20), @numEstado INT OUTPUT)
 AS
     SELECT @numEstado = COUNT(estado) 
-	FROM Empresa.Processa JOIN Empresa.Operario ON Processa.ID_funcionario=Operario.ID_funcionario
+	FROM Empresa.Origina JOIN Empresa.Operario ON Origina.ID_funcionario=Operario.ID_funcionario
 	WHERE estado = @estado AND codigo_seccao = @codigo
 go 
 
