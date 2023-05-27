@@ -33,40 +33,40 @@ namespace PassoFirme
             this.Início = new System.Windows.Forms.TabPage();
             this.Produtos = new System.Windows.Forms.TabPage();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.textBox_codMatPrima_produto = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.textBox_numEncomenda_produto = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label_produto = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox_preco_produto = new System.Windows.Forms.TextBox();
+            this.textBox_custo_produto = new System.Windows.Forms.TextBox();
+            this.textBox_codigo_produto = new System.Windows.Forms.TextBox();
             this.textBox_categoria_produto = new System.Windows.Forms.TextBox();
             this.listBox_produtos = new System.Windows.Forms.ListBox();
             this.Funcionários = new System.Windows.Forms.TabPage();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.textBox_gerente_funcionario = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.textBox_seccao_funcionario = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.textBox_salario_funcionario = new System.Windows.Forms.TextBox();
+            this.textBox_id_funcionario = new System.Windows.Forms.TextBox();
             this.label_funcionario = new System.Windows.Forms.Label();
             this.label_morada = new System.Windows.Forms.Label();
             this.label_email = new System.Windows.Forms.Label();
             this.label_nif = new System.Windows.Forms.Label();
             this.label_nome = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox_email = new System.Windows.Forms.TextBox();
-            this.textBox_nif = new System.Windows.Forms.TextBox();
-            this.textBox_nome = new System.Windows.Forms.TextBox();
-            this.listBox3 = new System.Windows.Forms.ListBox();
+            this.textBox_morada_funcionario = new System.Windows.Forms.TextBox();
+            this.textBox_numCC_funcionario = new System.Windows.Forms.TextBox();
+            this.textBox_nif_funcionario = new System.Windows.Forms.TextBox();
+            this.textBox_nome_funcionario = new System.Windows.Forms.TextBox();
+            this.listBox_funcionarios = new System.Windows.Forms.ListBox();
             this.Fornecedores = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label_fornecedor = new System.Windows.Forms.Label();
@@ -78,7 +78,7 @@ namespace PassoFirme
             this.textBox_email_fornecedor = new System.Windows.Forms.TextBox();
             this.textBox_nif_fornecedor = new System.Windows.Forms.TextBox();
             this.textBox_nome_fornecedor = new System.Windows.Forms.TextBox();
-            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.listBox_fornecedor = new System.Windows.Forms.ListBox();
             this.Revendedores = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label_revendedor = new System.Windows.Forms.Label();
@@ -90,7 +90,7 @@ namespace PassoFirme
             this.textBox_email_revendedor = new System.Windows.Forms.TextBox();
             this.textBox_nif_revendedor = new System.Windows.Forms.TextBox();
             this.textBox_nome_revendedor = new System.Windows.Forms.TextBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.listBox_revendedor = new System.Windows.Forms.ListBox();
             this.tabControl1.SuspendLayout();
             this.Produtos.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -139,30 +139,30 @@ namespace PassoFirme
             // 
             // panel4
             // 
-            this.panel4.Controls.Add(this.textBox7);
+            this.panel4.Controls.Add(this.textBox_codMatPrima_produto);
             this.panel4.Controls.Add(this.label7);
-            this.panel4.Controls.Add(this.textBox6);
+            this.panel4.Controls.Add(this.textBox_numEncomenda_produto);
             this.panel4.Controls.Add(this.label2);
             this.panel4.Controls.Add(this.label_produto);
             this.panel4.Controls.Add(this.label3);
             this.panel4.Controls.Add(this.label4);
             this.panel4.Controls.Add(this.label5);
             this.panel4.Controls.Add(this.label6);
-            this.panel4.Controls.Add(this.textBox1);
-            this.panel4.Controls.Add(this.textBox2);
-            this.panel4.Controls.Add(this.textBox3);
+            this.panel4.Controls.Add(this.textBox_preco_produto);
+            this.panel4.Controls.Add(this.textBox_custo_produto);
+            this.panel4.Controls.Add(this.textBox_codigo_produto);
             this.panel4.Controls.Add(this.textBox_categoria_produto);
             this.panel4.Location = new System.Drawing.Point(409, 8);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(361, 404);
             this.panel4.TabIndex = 3;
             // 
-            // textBox7
+            // textBox_codMatPrima_produto
             // 
-            this.textBox7.Location = new System.Drawing.Point(186, 303);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(147, 22);
-            this.textBox7.TabIndex = 12;
+            this.textBox_codMatPrima_produto.Location = new System.Drawing.Point(186, 303);
+            this.textBox_codMatPrima_produto.Name = "textBox_codMatPrima_produto";
+            this.textBox_codMatPrima_produto.Size = new System.Drawing.Size(147, 22);
+            this.textBox_codMatPrima_produto.TabIndex = 12;
             // 
             // label7
             // 
@@ -173,12 +173,12 @@ namespace PassoFirme
             this.label7.TabIndex = 11;
             this.label7.Text = "Matéria Prima principal:";
             // 
-            // textBox6
+            // textBox_numEncomenda_produto
             // 
-            this.textBox6.Location = new System.Drawing.Point(136, 263);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(100, 22);
-            this.textBox6.TabIndex = 10;
+            this.textBox_numEncomenda_produto.Location = new System.Drawing.Point(136, 263);
+            this.textBox_numEncomenda_produto.Name = "textBox_numEncomenda_produto";
+            this.textBox_numEncomenda_produto.Size = new System.Drawing.Size(100, 22);
+            this.textBox_numEncomenda_produto.TabIndex = 10;
             // 
             // label2
             // 
@@ -235,26 +235,26 @@ namespace PassoFirme
             this.label6.TabIndex = 4;
             this.label6.Text = "Categoria:";
             // 
-            // textBox1
+            // textBox_preco_produto
             // 
-            this.textBox1.Location = new System.Drawing.Point(217, 207);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(116, 22);
-            this.textBox1.TabIndex = 3;
+            this.textBox_preco_produto.Location = new System.Drawing.Point(217, 207);
+            this.textBox_preco_produto.Name = "textBox_preco_produto";
+            this.textBox_preco_produto.Size = new System.Drawing.Size(116, 22);
+            this.textBox_preco_produto.TabIndex = 3;
             // 
-            // textBox2
+            // textBox_custo_produto
             // 
-            this.textBox2.Location = new System.Drawing.Point(27, 207);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(116, 22);
-            this.textBox2.TabIndex = 2;
+            this.textBox_custo_produto.Location = new System.Drawing.Point(27, 207);
+            this.textBox_custo_produto.Name = "textBox_custo_produto";
+            this.textBox_custo_produto.Size = new System.Drawing.Size(116, 22);
+            this.textBox_custo_produto.TabIndex = 2;
             // 
-            // textBox3
+            // textBox_codigo_produto
             // 
-            this.textBox3.Location = new System.Drawing.Point(103, 130);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 22);
-            this.textBox3.TabIndex = 1;
+            this.textBox_codigo_produto.Location = new System.Drawing.Point(103, 130);
+            this.textBox_codigo_produto.Name = "textBox_codigo_produto";
+            this.textBox_codigo_produto.Size = new System.Drawing.Size(100, 22);
+            this.textBox_codigo_produto.TabIndex = 1;
             // 
             // textBox_categoria_produto
             // 
@@ -262,7 +262,6 @@ namespace PassoFirme
             this.textBox_categoria_produto.Name = "textBox_categoria_produto";
             this.textBox_categoria_produto.Size = new System.Drawing.Size(241, 22);
             this.textBox_categoria_produto.TabIndex = 0;
-            this.textBox_categoria_produto.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
             // 
             // listBox_produtos
             // 
@@ -272,12 +271,12 @@ namespace PassoFirme
             this.listBox_produtos.Name = "listBox_produtos";
             this.listBox_produtos.Size = new System.Drawing.Size(400, 404);
             this.listBox_produtos.TabIndex = 2;
-            this.listBox_produtos.SelectedIndexChanged += new System.EventHandler(this.listBox4_SelectedIndexChanged);
+            this.listBox_produtos.SelectedIndexChanged += new System.EventHandler(this.listBox_produtos_SelectedIndexChanged);
             // 
             // Funcionários
             // 
             this.Funcionários.Controls.Add(this.panel3);
-            this.Funcionários.Controls.Add(this.listBox3);
+            this.Funcionários.Controls.Add(this.listBox_funcionarios);
             this.Funcionários.Location = new System.Drawing.Point(4, 25);
             this.Funcionários.Name = "Funcionários";
             this.Funcionários.Padding = new System.Windows.Forms.Padding(3);
@@ -288,34 +287,34 @@ namespace PassoFirme
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.textBox11);
+            this.panel3.Controls.Add(this.textBox_gerente_funcionario);
             this.panel3.Controls.Add(this.label10);
             this.panel3.Controls.Add(this.label9);
-            this.panel3.Controls.Add(this.textBox10);
+            this.panel3.Controls.Add(this.textBox_seccao_funcionario);
             this.panel3.Controls.Add(this.label1);
             this.panel3.Controls.Add(this.label8);
-            this.panel3.Controls.Add(this.textBox8);
-            this.panel3.Controls.Add(this.textBox9);
+            this.panel3.Controls.Add(this.textBox_salario_funcionario);
+            this.panel3.Controls.Add(this.textBox_id_funcionario);
             this.panel3.Controls.Add(this.label_funcionario);
             this.panel3.Controls.Add(this.label_morada);
             this.panel3.Controls.Add(this.label_email);
             this.panel3.Controls.Add(this.label_nif);
             this.panel3.Controls.Add(this.label_nome);
-            this.panel3.Controls.Add(this.textBox4);
-            this.panel3.Controls.Add(this.textBox_email);
-            this.panel3.Controls.Add(this.textBox_nif);
-            this.panel3.Controls.Add(this.textBox_nome);
+            this.panel3.Controls.Add(this.textBox_morada_funcionario);
+            this.panel3.Controls.Add(this.textBox_numCC_funcionario);
+            this.panel3.Controls.Add(this.textBox_nif_funcionario);
+            this.panel3.Controls.Add(this.textBox_nome_funcionario);
             this.panel3.Location = new System.Drawing.Point(409, 8);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(361, 404);
             this.panel3.TabIndex = 3;
             // 
-            // textBox11
+            // textBox_gerente_funcionario
             // 
-            this.textBox11.Location = new System.Drawing.Point(244, 298);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(100, 22);
-            this.textBox11.TabIndex = 16;
+            this.textBox_gerente_funcionario.Location = new System.Drawing.Point(244, 298);
+            this.textBox_gerente_funcionario.Name = "textBox_gerente_funcionario";
+            this.textBox_gerente_funcionario.Size = new System.Drawing.Size(100, 22);
+            this.textBox_gerente_funcionario.TabIndex = 16;
             // 
             // label10
             // 
@@ -334,14 +333,13 @@ namespace PassoFirme
             this.label9.Size = new System.Drawing.Size(59, 17);
             this.label9.TabIndex = 14;
             this.label9.Text = "Secção:";
-            this.label9.Click += new System.EventHandler(this.label9_Click);
             // 
-            // textBox10
+            // textBox_seccao_funcionario
             // 
-            this.textBox10.Location = new System.Drawing.Point(33, 298);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(100, 22);
-            this.textBox10.TabIndex = 13;
+            this.textBox_seccao_funcionario.Location = new System.Drawing.Point(33, 298);
+            this.textBox_seccao_funcionario.Name = "textBox_seccao_funcionario";
+            this.textBox_seccao_funcionario.Size = new System.Drawing.Size(100, 22);
+            this.textBox_seccao_funcionario.TabIndex = 13;
             // 
             // label1
             // 
@@ -351,7 +349,6 @@ namespace PassoFirme
             this.label1.Size = new System.Drawing.Size(56, 17);
             this.label1.TabIndex = 12;
             this.label1.Text = "Salário:";
-            this.label1.Click += new System.EventHandler(this.label1_Click_1);
             // 
             // label8
             // 
@@ -362,20 +359,19 @@ namespace PassoFirme
             this.label8.TabIndex = 11;
             this.label8.Text = "ID:";
             // 
-            // textBox8
+            // textBox_salario_funcionario
             // 
-            this.textBox8.Location = new System.Drawing.Point(203, 244);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(100, 22);
-            this.textBox8.TabIndex = 10;
-            this.textBox8.TextChanged += new System.EventHandler(this.textBox8_TextChanged);
+            this.textBox_salario_funcionario.Location = new System.Drawing.Point(203, 244);
+            this.textBox_salario_funcionario.Name = "textBox_salario_funcionario";
+            this.textBox_salario_funcionario.Size = new System.Drawing.Size(100, 22);
+            this.textBox_salario_funcionario.TabIndex = 10;
             // 
-            // textBox9
+            // textBox_id_funcionario
             // 
-            this.textBox9.Location = new System.Drawing.Point(33, 244);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(100, 22);
-            this.textBox9.TabIndex = 9;
+            this.textBox_id_funcionario.Location = new System.Drawing.Point(33, 244);
+            this.textBox_id_funcionario.Name = "textBox_id_funcionario";
+            this.textBox_id_funcionario.Size = new System.Drawing.Size(100, 22);
+            this.textBox_id_funcionario.TabIndex = 9;
             // 
             // label_funcionario
             // 
@@ -423,47 +419,48 @@ namespace PassoFirme
             this.label_nome.TabIndex = 4;
             this.label_nome.Text = "Nome:";
             // 
-            // textBox4
+            // textBox_morada_funcionario
             // 
-            this.textBox4.Location = new System.Drawing.Point(103, 184);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(241, 22);
-            this.textBox4.TabIndex = 3;
+            this.textBox_morada_funcionario.Location = new System.Drawing.Point(103, 184);
+            this.textBox_morada_funcionario.Name = "textBox_morada_funcionario";
+            this.textBox_morada_funcionario.Size = new System.Drawing.Size(241, 22);
+            this.textBox_morada_funcionario.TabIndex = 3;
             // 
-            // textBox_email
+            // textBox_numCC_funcionario
             // 
-            this.textBox_email.Location = new System.Drawing.Point(203, 145);
-            this.textBox_email.Name = "textBox_email";
-            this.textBox_email.Size = new System.Drawing.Size(100, 22);
-            this.textBox_email.TabIndex = 2;
+            this.textBox_numCC_funcionario.Location = new System.Drawing.Point(203, 145);
+            this.textBox_numCC_funcionario.Name = "textBox_numCC_funcionario";
+            this.textBox_numCC_funcionario.Size = new System.Drawing.Size(100, 22);
+            this.textBox_numCC_funcionario.TabIndex = 2;
             // 
-            // textBox_nif
+            // textBox_nif_funcionario
             // 
-            this.textBox_nif.Location = new System.Drawing.Point(33, 145);
-            this.textBox_nif.Name = "textBox_nif";
-            this.textBox_nif.Size = new System.Drawing.Size(100, 22);
-            this.textBox_nif.TabIndex = 1;
+            this.textBox_nif_funcionario.Location = new System.Drawing.Point(33, 145);
+            this.textBox_nif_funcionario.Name = "textBox_nif_funcionario";
+            this.textBox_nif_funcionario.Size = new System.Drawing.Size(100, 22);
+            this.textBox_nif_funcionario.TabIndex = 1;
             // 
-            // textBox_nome
+            // textBox_nome_funcionario
             // 
-            this.textBox_nome.Location = new System.Drawing.Point(103, 81);
-            this.textBox_nome.Name = "textBox_nome";
-            this.textBox_nome.Size = new System.Drawing.Size(184, 22);
-            this.textBox_nome.TabIndex = 0;
+            this.textBox_nome_funcionario.Location = new System.Drawing.Point(103, 81);
+            this.textBox_nome_funcionario.Name = "textBox_nome_funcionario";
+            this.textBox_nome_funcionario.Size = new System.Drawing.Size(184, 22);
+            this.textBox_nome_funcionario.TabIndex = 0;
             // 
-            // listBox3
+            // listBox_funcionarios
             // 
-            this.listBox3.FormattingEnabled = true;
-            this.listBox3.ItemHeight = 16;
-            this.listBox3.Location = new System.Drawing.Point(3, 8);
-            this.listBox3.Name = "listBox3";
-            this.listBox3.Size = new System.Drawing.Size(400, 404);
-            this.listBox3.TabIndex = 2;
+            this.listBox_funcionarios.FormattingEnabled = true;
+            this.listBox_funcionarios.ItemHeight = 16;
+            this.listBox_funcionarios.Location = new System.Drawing.Point(3, 8);
+            this.listBox_funcionarios.Name = "listBox_funcionarios";
+            this.listBox_funcionarios.Size = new System.Drawing.Size(400, 404);
+            this.listBox_funcionarios.TabIndex = 2;
+            this.listBox_funcionarios.SelectedIndexChanged += new System.EventHandler(this.listBox_funcionarios_SelectedIndexChanged);
             // 
             // Fornecedores
             // 
             this.Fornecedores.Controls.Add(this.panel2);
-            this.Fornecedores.Controls.Add(this.listBox2);
+            this.Fornecedores.Controls.Add(this.listBox_fornecedor);
             this.Fornecedores.Location = new System.Drawing.Point(4, 25);
             this.Fornecedores.Name = "Fornecedores";
             this.Fornecedores.Padding = new System.Windows.Forms.Padding(3);
@@ -562,19 +559,20 @@ namespace PassoFirme
             this.textBox_nome_fornecedor.Size = new System.Drawing.Size(184, 22);
             this.textBox_nome_fornecedor.TabIndex = 0;
             // 
-            // listBox2
+            // listBox_fornecedor
             // 
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.ItemHeight = 16;
-            this.listBox2.Location = new System.Drawing.Point(3, 8);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(400, 404);
-            this.listBox2.TabIndex = 2;
+            this.listBox_fornecedor.FormattingEnabled = true;
+            this.listBox_fornecedor.ItemHeight = 16;
+            this.listBox_fornecedor.Location = new System.Drawing.Point(3, 8);
+            this.listBox_fornecedor.Name = "listBox_fornecedor";
+            this.listBox_fornecedor.Size = new System.Drawing.Size(400, 404);
+            this.listBox_fornecedor.TabIndex = 2;
+            this.listBox_fornecedor.SelectedIndexChanged += new System.EventHandler(this.listBox_fornecedor_SelectedIndexChanged);
             // 
             // Revendedores
             // 
             this.Revendedores.Controls.Add(this.panel1);
-            this.Revendedores.Controls.Add(this.listBox1);
+            this.Revendedores.Controls.Add(this.listBox_revendedor);
             this.Revendedores.Location = new System.Drawing.Point(4, 25);
             this.Revendedores.Name = "Revendedores";
             this.Revendedores.Padding = new System.Windows.Forms.Padding(3);
@@ -608,7 +606,6 @@ namespace PassoFirme
             this.label_revendedor.Size = new System.Drawing.Size(209, 20);
             this.label_revendedor.TabIndex = 8;
             this.label_revendedor.Text = "Informação do Revendedor";
-            this.label_revendedor.Click += new System.EventHandler(this.label_revendedor_Click);
             // 
             // label_morada_revendedor
             // 
@@ -618,7 +615,6 @@ namespace PassoFirme
             this.label_morada_revendedor.Size = new System.Drawing.Size(60, 17);
             this.label_morada_revendedor.TabIndex = 7;
             this.label_morada_revendedor.Text = "Morada:";
-            this.label_morada_revendedor.Click += new System.EventHandler(this.label_morada_Click);
             // 
             // label_email_revendedor
             // 
@@ -628,7 +624,6 @@ namespace PassoFirme
             this.label_email_revendedor.Size = new System.Drawing.Size(46, 17);
             this.label_email_revendedor.TabIndex = 6;
             this.label_email_revendedor.Text = "Email:";
-            this.label_email_revendedor.Click += new System.EventHandler(this.label_email_Click);
             // 
             // label_nif_revendedor
             // 
@@ -638,7 +633,6 @@ namespace PassoFirme
             this.label_nif_revendedor.Size = new System.Drawing.Size(33, 17);
             this.label_nif_revendedor.TabIndex = 5;
             this.label_nif_revendedor.Text = "NIF:";
-            this.label_nif_revendedor.Click += new System.EventHandler(this.label_nif_Click);
             // 
             // label_nome_revendedor
             // 
@@ -648,7 +642,6 @@ namespace PassoFirme
             this.label_nome_revendedor.Size = new System.Drawing.Size(49, 17);
             this.label_nome_revendedor.TabIndex = 4;
             this.label_nome_revendedor.Text = "Nome:";
-            this.label_nome_revendedor.Click += new System.EventHandler(this.label1_Click);
             // 
             // textBox_morada_revendedor
             // 
@@ -656,7 +649,6 @@ namespace PassoFirme
             this.textBox_morada_revendedor.Name = "textBox_morada_revendedor";
             this.textBox_morada_revendedor.Size = new System.Drawing.Size(241, 22);
             this.textBox_morada_revendedor.TabIndex = 3;
-            this.textBox_morada_revendedor.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
             // 
             // textBox_email_revendedor
             // 
@@ -664,7 +656,6 @@ namespace PassoFirme
             this.textBox_email_revendedor.Name = "textBox_email_revendedor";
             this.textBox_email_revendedor.Size = new System.Drawing.Size(241, 22);
             this.textBox_email_revendedor.TabIndex = 2;
-            this.textBox_email_revendedor.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // textBox_nif_revendedor
             // 
@@ -672,7 +663,6 @@ namespace PassoFirme
             this.textBox_nif_revendedor.Name = "textBox_nif_revendedor";
             this.textBox_nif_revendedor.Size = new System.Drawing.Size(100, 22);
             this.textBox_nif_revendedor.TabIndex = 1;
-            this.textBox_nif_revendedor.TextChanged += new System.EventHandler(this.textBox_nif_TextChanged);
             // 
             // textBox_nome_revendedor
             // 
@@ -680,16 +670,16 @@ namespace PassoFirme
             this.textBox_nome_revendedor.Name = "textBox_nome_revendedor";
             this.textBox_nome_revendedor.Size = new System.Drawing.Size(184, 22);
             this.textBox_nome_revendedor.TabIndex = 0;
-            this.textBox_nome_revendedor.TextChanged += new System.EventHandler(this.textBox_nome_TextChanged);
             // 
-            // listBox1
+            // listBox_revendedor
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 16;
-            this.listBox1.Location = new System.Drawing.Point(3, 8);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(400, 404);
-            this.listBox1.TabIndex = 0;
+            this.listBox_revendedor.FormattingEnabled = true;
+            this.listBox_revendedor.ItemHeight = 16;
+            this.listBox_revendedor.Location = new System.Drawing.Point(3, 8);
+            this.listBox_revendedor.Name = "listBox_revendedor";
+            this.listBox_revendedor.Size = new System.Drawing.Size(400, 404);
+            this.listBox_revendedor.TabIndex = 0;
+            this.listBox_revendedor.SelectedIndexChanged += new System.EventHandler(this.listBox_revendedor_SelectedIndexChanged_1);
             // 
             // Form1
             // 
@@ -725,7 +715,7 @@ namespace PassoFirme
         private System.Windows.Forms.TabPage Funcionários;
         private System.Windows.Forms.TabPage Fornecedores;
         private System.Windows.Forms.TabPage Revendedores;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox listBox_revendedor;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label_nome_revendedor;
         private System.Windows.Forms.TextBox textBox_morada_revendedor;
@@ -746,19 +736,19 @@ namespace PassoFirme
         private System.Windows.Forms.TextBox textBox_email_fornecedor;
         private System.Windows.Forms.TextBox textBox_nif_fornecedor;
         private System.Windows.Forms.TextBox textBox_nome_fornecedor;
-        private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.ListBox listBox_fornecedor;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox textBox_numEncomenda_produto;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label_produto;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBox_preco_produto;
+        private System.Windows.Forms.TextBox textBox_custo_produto;
+        private System.Windows.Forms.TextBox textBox_codigo_produto;
         private System.Windows.Forms.TextBox textBox_categoria_produto;
         private System.Windows.Forms.ListBox listBox_produtos;
         private System.Windows.Forms.Panel panel3;
@@ -767,19 +757,19 @@ namespace PassoFirme
         private System.Windows.Forms.Label label_email;
         private System.Windows.Forms.Label label_nif;
         private System.Windows.Forms.Label label_nome;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox_email;
-        private System.Windows.Forms.TextBox textBox_nif;
-        private System.Windows.Forms.TextBox textBox_nome;
-        private System.Windows.Forms.ListBox listBox3;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox textBox_morada_funcionario;
+        private System.Windows.Forms.TextBox textBox_numCC_funcionario;
+        private System.Windows.Forms.TextBox textBox_nif_funcionario;
+        private System.Windows.Forms.TextBox textBox_nome_funcionario;
+        private System.Windows.Forms.ListBox listBox_funcionarios;
+        private System.Windows.Forms.TextBox textBox_codMatPrima_produto;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.TextBox textBox_salario_funcionario;
+        private System.Windows.Forms.TextBox textBox_id_funcionario;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBox10;
-        private System.Windows.Forms.TextBox textBox11;
+        private System.Windows.Forms.TextBox textBox_seccao_funcionario;
+        private System.Windows.Forms.TextBox textBox_gerente_funcionario;
         private System.Windows.Forms.Label label10;
     }
 }
