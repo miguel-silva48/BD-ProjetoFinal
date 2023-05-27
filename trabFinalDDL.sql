@@ -1,6 +1,6 @@
+DROP TABLE IF EXISTS Empresa.Origina;
 DROP TABLE IF EXISTS Empresa.Produto;
 DROP TABLE IF EXISTS Empresa.TipoProduto;
-DROP TABLE IF EXISTS Empresa.Processa;
 DROP TABLE IF EXISTS Empresa.Operario;
 DROP TABLE IF EXISTS Empresa.Gerente;
 DROP TABLE IF EXISTS Empresa.Funcionario;
@@ -83,15 +83,6 @@ CREATE TABLE Empresa.Operario(
 	codigo_seccao	INT		FOREIGN KEY REFERENCES Empresa.Seccao(codigo),
 );
 
--- Processa
-CREATE TABLE Empresa.Processa(
-	codigo_materia_prima	INT		NOT NULL	FOREIGN KEY REFERENCES Empresa.MateriaPrima(codigo),
-	estado 					VARCHAR(20)			CHECK (estado IN ('em espera', 'em producao', 'concluido')) DEFAULT 'em espera',
-	--seccao_atual			INT			    	FOREIGN KEY REFERENCES Empresa.Seccao(codigo),
-	ID_funcionario			INT		NOT NULL	FOREIGN KEY REFERENCES Empresa.Operario(ID_Funcionario) ON DELETE CASCADE,
-	PRIMARY KEY(ID_funcionario, codigo_materia_prima),
-);
-
 -- TipoProduto
 CREATE TABLE Empresa.TipoProduto(
 	custo_fabrico			DECIMAL(6,2)	NOT NULL,
@@ -106,4 +97,13 @@ CREATE TABLE Empresa.Produto(
 	codigo_materia_prima INT				FOREIGN KEY REFERENCES Empresa.MateriaPrima(codigo),
 	categoria_tipo		 VARCHAR(40)		FOREIGN KEY REFERENCES Empresa.TipoProduto(categoria),
 	num_encomenda		 INT				FOREIGN KEY REFERENCES Empresa.Encomenda(numero),
+);
+
+-- Origina
+CREATE TABLE Empresa.Origina(
+	codigo_materia_prima	INT		NOT NULL	FOREIGN KEY REFERENCES Empresa.MateriaPrima(codigo),
+	estado 					VARCHAR(20)			CHECK (estado IN ('em espera', 'em producao', 'concluido')) DEFAULT 'em espera',
+	ID_funcionario			INT		NOT NULL	FOREIGN KEY REFERENCES Empresa.Operario(ID_Funcionario) ON DELETE CASCADE,
+	codigo_produto			INT		NOT NULL	FOREIGN KEY REFERENCES Empresa.Produto(codigo_produto) ON DELETE CASCADE,
+	PRIMARY KEY(ID_funcionario, codigo_materia_prima,codigo_produto),
 );

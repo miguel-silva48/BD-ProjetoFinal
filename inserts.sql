@@ -95,23 +95,8 @@ INSERT INTO Empresa.Operario (ID_funcionario, codigo_seccao)
 	(106, 4),
 	(107, 4),
 	(108, 3),
-	(109, 1),
+	(109, 4),
 	(110, 3);
-
-INSERT INTO Empresa.Processa (codigo_materia_prima, estado, ID_funcionario)
-	VALUES
-	(101, 'em espera', 105),
-	(101, 'em producao', 106),
-	(102, 'em espera', 107),
-	(103, 'em producao', 101),
-	(200, 'em producao', 109),
-	(301, 'em producao', 107),
-	(302, 'em producao', 103),
-	(400, 'em producao', 108),
-	(101, 'concluido', 109),
-	(101, 'concluido', 103),
-	(102, 'concluido', 110),
-	(103, 'concluido', 105);
 
 
 INSERT INTO Empresa.TipoProduto (custo_fabrico, preco_venda, categoria)
@@ -138,38 +123,53 @@ INSERT INTO Empresa.TipoProduto (custo_fabrico, preco_venda, categoria)
     (47, 80,'Tênis Runner Preto');
 
 
-INSERT INTO Empresa.Produto (codigo_produto, codigo_materia_prima, categoria_tipo, num_encomenda)
+INSERT INTO Empresa.Produto (codigo_produto, categoria_tipo, num_encomenda)
     VALUES	
-	(10001,101,'Bota Timber Castanha', 1),
-	(10002,101,'Sapatilha Kid Adventure Preta', 1),
-	(10003,103,'Tênis Runner Branco', 2),
-	(10004,103,'Tênis Runner Branco', 3),
-	(10005,102,'Tênis Runner Castanho', 4),
-	(10006,200,'Bota Timber Branca', 5),
-	(10007,200,'Bota Timber Branca', 6),
-	(10008,502,'Sapatilha Kid Adventure Verde', 6),
-	(10009,502,'Sapatilha Kid Adventure Verde', 7),
-	(10010,600,'Sandália Confort Azul', 8),
-	(10011,301,'Sapato Confort Preto', 9),
-	(10012,301,'Sapato Confort Preto',9),
-	(10013,301,'Sapato Confort Preto',8),
-	(10014,302,'Tênis Runner Preto',6),
-	(10015,102,'Tênis Runner Castanho', 4),
-	(10016,200,'Bota Timber Branca', 5),
-	(10017,200,'Bota Timber Branca', 6),
-	(10018,502,'Sapatilha Kid Adventure Verde', 6),
-	(10019,502,'Sapatilha Kid Adventure Verde', 7),
-	(10020,101,'Bota Timber Castanha', 1),
-	(10021,101,'Bota Timber Castanha', 1),
-	(10022,101,'Sapatilha Kid Adventure Preta', 1),
-	(10023,103,'Tênis Runner Branco', 2),
-	(10024,103,'Tênis Runner Branco', 3),
-	(10025,102,'Tênis Runner Castanho', 4),
-	(10026,200,'Bota Timber Branca', 5),
-	(10027,200,'Bota Timber Branca', 6),
-	(10028,502,'Sapatilha Kid Adventure Verde', 6),
-	(10029,502,'Sapatilha Kid Adventure Verde', 7),
-	(10030,600,'Sandália Confort Azul', 8),
-	(10031,301,'Sapato Confort Preto', 9),
-	(10032,301,'Sapato Confort Preto',1),
-	(10033,301,'Sapato Confort Preto',2);
+	(10001,'Bota Timber Castanha', 1),
+	(10002,'Sapatilha Kid Adventure Preta', 1),
+	(10003,'Tênis Runner Branco', 2),
+	(10004,'Tênis Runner Branco', 3),
+	(10005,'Tênis Runner Castanho', 4),
+	(10006,'Bota Timber Branca', 5),
+	(10007,'Bota Timber Branca', 6),
+	(10008,'Sapatilha Kid Adventure Verde', 6),
+	(10009,'Sapatilha Kid Adventure Verde', 7),
+	(10010,'Sandália Confort Azul', 8),
+	(10011,'Sapato Confort Preto', 9),
+	(10012,'Sapato Confort Preto',9),
+	(10013,'Sapato Confort Preto',8),
+	(10014,'Tênis Runner Preto',6),
+	(10015,'Tênis Runner Castanho', 4),
+	(10016,'Bota Timber Branca', 5),
+	(10017,'Bota Timber Branca', 6),
+	(10018,'Sapatilha Kid Adventure Verde', 6),
+	(10019,'Sapatilha Kid Adventure Verde', 7),
+	(10020,'Bota Timber Castanha', 1),
+	(10021,'Bota Timber Castanha', 1),
+	(10022,'Sapatilha Kid Adventure Preta', 1),
+	(10023,'Tênis Runner Branco', 2),
+	(10024,'Tênis Runner Branco', 3),
+	(10025,'Tênis Runner Castanho', 4),
+	(10026,'Bota Timber Branca', 5),
+	(10027,'Bota Timber Branca', 6),
+	(10028,'Sapatilha Kid Adventure Verde', 6),
+	(10029,'Sapatilha Kid Adventure Verde', 7),
+	(10030,'Sandália Confort Azul', 8),
+	(10031,'Sapato Confort Preto', 9),
+	(10032,'Sapato Confort Preto',1),
+	(10033,'Sapato Confort Preto',2);
+
+INSERT INTO Empresa.Origina (codigo_materia_prima, estado, ID_funcionario, codigo_produto)
+	VALUES
+	(101, 'em espera', 105, 10001),
+	(101, 'em producao', 106, 10001),
+	(102, 'em espera', 107, 10004),
+	(103, 'em producao', 101, 10002),
+	(200, 'em producao', 109, 10005),
+	(301, 'em producao', 107, 10006),
+	(302, 'em producao', 103, 10002),
+	(400, 'em producao', 108, 10030),
+	(101, 'concluido', 109, 10010),
+	(101, 'concluido', 103, 10008),
+	(102, 'concluido', 110, 10024),
+	(103, 'concluido', 105, 10015);

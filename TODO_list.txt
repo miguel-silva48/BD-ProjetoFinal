@@ -1,3 +1,6 @@
+---- ATUALIZAR IEETA!!! (mudei coisas nos inserts, adicionar udfs,triggers,etc)
+
+
 TABELAS
 
 
@@ -7,20 +10,25 @@ Adicionamos atributos (seccao_atual) no Processa, tiramos quant_armazem do Produ
 codigo_materia_prima no Produto, n ta normalizado (?)
 Tirar disjoint do der
 
+QUERIES
+Remover Funcionário, Revendedor, Fornecedor e Produto(?)
+...
 
 STORED PROCEDURES
-- Remover 1 funcionário (verificar se é gerente e se for ativa o trigger em baixo) - Não vai ser mais SP
+FEITO - Num de processos em um determinado estado por seccao
 - Tipo de produto + encomendado??
 - Média salarial??
-
-//- Quantidade materiaPrima pendente Fornecedor
+FEITO - Quantidade materiaPrima fornecida Fornecedor (mudar para UDF??)
 
 
 UDFs
 FEITO - Nº funcionários numa Secção
 FEITO - Nº encomendas pendentes Revendedor
 FEITO - Quantidade de Produto (itens) numa Encomenda
-- Filtrar produtos pela designacao atual, estado, tipo de produto, quant em armazem, 
+- Filtrar funcionários
+- Em cada funcionário, número de produtos em q está a trabalhar
+- Filtrar produtos pela designacao atual, estado, tipo de produto, quant em armazem
+- Mostrar produtos em estado concluído por secção (devolve tabela) 
 
 
 TRIGGER
