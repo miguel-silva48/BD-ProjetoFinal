@@ -15,3 +15,6 @@ C:\Users\Gentil\Desktop\EI\BD\BD-ProjetoFinal\PassoFirme\obj\Debug\PassoFirme.cs
 C:\Users\Gentil\Desktop\EI\BD\BD-ProjetoFinal\PassoFirme\obj\Debug\PassoFirme.csproj.CoreCompileInputs.cache
 C:\Users\Gentil\Desktop\EI\BD\BD-ProjetoFinal\PassoFirme\obj\Debug\PassoFirme.exe
 C:\Users\Gentil\Desktop\EI\BD\BD-ProjetoFinal\PassoFirme\obj\Debug\PassoFirme.pdb
+C:\Users\Gentil\Desktop\EI\BD\BD-ProjetoFinal\PassoFirme\bin\Debug\PassoFirme.exe.config
+C:\Users\Gentil\Desktop\EI\BD\BD-ProjetoFinal\PassoFirme\bin\Debug\PassoFirme.exe
+C:\Users\Gentil\Desktop\EI\BD\BD-ProjetoFinal\PassoFirme\bin\Debug\PassoFirme.pdb

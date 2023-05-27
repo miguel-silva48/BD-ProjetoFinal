@@ -115,7 +115,7 @@ namespace PassoFirme
             if (!verifySGBDConnection())
                 return;
 
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Empresa.Funcionario;", cn);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM (Empresa.Gerente JOIN Empresa.Funcionario ON ID_Funcionario=ID) JOIN Empresa.Seccao ON codigo_seccao=codigo;", cn);
             SqlDataReader reader = cmd.ExecuteReader();
             listBox_funcionarios.Items.Clear();
 
@@ -128,7 +128,26 @@ namespace PassoFirme
                 F.Morada = reader["morada"].ToString();
                 F.Id = reader["ID"].ToString();
                 F.Salario = reader["salario"].ToString();
-                //F.Seccao = reader["seccao"].ToString();
+                F.Seccao = reader["designacao"].ToString();
+                F.SerGerente = "Sim";
+                listBox_funcionarios.Items.Add(F);
+            }
+
+            reader.Close();
+
+            SqlCommand cmd2 = new SqlCommand("SELECT * FROM (Empresa.Operario JOIN  Empresa.Seccao ON codigo_seccao=codigo) JOIN Empresa.Funcionario ON ID_Funcionario=ID WHERE Operario.ID_funcionario NOT IN (SELECT Gerente.ID_funcionario FROM Empresa.Gerente);", cn);
+            reader = cmd2.ExecuteReader();
+
+            while (reader.Read())
+            {
+                Funcionario F = new Funcionario();
+                F.Nif = reader["nif"].ToString();
+                F.Nome = reader["nome"].ToString();
+                F.NumCC = reader["numerocc"].ToString();
+                F.Morada = reader["morada"].ToString();
+                F.Id = reader["ID"].ToString();
+                F.Salario = reader["salario"].ToString();
+                F.Seccao = reader["designacao"].ToString();
                 F.SerGerente = "Não";
                 listBox_funcionarios.Items.Add(F);
             }
@@ -151,7 +170,7 @@ namespace PassoFirme
             textBox_morada_funcionario.Text = func.Morada;
             textBox_id_funcionario.Text = func.Id;
             textBox_salario_funcionario.Text = func.Salario;
-            //textBox_seccao_funcionario.Text = func.Seccao;
+            textBox_seccao_funcionario.Text = func.Seccao;
             textBox_gerente_funcionario.Text = func.SerGerente;
         }
 
