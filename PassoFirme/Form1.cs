@@ -32,7 +32,7 @@ namespace PassoFirme
         //SQL connection stuff
         private SqlConnection getSGBDConnection()
         {
-            return new SqlConnection("data source=HP-ENVY14\\SQLEXPRESS;integrated security=true;initial catalog=Northwind");
+            return new SqlConnection("data source=tcp:mednat.ieeta.pt\\SQLSERVER,8101;integrated security=true;initial catalog=p5g5");
         }
 
         private bool verifySGBDConnection()

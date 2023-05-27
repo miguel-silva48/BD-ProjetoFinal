@@ -88,7 +88,7 @@ CREATE TABLE Empresa.Processa(
 	codigo_materia_prima	INT		NOT NULL	FOREIGN KEY REFERENCES Empresa.MateriaPrima(codigo),
 	estado 					VARCHAR(20)			CHECK (estado IN ('em espera', 'em producao', 'concluido')) DEFAULT 'em espera',
 	--seccao_atual			INT			    	FOREIGN KEY REFERENCES Empresa.Seccao(codigo),
-	ID_funcionario			INT		NOT NULL	FOREIGN KEY REFERENCES Empresa.Funcionario(ID) ON DELETE CASCADE,
+	ID_funcionario			INT		NOT NULL	FOREIGN KEY REFERENCES Empresa.Operario(ID_Funcionario) ON DELETE CASCADE,
 	PRIMARY KEY(ID_funcionario, codigo_materia_prima),
 );
 
