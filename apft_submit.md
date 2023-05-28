@@ -1,6 +1,6 @@
 # BD: Trabalho Prático APF-T
 
-**Grupo**: PXGY
+**Grupo**: P5G5
 - Bárbara Galiza, MEC: 105937
 - Miguel da Silva Pinto, MEC: 107449
 

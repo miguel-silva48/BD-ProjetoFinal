@@ -1,14 +1,30 @@
 -- Retorna o numero processos em determinado estado de uma seccao
-CREATE PROCEDURE getNumEstadoBySeccao (@codigo INT, @estado VARCHAR(20), @numEstado INT OUTPUT)
+--DROP PROC getNumEstadoBySeccao;
+--go
+
+CREATE PROCEDURE getNumEstadoBySeccao (@codigo INT, @numEmEspera INT OUTPUT, @numEmProducao INT OUTPUT, @numConcluido INT OUTPUT)
 AS
-    SELECT @numEstado = COUNT(estado) 
+    SELECT @numEmEspera = COUNT(estado) 
 	FROM Empresa.Origina JOIN Empresa.Operario ON Origina.ID_funcionario=Operario.ID_funcionario
-	WHERE estado = @estado AND codigo_seccao = @codigo
+	WHERE estado = 'em espera' AND codigo_seccao = @codigo
+
+	SELECT @numEmProducao = COUNT(estado) 
+	FROM Empresa.Origina JOIN Empresa.Operario ON Origina.ID_funcionario=Operario.ID_funcionario
+	WHERE estado = 'em producao' AND codigo_seccao = @codigo
+
+	SELECT @numConcluido = COUNT(estado) 
+	FROM Empresa.Origina JOIN Empresa.Operario ON Origina.ID_funcionario=Operario.ID_funcionario
+	WHERE estado = 'concluido' AND codigo_seccao = @codigo
 go 
 
---DECLARE @numEstado INT; 
---EXEC getNumEstadoBySeccao 4,'em producao', @numEstado OUTPUT; 
---PRINT @numEstado
+--DECLARE @numEmEspera INT; 
+--DECLARE @numEmProducao INT; 
+--DECLARE @numConcluido INT; 
+--EXEC getNumEstadoBySeccao 4, @numEmEspera OUTPUT, @numEmProducao OUTPUT, @numConcluido OUTPUT; 
+--PRINT @numEmEspera
+--PRINT @numEmProducao
+--PRINT @numConcluido
+
 
 -- Quantidade materiaPrima fornecida por Fornecedor
 CREATE PROCEDURE getMateriaPrimaFornecida (@nif INT, @num INT OUTPUT)

@@ -73,7 +73,6 @@ namespace PassoFirme
                 P.PrecoVenda = reader["preco_venda"].ToString();
                 P.NumEncomenda = reader["num_encomenda"].ToString();
                 //P.QuantidadeArmazem = reader["quantidade_armazem"].ToString();
-                P.CodigoMateriaPrima = reader["codigo_materia_prima"].ToString();
                 listBox_produtos.Items.Add(P);
             }
 
@@ -95,7 +94,6 @@ namespace PassoFirme
             textBox_preco_produto.Text = prod.PrecoVenda;
             textBox_numEncomenda_produto.Text = prod.NumEncomenda;
             //textBox_quantidade_produto.Text = prod.QuantidadeArmazem;
-            textBox_codMatPrima_produto.Text = prod.CodigoMateriaPrima;
         }
 
         private void listBox_produtos_SelectedIndexChanged(object sender, EventArgs e)
@@ -281,6 +279,52 @@ namespace PassoFirme
             }
         }
 //End of Revendedor Stuff
+
+//Seccao Stuff
+/*
+        private void loadSeccao(object sender, EventArgs e)
+        {
+            if (!verifySGBDConnection())
+                return;
+
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Empresa.Seccao;", cn);
+            SqlDataReader reader = cmd.ExecuteReader();
+            listBox_seccao.Items.Clear();
+
+            while (reader.Read())
+            {
+                Seccao S = new Seccao();
+                S.Nif = reader["codigo"].ToString();
+                S.Nome = reader["designacao"].ToString();
+                listBox_seccao.Items.Add(S);
+            }
+
+            cn.Close();
+
+            currentSeccao = 0;
+            ShowSeccao();
+        }
+
+        private void ShowSeccao()
+        {
+            if (listBox_seccao.Items.Count == 0 | currentSeccao < 0)
+                return;
+            Seccao seccao = new Seccao();
+            seccao = (Seccao)listBox_seccao.Items[currentSeccao];
+            textBox_codigo_seccao.Text = seccao.Codigo;
+            textBox_designacao_seccao.Text = seccao.Designacao;
+        }
+
+        private void listBox_seccao_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBox_seccao.SelectedIndex >= 0)
+            {
+                currentSeccao = listBox_seccao.SelectedIndex;
+                ShowSeccao();
+            }
+        }
+*/
+//End of Seccao Stuff
 
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)

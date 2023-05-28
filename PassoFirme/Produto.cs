@@ -18,7 +18,6 @@ namespace PassoFirme
         private String _precoVenda;
         private String _numEncomenda;
         private String _quantidadeArmazem;
-        private String _codigoMateriaPrima;
 
     public String Codigo
     {
@@ -61,12 +60,6 @@ namespace PassoFirme
     {
         get { return _quantidadeArmazem; }
         set { _quantidadeArmazem = value; }
-    }
-
-    public String CodigoMateriaPrima
-    {
-        get { return _codigoMateriaPrima; }
-        set { _codigoMateriaPrima = value; }
     }
 
     }
