@@ -106,7 +106,4 @@ CREATE INDEX index_name ON table_name (column1, column2, ...);
 ### Dados iniciais da dabase de dados/Database init data
 
 [Indexes File](sql/01_ddl.sql "SQLFileQuestion")
-
-
-
  

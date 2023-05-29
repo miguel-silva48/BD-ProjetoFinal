@@ -91,6 +91,12 @@ namespace PassoFirme
             this.listBox_revendedor = new System.Windows.Forms.ListBox();
             this.Secções = new System.Windows.Forms.TabPage();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.textBox_concluido = new System.Windows.Forms.TextBox();
+            this.textBox_emProducao = new System.Windows.Forms.TextBox();
+            this.textBox_emEspera = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -99,15 +105,9 @@ namespace PassoFirme
             this.label14 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.listBox_Seccao = new System.Windows.Forms.ListBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.textBox_codigo_seccao = new System.Windows.Forms.TextBox();
+            this.textBox_designacao_seccao = new System.Windows.Forms.TextBox();
+            this.listBox_seccao = new System.Windows.Forms.ListBox();
             this.tabcontrol1.SuspendLayout();
             this.Produtos.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -742,7 +742,7 @@ namespace PassoFirme
             // Secções
             // 
             this.Secções.Controls.Add(this.panel5);
-            this.Secções.Controls.Add(this.listBox_Seccao);
+            this.Secções.Controls.Add(this.listBox_seccao);
             this.Secções.Location = new System.Drawing.Point(4, 22);
             this.Secções.Name = "Secções";
             this.Secções.Padding = new System.Windows.Forms.Padding(3);
@@ -753,9 +753,9 @@ namespace PassoFirme
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.textBox7);
-            this.panel5.Controls.Add(this.textBox6);
-            this.panel5.Controls.Add(this.textBox5);
+            this.panel5.Controls.Add(this.textBox_concluido);
+            this.panel5.Controls.Add(this.textBox_emProducao);
+            this.panel5.Controls.Add(this.textBox_emEspera);
             this.panel5.Controls.Add(this.label18);
             this.panel5.Controls.Add(this.label17);
             this.panel5.Controls.Add(this.label16);
@@ -767,13 +767,62 @@ namespace PassoFirme
             this.panel5.Controls.Add(this.label14);
             this.panel5.Controls.Add(this.textBox1);
             this.panel5.Controls.Add(this.textBox2);
-            this.panel5.Controls.Add(this.textBox3);
-            this.panel5.Controls.Add(this.textBox4);
+            this.panel5.Controls.Add(this.textBox_codigo_seccao);
+            this.panel5.Controls.Add(this.textBox_designacao_seccao);
             this.panel5.Location = new System.Drawing.Point(305, 5);
             this.panel5.Margin = new System.Windows.Forms.Padding(2);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(271, 328);
             this.panel5.TabIndex = 2;
+            // 
+            // textBox_concluido
+            // 
+            this.textBox_concluido.Location = new System.Drawing.Point(203, 304);
+            this.textBox_concluido.Name = "textBox_concluido";
+            this.textBox_concluido.Size = new System.Drawing.Size(33, 20);
+            this.textBox_concluido.TabIndex = 15;
+            // 
+            // textBox_emProducao
+            // 
+            this.textBox_emProducao.Location = new System.Drawing.Point(101, 304);
+            this.textBox_emProducao.Name = "textBox_emProducao";
+            this.textBox_emProducao.Size = new System.Drawing.Size(32, 20);
+            this.textBox_emProducao.TabIndex = 14;
+            // 
+            // textBox_emEspera
+            // 
+            this.textBox_emEspera.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.textBox_emEspera.Location = new System.Drawing.Point(18, 304);
+            this.textBox_emEspera.Name = "textBox_emEspera";
+            this.textBox_emEspera.Size = new System.Drawing.Size(32, 20);
+            this.textBox_emEspera.TabIndex = 13;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(200, 288);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(59, 13);
+            this.label18.TabIndex = 12;
+            this.label18.Text = "Concluído:";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(98, 288);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(73, 13);
+            this.label17.TabIndex = 11;
+            this.label17.Text = "Em produção:";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(15, 288);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(60, 13);
+            this.label16.TabIndex = 10;
+            this.label16.Text = "Em espera:";
             // 
             // label15
             // 
@@ -851,78 +900,31 @@ namespace PassoFirme
             this.textBox2.Size = new System.Drawing.Size(158, 20);
             this.textBox2.TabIndex = 2;
             // 
-            // textBox3
+            // textBox_codigo_seccao
             // 
-            this.textBox3.Location = new System.Drawing.Point(101, 119);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(26, 20);
-            this.textBox3.TabIndex = 1;
+            this.textBox_codigo_seccao.Location = new System.Drawing.Point(101, 119);
+            this.textBox_codigo_seccao.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox_codigo_seccao.Name = "textBox_codigo_seccao";
+            this.textBox_codigo_seccao.Size = new System.Drawing.Size(26, 20);
+            this.textBox_codigo_seccao.TabIndex = 1;
             // 
-            // textBox4
+            // textBox_designacao_seccao
             // 
-            this.textBox4.Location = new System.Drawing.Point(101, 66);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(139, 20);
-            this.textBox4.TabIndex = 0;
+            this.textBox_designacao_seccao.Location = new System.Drawing.Point(101, 66);
+            this.textBox_designacao_seccao.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox_designacao_seccao.Name = "textBox_designacao_seccao";
+            this.textBox_designacao_seccao.Size = new System.Drawing.Size(139, 20);
+            this.textBox_designacao_seccao.TabIndex = 0;
             // 
-            // listBox_Seccao
+            // listBox_seccao
             // 
-            this.listBox_Seccao.FormattingEnabled = true;
-            this.listBox_Seccao.Location = new System.Drawing.Point(5, 4);
-            this.listBox_Seccao.Margin = new System.Windows.Forms.Padding(2);
-            this.listBox_Seccao.Name = "listBox_Seccao";
-            this.listBox_Seccao.Size = new System.Drawing.Size(297, 329);
-            this.listBox_Seccao.TabIndex = 1;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(15, 288);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(60, 13);
-            this.label16.TabIndex = 10;
-            this.label16.Text = "Em espera:";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(98, 288);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(73, 13);
-            this.label17.TabIndex = 11;
-            this.label17.Text = "Em produção:";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(200, 288);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(59, 13);
-            this.label18.TabIndex = 12;
-            this.label18.Text = "Concluído:";
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(18, 304);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(32, 20);
-            this.textBox5.TabIndex = 13;
-            // 
-            // textBox6
-            // 
-            this.textBox6.Location = new System.Drawing.Point(101, 304);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(32, 20);
-            this.textBox6.TabIndex = 14;
-            // 
-            // textBox7
-            // 
-            this.textBox7.Location = new System.Drawing.Point(203, 304);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(33, 20);
-            this.textBox7.TabIndex = 15;
+            this.listBox_seccao.FormattingEnabled = true;
+            this.listBox_seccao.Location = new System.Drawing.Point(5, 4);
+            this.listBox_seccao.Margin = new System.Windows.Forms.Padding(2);
+            this.listBox_seccao.Name = "listBox_seccao";
+            this.listBox_seccao.Size = new System.Drawing.Size(297, 329);
+            this.listBox_seccao.TabIndex = 1;
+            this.listBox_seccao.SelectedIndexChanged += new System.EventHandler(this.listBox_seccao_SelectedIndexChanged);
             // 
             // Form1
             // 
@@ -1025,13 +1027,13 @@ namespace PassoFirme
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.ListBox listBox_Seccao;
+        private System.Windows.Forms.TextBox textBox_codigo_seccao;
+        private System.Windows.Forms.TextBox textBox_designacao_seccao;
+        private System.Windows.Forms.ListBox listBox_seccao;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox textBox_concluido;
+        private System.Windows.Forms.TextBox textBox_emProducao;
+        private System.Windows.Forms.TextBox textBox_emEspera;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label16;

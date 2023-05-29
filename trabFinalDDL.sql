@@ -29,14 +29,15 @@ CREATE TABLE Empresa.Fornecedor(
 CREATE TABLE Empresa.MateriaPrima(
 	nome					VARCHAR(40),
 	qualidade				VARCHAR(20),
-	quant_armazem			INT,
+	--quant_armazem			INT,
 	codigo					INT		PRIMARY KEY	NOT NULL,
 );
 
 -- Fornece
 CREATE TABLE Empresa.Fornece(
-	nif_fornecedor			INT		NOT NULL	FOREIGN KEY REFERENCES Empresa.Fornecedor(nif),
-	codigo_materia_prima	INT		NOT NULL	FOREIGN KEY REFERENCES Empresa.MateriaPrima(codigo),
+	quantidade 				INT		NOT NULL,
+	nif_fornecedor			INT		NOT NULL	FOREIGN KEY REFERENCES Empresa.Fornecedor(nif) ON DELETE CASCADE,
+	codigo_materia_prima	INT		NOT NULL	FOREIGN KEY REFERENCES Empresa.MateriaPrima(codigo) ON DELETE CASCADE,
 	PRIMARY KEY(nif_fornecedor, codigo_materia_prima),
 );
 
@@ -52,7 +53,7 @@ CREATE TABLE Empresa.Revendedor(
 CREATE TABLE Empresa.Encomenda(
 	numero			INT		PRIMARY KEY		NOT NULL,
 	data_			DATE,
-	nif_revendedor  INT	FOREIGN KEY REFERENCES Empresa.Revendedor(nif),	
+	nif_revendedor  INT	FOREIGN KEY REFERENCES Empresa.Revendedor(nif) ON DELETE CASCADE,	
 );
 
 -- Seccao
@@ -95,8 +96,8 @@ CREATE TABLE Empresa.Produto(
 	codigo_produto		 INT	PRIMARY KEY		NOT NULL,
 	--quant_armazem 		 INT, CALCULADO COM BASE NA CATEGORIA DE TipoProduto
 	codigo_materia_prima INT				FOREIGN KEY REFERENCES Empresa.MateriaPrima(codigo),
-	categoria_tipo		 VARCHAR(40)		FOREIGN KEY REFERENCES Empresa.TipoProduto(categoria),
-	num_encomenda		 INT				FOREIGN KEY REFERENCES Empresa.Encomenda(numero),
+	categoria_tipo		 VARCHAR(40)		FOREIGN KEY REFERENCES Empresa.TipoProduto(categoria) ON DELETE CASCADE,
+	num_encomenda		 INT				FOREIGN KEY REFERENCES Empresa.Encomenda(numero) ON DELETE CASCADE,
 );
 
 -- Origina

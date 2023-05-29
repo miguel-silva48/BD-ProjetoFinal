@@ -5,21 +5,35 @@ TABELAS
 
 
 
+
+
+
 MUDANÇAS NO DER/ER
 Adicionamos atributos (seccao_atual) no Processa, tiramos quant_armazem do Produto.
 codigo_materia_prima no Produto, n ta normalizado (?)
 Tirar disjoint do der
 
-QUERIES
-Remover Funcionário, Revendedor, Fornecedor e Produto(?)
-...
+FORMS
+Adicionar numero de funcionários na secção 
+Mudar página de produtos para mostrar tipo de produto ao invés do item
+- Extra:
+Atribuir processo: produto, funcionário e materia prima
+
+    Operações: ADD, UPDATE, REMOVE
+    Produtos - ADD, REMOVE
+    Funcionarios - ADD, UPDATE(salario, seccao), REMOVE
+    Fornecedores - UPDATE, REMOVE
+    Revendedores - UPDATE, REMOVE
+    Secções - Nenhuma operação faz sentido 
 
 STORED PROCEDURES
 FEITO - Num de processos em um determinado estado por seccao
-- Tipo de produto + encomendado??
-- Média salarial??
+FEITO - Tipo de produto + encomendado??
+FEITO - Média salarial por seccao
 FEITO - Quantidade materiaPrima fornecida Fornecedor (mudar para UDF??)
-
+Remover Funcionário, Revendedor, Fornecedor e Produto
+Adicionar ..
+Editar ..
 
 UDFs
 FEITO - Nº funcionários numa Secção

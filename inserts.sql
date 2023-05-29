@@ -8,29 +8,29 @@ INSERT INTO Empresa.Fornecedor (nif, email, morada, nome)
 	(509987654,'MaduTex@gmail.com','Estrada da Cincunvalacao 213','MaduTex'),
 	(590972623,'winiw@gmail.com', 'Rua da Recta 233','Winiw');
 
-INSERT INTO Empresa.MateriaPrima (nome, qualidade, quant_armazem, codigo)
+INSERT INTO Empresa.MateriaPrima (nome, qualidade, codigo)
 	VALUES
-	('Couro','Primeira', 300, 101),
-    ('Couro','Segunda', 400, 102),
-    ('Couro','Terceira', 350, 103),
-    ('Couro Sintético',NULL, 300, 200),
-    ('Tecido',NULL, 300, 600),
-    ('Pele','Primeira', 300, 301),
-    ('Pele','Segunda', 300, 302),
-    ('Vinil',NULL, 200, 400),
-    ('PVC','Segunda', 140, 502);
+	('Couro','Primeira', 101),
+    ('Couro','Segunda', 102),
+    ('Couro','Terceira', 103),
+    ('Couro Sintético', NULL, 200),
+    ('Tecido', NULL, 600),
+    ('Pele','Primeira', 301),
+    ('Pele','Segunda', 302),
+    ('Vinil',NULL, 400),
+    ('PVC','Segunda', 502);
 
-INSERT INTO Empresa.Fornece (nif_fornecedor, codigo_materia_prima)
+INSERT INTO Empresa.Fornece (quantidade, nif_fornecedor, codigo_materia_prima)
 	VALUES
-	(509111222,101),
-	(509111222,102),
-	(509111222,103),
-	(509121212,200),
-	(509121212,600),
-	(509294734,301),
-	(509294734,302),
-	(509294734,400),
-	(509827353,502);
+	(300, 509111222, 101),
+	(400, 509111222, 102),
+	(350, 509111222, 103),
+	(300, 509121212, 200),
+	(300, 509121212, 600),
+	(250, 509294734, 301),
+	(280, 509294734, 302),
+	(190, 509294734, 400),
+	(220, 509827353, 502);
 
 INSERT INTO Empresa.Revendedor (nif, email, morada, nome)
 	VALUES

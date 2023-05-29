@@ -75,5 +75,10 @@ namespace PassoFirme
             get { return _serGerente; }
             set { _serGerente = value; }
         }
+
+        public override String ToString()
+        {
+            return String.Format("{0} - {1}", _id, _nome);
+        }
     }
 }

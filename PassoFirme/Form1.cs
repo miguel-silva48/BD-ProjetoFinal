@@ -18,6 +18,7 @@ namespace PassoFirme
         private int currentFuncionario;
         private int currentFornecedor;
         private int currentRevendedor;
+        private int currentSeccao;
         //private bool adding;
 
         public Form1()
@@ -33,6 +34,7 @@ namespace PassoFirme
             loadFuncionarios(sender, e);
             loadFornecedor(sender, e);
             loadRevendedor(sender, e);
+            loadSeccao(sender, e);
         }
 
 //SQL connection stuff
@@ -102,6 +104,32 @@ namespace PassoFirme
             {
                 currentProduto = listBox_produtos.SelectedIndex;
                 ShowProduto();
+            }
+        }
+
+//TODO criar as caixas de texto no design e testar
+        private void removeProduto(String codigo_produto)
+        {
+            if (!verifySGBDConnection())
+                return;
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.CommandText = "DELETE Empresa.Produto WHERE codigo_produto=@codigo_produto";
+            cmd.Parameters.Clear();
+            cmd.Parameters.AddWithValue("@codigo_produto", ContactID);
+            cmd.Connection = cn;
+
+            try
+            {
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ERRO: Nao foi possivel apagar o produto na BD! \n ERROR MESSAGE: \n" + ex.Message);
+            }
+            finally
+            {
+                cn.Close();
             }
         }
 //End of Produto Stuff
@@ -180,6 +208,32 @@ namespace PassoFirme
                 ShowFuncionario();
             }
         }
+
+//TODO: criar as caixas de texto no design e testar
+        private void removeFuncionario(String id_funcionario)
+        {
+            if (!verifySGBDConnection())
+                return;
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.CommandText = "DELETE Empresa.Funcionario WHERE ID=@id_funcionario"; ";
+            cmd.Parameters.Clear();
+            cmd.Parameters.AddWithValue("@id_funcionario", ContactID);
+            cmd.Connection = cn;
+
+            try
+            {
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ERRO: Nao foi possivel apagar o funcionario na BD! \n ERROR MESSAGE: \n" + ex.Message);
+            }
+            finally
+            {
+                cn.Close();
+            }
+        }
 //End of Funcionario Stuff
 
 
@@ -229,6 +283,33 @@ namespace PassoFirme
                 ShowFornecedor();
             }
         }
+
+//TODO: criar as caixas de texto no design e testar
+        private void removeFornecedor(String nif_fornecedor)
+        {
+            if (!verifySGBDConnection())
+                return;
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.CommandText = "DELETE Empresa.Fornecedor WHERE nif=@nif_fornecedor"; ";
+            cmd.Parameters.Clear();
+            cmd.Parameters.AddWithValue("@nif_fornecedor", ContactID);
+            cmd.Connection = cn;
+
+            try
+            {
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ERRO: Nao foi possivel apagar o Fornecedor na BD! \n ERROR MESSAGE: \n" + ex.Message);
+            }
+            finally
+            {
+                cn.Close();
+            }
+        }
+
 //End of Fornecedor Stuff
 
 
@@ -264,10 +345,36 @@ namespace PassoFirme
                 return;
             Revendedor rev = new Revendedor();
             rev = (Revendedor)listBox_revendedor.Items[currentRevendedor];
+
+            String numEncomendas;
+            String numProdutosEncomendados;
+
+            cn.Open();
+
+            using (SqlCommand cmd2 = new SqlCommand("getEncomendasRevendedor", cn))
+            {
+                cmd2.CommandType = CommandType.StoredProcedure;
+
+                cmd2.Parameters.Add("@nif", SqlDbType.Int).Value = rev.Nif;
+
+                cmd2.Parameters.Add("@num", SqlDbType.Int).Direction = ParameterDirection.Output;
+                cmd2.Parameters.Add("@quantidade", SqlDbType.Int).Direction = ParameterDirection.Output;
+
+                cmd2.ExecuteNonQuery();
+
+                numEncomendas = Convert.ToString(cmd2.Parameters["@num"].Value);
+                numProdutosEncomendados = Convert.ToString(cmd2.Parameters["@quantidade"].Value);
+            }
+
+            cn.Close();
+
             textBox_nome_revendedor.Text = rev.Nome;
             textBox_nif_revendedor.Text = rev.Nif;
             textBox_morada_revendedor.Text = rev.Morada;
             textBox_email_revendedor.Text = rev.Email;
+            //TODO criar as caixas de texto no design
+            //textBox_numEncomendas_revendedor.Text = numEncomendas;
+            //textBox_numProdutosEncomendados_revendedor.Text = numProdutosEncomendados;
         }
 
         private void listBox_revendedor_SelectedIndexChanged_1(object sender, EventArgs e)
@@ -278,10 +385,35 @@ namespace PassoFirme
                 ShowRevendedor();
             }
         }
+
+//TODO: criar as caixas de texto no design e testar
+        private void removeRevendedor (String nif_revendedor)
+        {
+            if (!verifySGBDConnection())
+                return;
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.CommandText = "DELETE Empresa.Revendedor WHERE nif=@nif_revendedor"; ";
+            cmd.Parameters.Clear();
+            cmd.Parameters.AddWithValue("@nif_revendedor", ContactID);
+            cmd.Connection = cn;
+
+            try
+            {
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ERRO: Nao foi possivel apagar o Revendedor na BD! \n ERROR MESSAGE: \n" + ex.Message);
+            }
+            finally
+            {
+                cn.Close();
+            }
+        }
 //End of Revendedor Stuff
 
 //Seccao Stuff
-/*
         private void loadSeccao(object sender, EventArgs e)
         {
             if (!verifySGBDConnection())
@@ -289,13 +421,14 @@ namespace PassoFirme
 
             SqlCommand cmd = new SqlCommand("SELECT * FROM Empresa.Seccao;", cn);
             SqlDataReader reader = cmd.ExecuteReader();
+
             listBox_seccao.Items.Clear();
 
             while (reader.Read())
             {
                 Seccao S = new Seccao();
-                S.Nif = reader["codigo"].ToString();
-                S.Nome = reader["designacao"].ToString();
+                S.Codigo = reader["codigo"].ToString();
+                S.Designacao = reader["designacao"].ToString();
                 listBox_seccao.Items.Add(S);
             }
 
@@ -311,19 +444,48 @@ namespace PassoFirme
                 return;
             Seccao seccao = new Seccao();
             seccao = (Seccao)listBox_seccao.Items[currentSeccao];
-            textBox_codigo_seccao.Text = seccao.Codigo;
+
+            String numEmEspera;
+            String numEmProducao;
+            String numConcluido;
+
+            cn.Open();
+
+            using (SqlCommand cmd2 = new SqlCommand("getNumEstadoBySeccao", cn))
+            {
+                cmd2.CommandType = CommandType.StoredProcedure;
+
+                cmd2.Parameters.Add("@codigo", SqlDbType.Int).Value = seccao.Codigo;
+
+                cmd2.Parameters.Add("@numEmEspera", SqlDbType.Int).Direction = ParameterDirection.Output;
+                cmd2.Parameters.Add("@numEmProducao", SqlDbType.Int).Direction = ParameterDirection.Output;
+                cmd2.Parameters.Add("@numConcluido", SqlDbType.Int).Direction = ParameterDirection.Output;
+
+                cmd2.ExecuteNonQuery();
+
+                numEmEspera = Convert.ToString(cmd2.Parameters["@numEmEspera"].Value);
+                numEmProducao = Convert.ToString(cmd2.Parameters["@numEmProducao"].Value);
+                numConcluido = Convert.ToString(cmd2.Parameters["@numConcluido"].Value);
+            }
+
+            cn.Close();
+
             textBox_designacao_seccao.Text = seccao.Designacao;
+            textBox_codigo_seccao.Text = seccao.Codigo;
+            textBox_emEspera.Text = numEmEspera;
+            textBox_emProducao.Text = numEmProducao;
+            textBox_concluido.Text = numConcluido;
         }
+
 
         private void listBox_seccao_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listBox_seccao.SelectedIndex >= 0)
-            {
-                currentSeccao = listBox_seccao.SelectedIndex;
-                ShowSeccao();
-            }
+                if (listBox_seccao.SelectedIndex >= 0)
+                {
+                    currentSeccao = listBox_seccao.SelectedIndex;
+                    ShowSeccao();
+                }
         }
-*/
 //End of Seccao Stuff
 
 
@@ -331,5 +493,6 @@ namespace PassoFirme
         {
             Application.Exit();
         }
+
     }
 }

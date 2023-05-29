@@ -62,5 +62,10 @@ namespace PassoFirme
         set { _quantidadeArmazem = value; }
     }
 
+    public override String ToString()
+    {
+        return String.Format("{0} --> {1}", _codigo, _categoria); 
+    }
+
     }
 }
