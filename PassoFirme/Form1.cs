@@ -498,21 +498,16 @@ namespace PassoFirme
 //End of Revendedor Stuff
 
 //Seccao Stuff
-        private void loadSeccao(object sender, EventArgs e)
-        {
+        private void loadSeccao(object sender, EventArgs e) {
             if (!verifySGBDConnection())
                 return;
 
             SqlCommand cmd = new SqlCommand("getSeccoes;", cn);
-
             listBox_seccao.Items.Clear();
 
-            using (SqlDataReader reader = cmd.ExecuteReader())
-            {
-                if (reader.HasRows)
-                {
-                    while (reader.Read())
-                    {
+            using (SqlDataReader reader = cmd.ExecuteReader()) {
+                if (reader.HasRows) {
+                    while (reader.Read()) {
                         Seccao S = new Seccao();
                         S.Codigo = reader["codigo"].ToString();
                         S.Designacao = reader["designacao"].ToString();
@@ -520,15 +515,12 @@ namespace PassoFirme
                     }
                 }
             }
-
             cn.Close();
-
             currentSeccao = 0;
             ShowSeccao();
         }
 
-        private void ShowSeccao()
-        {
+        private void ShowSeccao() {
             if (listBox_seccao.Items.Count == 0 | currentSeccao < 0)
                 return;
             Seccao seccao = new Seccao();
@@ -539,9 +531,7 @@ namespace PassoFirme
             String numConcluido;
 
             cn.Open();
-
-            using (SqlCommand cmd2 = new SqlCommand("getNumEstadoBySeccao", cn))
-            {
+            using (SqlCommand cmd2 = new SqlCommand("getNumEstadoBySeccao", cn)) {
                 cmd2.CommandType = CommandType.StoredProcedure;
 
                 cmd2.Parameters.Add("@codigo", SqlDbType.Int).Value = seccao.Codigo;
@@ -556,7 +546,6 @@ namespace PassoFirme
                 numEmProducao = Convert.ToString(cmd2.Parameters["@numEmProducao"].Value);
                 numConcluido = Convert.ToString(cmd2.Parameters["@numConcluido"].Value);
             }
-
             cn.Close();
 
             textBox_designacao_seccao.Text = seccao.Designacao;
@@ -567,10 +556,8 @@ namespace PassoFirme
         }
 
 
-        private void listBox_seccao_SelectedIndexChanged(object sender, EventArgs e)
-        {
-                if (listBox_seccao.SelectedIndex >= 0)
-                {
+        private void listBox_seccao_SelectedIndexChanged(object sender, EventArgs e) {
+                if (listBox_seccao.SelectedIndex >= 0) {
                     currentSeccao = listBox_seccao.SelectedIndex;
                     ShowSeccao();
                 }
