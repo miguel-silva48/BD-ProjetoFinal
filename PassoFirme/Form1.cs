@@ -503,17 +503,22 @@ namespace PassoFirme
             if (!verifySGBDConnection())
                 return;
 
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Empresa.Seccao;", cn);
-            SqlDataReader reader = cmd.ExecuteReader();
+            SqlCommand cmd = new SqlCommand("getSeccoes;", cn);
 
             listBox_seccao.Items.Clear();
 
-            while (reader.Read())
+            using (SqlDataReader reader = cmd.ExecuteReader())
             {
-                Seccao S = new Seccao();
-                S.Codigo = reader["codigo"].ToString();
-                S.Designacao = reader["designacao"].ToString();
-                listBox_seccao.Items.Add(S);
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        Seccao S = new Seccao();
+                        S.Codigo = reader["codigo"].ToString();
+                        S.Designacao = reader["designacao"].ToString();
+                        listBox_seccao.Items.Add(S);
+                    }
+                }
             }
 
             cn.Close();

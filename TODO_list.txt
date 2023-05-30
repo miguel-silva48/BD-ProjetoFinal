@@ -5,13 +5,13 @@ TABELAS
 
 
 
-
-
+MUDAR REQUISITOS
 
 MUDANÇAS NO DER/ER
-Adicionamos atributos (seccao_atual) no Processa, tiramos quant_armazem do Produto.
-codigo_materia_prima no Produto, n ta normalizado (?)
-Tirar disjoint do der
+FEITO - Adicionamos atributos (seccao_atual) no Processa, tiramos quant_armazem do Produto.
+FEITO - tirar codigo_materia_prima no Produto, n ta normalizado (?)
+FEITO -Tirar disjoint do der
+Mudar quantidade de lugar (tirar de materia prima e por no fornece)
 
 FORMS
 Adicionar numero de funcionários na secção 
