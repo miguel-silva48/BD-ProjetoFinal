@@ -121,3 +121,23 @@ AS
 	SELECT designacao, codigo, nome, dbo.numFuncionariosSeccao(designacao) AS numFunc 
 	FROM Empresa.Seccao JOIN Empresa.Gerente ON codigo=codigo_seccao 
 	JOIN Empresa.Funcionario ON ID_funcionario=ID
+
+
+-- Retorna gerentes
+CREATE PROCEDURE getGerentes
+AS
+	SELECT * FROM (Empresa.Gerente JOIN Empresa.Funcionario ON ID_Funcionario=ID) JOIN Empresa.Seccao ON codigo_seccao=codigo
+go
+
+-- Retorna operarios
+CREATE PROCEDURE getOperarios
+AS
+	SELECT * FROM (Empresa.Operario JOIN  Empresa.Seccao ON codigo_seccao=codigo) JOIN Empresa.Funcionario ON ID_Funcionario=ID 
+	WHERE Operario.ID_funcionario NOT IN (SELECT Gerente.ID_funcionario FROM Empresa.Gerente)
+go
+
+-- Retorn tipos de produto
+CREATE PROCEDURE getTiposProduto
+AS
+	SELECT * , dbo.numProdutosPorTipo(categoria) AS numProdutos, dbo.numEncomendasPorTipo(categoria) AS numEncomendas
+	FROM Empresa.TipoProduto

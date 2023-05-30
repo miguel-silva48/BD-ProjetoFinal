@@ -89,10 +89,10 @@ INSERT INTO Empresa.Operario (ID_funcionario, codigo_seccao)
 	VALUES
 	(101, 1),
 	(102, 2),
-	(103, 2),
-	(104, 1),
+	(103, 3),
+	(104, 4),
 	(105, 1),
-	(106, 4),
+	(106, 2),
 	(107, 4),
 	(108, 3),
 	(109, 4),

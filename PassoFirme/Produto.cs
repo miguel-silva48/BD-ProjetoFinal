@@ -12,25 +12,11 @@ namespace PassoFirme
 
     public class Produto
     {
-        private String _codigo;
         private String _categoria;
         private String _custoFabrico;
         private String _precoVenda;
-        private String _numEncomenda;
-        private String _quantidadeArmazem;
-
-    public String Codigo
-    {
-        get { return _codigo; }
-        set
-        {
-            if (value == null | String.IsNullOrEmpty(value))
-            {
-                throw new Exception("ERRO: O campo Código não pode estar vazio!");
-            }
-            _codigo = value;
-        }
-    }
+        private String _numProdutos;
+        private String _numEncomendas;
 
     public String Categoria
     {
@@ -50,21 +36,21 @@ namespace PassoFirme
         set { _precoVenda = value; }
     }
 
-    public String NumEncomenda
+    public String NumEncomendas
     {
-        get { return _numEncomenda; }
-        set { _numEncomenda = value; }
+        get { return _numEncomendas; }
+        set { _numEncomendas = value; }
     }
 
-    public String QuantidadeArmazem
+    public String NumProdutos
     {
-        get { return _quantidadeArmazem; }
-        set { _quantidadeArmazem = value; }
+        get { return _numProdutos; }
+        set { _numProdutos = value; }
     }
 
     public override String ToString()
     {
-        return String.Format("{0} --> {1}", _codigo, _categoria); 
+        return String.Format("{0}",  _categoria); 
     }
 
     }

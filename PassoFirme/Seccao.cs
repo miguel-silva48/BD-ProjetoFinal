@@ -14,9 +14,6 @@ namespace PassoFirme
     {
         private String _codigo;
         private String _designacao;
-        private String _numEmEspera;
-        private String _numEmProducao;
-        private String _numConcluido;
         private String _nomeGerente;
         private String _numFunc;
 
@@ -44,34 +41,7 @@ namespace PassoFirme
                 }
                 _designacao = value;
             }
-        }
-
-        public String NumEmEspera
-        {
-            get { return _numEmEspera; }
-            set
-            {
-                _numEmEspera = value;
-            }
-        }
-
-        public String NumEmProducao
-        {
-            get { return _numEmProducao; }
-            set
-            {
-                _numEmProducao = value;
-            }
-        }
-
-        public String NumConcluido
-        {
-            get { return _numConcluido; }
-            set
-            {
-                _numConcluido = value;
-            }
-        }
+        }  
 
         public String NomeGerente
         {
@@ -93,7 +63,7 @@ namespace PassoFirme
 
         public override String ToString()
         {
-            return String.Format("{0}, {1}", _codigo, _designacao); 
+            return String.Format("{0}. {1}", _codigo, _designacao); 
         }
     }
 }

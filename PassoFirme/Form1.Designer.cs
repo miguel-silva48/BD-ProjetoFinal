@@ -31,11 +31,12 @@ namespace PassoFirme
         {
             this.tabcontrol1 = new System.Windows.Forms.TabControl();
             this.Início = new System.Windows.Forms.TabPage();
+            this.label20 = new System.Windows.Forms.Label();
             this.Produtos = new System.Windows.Forms.TabPage();
             this.panel4 = new System.Windows.Forms.Panel();
             this.button_editar_produtos = new System.Windows.Forms.Button();
             this.button_apagar_produtos = new System.Windows.Forms.Button();
-            this.textBox_numEncomenda_produto = new System.Windows.Forms.TextBox();
+            this.textBox_numEncomendas_produto = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label_produto = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -44,7 +45,7 @@ namespace PassoFirme
             this.label6 = new System.Windows.Forms.Label();
             this.textBox_preco_produto = new System.Windows.Forms.TextBox();
             this.textBox_custo_produto = new System.Windows.Forms.TextBox();
-            this.textBox_codigo_produto = new System.Windows.Forms.TextBox();
+            this.textBox_quantidade = new System.Windows.Forms.TextBox();
             this.textBox_categoria_produto = new System.Windows.Forms.TextBox();
             this.listBox_produtos = new System.Windows.Forms.ListBox();
             this.Funcionários = new System.Windows.Forms.TabPage();
@@ -99,6 +100,8 @@ namespace PassoFirme
             this.listBox_revendedor = new System.Windows.Forms.ListBox();
             this.Secções = new System.Windows.Forms.TabPage();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.numFunc = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
             this.textBox_concluido = new System.Windows.Forms.TextBox();
             this.textBox_emProducao = new System.Windows.Forms.TextBox();
             this.textBox_emEspera = new System.Windows.Forms.TextBox();
@@ -117,6 +120,7 @@ namespace PassoFirme
             this.textBox_designacao_seccao = new System.Windows.Forms.TextBox();
             this.listBox_seccao = new System.Windows.Forms.ListBox();
             this.tabcontrol1.SuspendLayout();
+            this.Início.SuspendLayout();
             this.Produtos.SuspendLayout();
             this.panel4.SuspendLayout();
             this.Funcionários.SuspendLayout();
@@ -139,7 +143,7 @@ namespace PassoFirme
             this.tabcontrol1.Controls.Add(this.Secções);
             this.tabcontrol1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.tabcontrol1.Location = new System.Drawing.Point(0, 2);
-            this.tabcontrol1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabcontrol1.Margin = new System.Windows.Forms.Padding(2);
             this.tabcontrol1.Name = "tabcontrol1";
             this.tabcontrol1.SelectedIndex = 0;
             this.tabcontrol1.Size = new System.Drawing.Size(586, 366);
@@ -147,23 +151,34 @@ namespace PassoFirme
             // 
             // Início
             // 
+            this.Início.Controls.Add(this.label20);
             this.Início.Location = new System.Drawing.Point(4, 24);
-            this.Início.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Início.Margin = new System.Windows.Forms.Padding(2);
             this.Início.Name = "Início";
-            this.Início.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Início.Padding = new System.Windows.Forms.Padding(2);
             this.Início.Size = new System.Drawing.Size(578, 338);
             this.Início.TabIndex = 0;
             this.Início.Text = "Início";
             this.Início.UseVisualStyleBackColor = true;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(77, 121);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(402, 73);
+            this.label20.TabIndex = 0;
+            this.label20.Text = "Passo Firme";
             // 
             // Produtos
             // 
             this.Produtos.Controls.Add(this.panel4);
             this.Produtos.Controls.Add(this.listBox_produtos);
             this.Produtos.Location = new System.Drawing.Point(4, 24);
-            this.Produtos.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Produtos.Margin = new System.Windows.Forms.Padding(2);
             this.Produtos.Name = "Produtos";
-            this.Produtos.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Produtos.Padding = new System.Windows.Forms.Padding(2);
             this.Produtos.Size = new System.Drawing.Size(578, 338);
             this.Produtos.TabIndex = 1;
             this.Produtos.Text = "Produtos";
@@ -173,7 +188,7 @@ namespace PassoFirme
             // 
             this.panel4.Controls.Add(this.button_editar_produtos);
             this.panel4.Controls.Add(this.button_apagar_produtos);
-            this.panel4.Controls.Add(this.textBox_numEncomenda_produto);
+            this.panel4.Controls.Add(this.textBox_numEncomendas_produto);
             this.panel4.Controls.Add(this.label2);
             this.panel4.Controls.Add(this.label_produto);
             this.panel4.Controls.Add(this.label3);
@@ -182,10 +197,10 @@ namespace PassoFirme
             this.panel4.Controls.Add(this.label6);
             this.panel4.Controls.Add(this.textBox_preco_produto);
             this.panel4.Controls.Add(this.textBox_custo_produto);
-            this.panel4.Controls.Add(this.textBox_codigo_produto);
+            this.panel4.Controls.Add(this.textBox_quantidade);
             this.panel4.Controls.Add(this.textBox_categoria_produto);
             this.panel4.Location = new System.Drawing.Point(307, 6);
-            this.panel4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel4.Margin = new System.Windows.Forms.Padding(2);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(271, 328);
             this.panel4.TabIndex = 3;
@@ -193,7 +208,7 @@ namespace PassoFirme
             // button_editar_produtos
             // 
             this.button_editar_produtos.Location = new System.Drawing.Point(185, 284);
-            this.button_editar_produtos.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_editar_produtos.Margin = new System.Windows.Forms.Padding(2);
             this.button_editar_produtos.Name = "button_editar_produtos";
             this.button_editar_produtos.Size = new System.Drawing.Size(60, 32);
             this.button_editar_produtos.TabIndex = 12;
@@ -203,20 +218,20 @@ namespace PassoFirme
             // button_apagar_produtos
             // 
             this.button_apagar_produtos.Location = new System.Drawing.Point(24, 284);
-            this.button_apagar_produtos.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_apagar_produtos.Margin = new System.Windows.Forms.Padding(2);
             this.button_apagar_produtos.Name = "button_apagar_produtos";
             this.button_apagar_produtos.Size = new System.Drawing.Size(60, 32);
             this.button_apagar_produtos.TabIndex = 11;
             this.button_apagar_produtos.Text = "Apagar";
             this.button_apagar_produtos.UseVisualStyleBackColor = true;
             // 
-            // textBox_numEncomenda_produto
+            // textBox_numEncomendas_produto
             // 
-            this.textBox_numEncomenda_produto.Location = new System.Drawing.Point(102, 214);
-            this.textBox_numEncomenda_produto.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.textBox_numEncomenda_produto.Name = "textBox_numEncomenda_produto";
-            this.textBox_numEncomenda_produto.Size = new System.Drawing.Size(76, 21);
-            this.textBox_numEncomenda_produto.TabIndex = 10;
+            this.textBox_numEncomendas_produto.Location = new System.Drawing.Point(120, 213);
+            this.textBox_numEncomendas_produto.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox_numEncomendas_produto.Name = "textBox_numEncomendas_produto";
+            this.textBox_numEncomendas_produto.Size = new System.Drawing.Size(76, 21);
+            this.textBox_numEncomendas_produto.TabIndex = 10;
             // 
             // label2
             // 
@@ -224,9 +239,9 @@ namespace PassoFirme
             this.label2.Location = new System.Drawing.Point(18, 216);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(93, 15);
+            this.label2.Size = new System.Drawing.Size(98, 15);
             this.label2.TabIndex = 9;
-            this.label2.Text = "Encomenda Nº:";
+            this.label2.Text = "Nº encomendas:";
             // 
             // label_produto
             // 
@@ -265,9 +280,9 @@ namespace PassoFirme
             this.label5.Location = new System.Drawing.Point(31, 108);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(49, 15);
+            this.label5.Size = new System.Drawing.Size(74, 15);
             this.label5.TabIndex = 5;
-            this.label5.Text = "Código:";
+            this.label5.Text = "Quantidade:";
             // 
             // label6
             // 
@@ -282,7 +297,7 @@ namespace PassoFirme
             // textBox_preco_produto
             // 
             this.textBox_preco_produto.Location = new System.Drawing.Point(163, 168);
-            this.textBox_preco_produto.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox_preco_produto.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_preco_produto.Name = "textBox_preco_produto";
             this.textBox_preco_produto.Size = new System.Drawing.Size(88, 21);
             this.textBox_preco_produto.TabIndex = 3;
@@ -290,25 +305,25 @@ namespace PassoFirme
             // textBox_custo_produto
             // 
             this.textBox_custo_produto.Location = new System.Drawing.Point(20, 168);
-            this.textBox_custo_produto.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox_custo_produto.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_custo_produto.Name = "textBox_custo_produto";
             this.textBox_custo_produto.Size = new System.Drawing.Size(88, 21);
             this.textBox_custo_produto.TabIndex = 2;
             // 
-            // textBox_codigo_produto
+            // textBox_quantidade
             // 
-            this.textBox_codigo_produto.Location = new System.Drawing.Point(77, 106);
-            this.textBox_codigo_produto.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.textBox_codigo_produto.Name = "textBox_codigo_produto";
-            this.textBox_codigo_produto.Size = new System.Drawing.Size(76, 21);
-            this.textBox_codigo_produto.TabIndex = 1;
+            this.textBox_quantidade.Location = new System.Drawing.Point(109, 108);
+            this.textBox_quantidade.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox_quantidade.Name = "textBox_quantidade";
+            this.textBox_quantidade.Size = new System.Drawing.Size(76, 21);
+            this.textBox_quantidade.TabIndex = 1;
             // 
             // textBox_categoria_produto
             // 
-            this.textBox_categoria_produto.Location = new System.Drawing.Point(77, 66);
-            this.textBox_categoria_produto.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox_categoria_produto.Location = new System.Drawing.Point(85, 65);
+            this.textBox_categoria_produto.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_categoria_produto.Name = "textBox_categoria_produto";
-            this.textBox_categoria_produto.Size = new System.Drawing.Size(182, 21);
+            this.textBox_categoria_produto.Size = new System.Drawing.Size(174, 21);
             this.textBox_categoria_produto.TabIndex = 0;
             // 
             // listBox_produtos
@@ -316,7 +331,7 @@ namespace PassoFirme
             this.listBox_produtos.FormattingEnabled = true;
             this.listBox_produtos.ItemHeight = 15;
             this.listBox_produtos.Location = new System.Drawing.Point(2, 6);
-            this.listBox_produtos.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listBox_produtos.Margin = new System.Windows.Forms.Padding(2);
             this.listBox_produtos.Name = "listBox_produtos";
             this.listBox_produtos.Size = new System.Drawing.Size(301, 319);
             this.listBox_produtos.TabIndex = 2;
@@ -327,9 +342,9 @@ namespace PassoFirme
             this.Funcionários.Controls.Add(this.panel3);
             this.Funcionários.Controls.Add(this.listBox_funcionarios);
             this.Funcionários.Location = new System.Drawing.Point(4, 24);
-            this.Funcionários.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Funcionários.Margin = new System.Windows.Forms.Padding(2);
             this.Funcionários.Name = "Funcionários";
-            this.Funcionários.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Funcionários.Padding = new System.Windows.Forms.Padding(2);
             this.Funcionários.Size = new System.Drawing.Size(578, 338);
             this.Funcionários.TabIndex = 2;
             this.Funcionários.Text = "Funcionários";
@@ -357,7 +372,7 @@ namespace PassoFirme
             this.panel3.Controls.Add(this.textBox_nif_funcionario);
             this.panel3.Controls.Add(this.textBox_nome_funcionario);
             this.panel3.Location = new System.Drawing.Point(307, 6);
-            this.panel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(271, 328);
             this.panel3.TabIndex = 3;
@@ -365,7 +380,7 @@ namespace PassoFirme
             // button_editar_funcionario
             // 
             this.button_editar_funcionario.Location = new System.Drawing.Point(185, 284);
-            this.button_editar_funcionario.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_editar_funcionario.Margin = new System.Windows.Forms.Padding(2);
             this.button_editar_funcionario.Name = "button_editar_funcionario";
             this.button_editar_funcionario.Size = new System.Drawing.Size(60, 32);
             this.button_editar_funcionario.TabIndex = 18;
@@ -375,7 +390,7 @@ namespace PassoFirme
             // button_apagar_funcionario
             // 
             this.button_apagar_funcionario.Location = new System.Drawing.Point(24, 284);
-            this.button_apagar_funcionario.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_apagar_funcionario.Margin = new System.Windows.Forms.Padding(2);
             this.button_apagar_funcionario.Name = "button_apagar_funcionario";
             this.button_apagar_funcionario.Size = new System.Drawing.Size(60, 32);
             this.button_apagar_funcionario.TabIndex = 17;
@@ -385,7 +400,7 @@ namespace PassoFirme
             // textBox_gerente_funcionario
             // 
             this.textBox_gerente_funcionario.Location = new System.Drawing.Point(183, 242);
-            this.textBox_gerente_funcionario.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox_gerente_funcionario.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_gerente_funcionario.Name = "textBox_gerente_funcionario";
             this.textBox_gerente_funcionario.Size = new System.Drawing.Size(76, 21);
             this.textBox_gerente_funcionario.TabIndex = 16;
@@ -413,7 +428,7 @@ namespace PassoFirme
             // textBox_seccao_funcionario
             // 
             this.textBox_seccao_funcionario.Location = new System.Drawing.Point(25, 242);
-            this.textBox_seccao_funcionario.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox_seccao_funcionario.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_seccao_funcionario.Name = "textBox_seccao_funcionario";
             this.textBox_seccao_funcionario.Size = new System.Drawing.Size(76, 21);
             this.textBox_seccao_funcionario.TabIndex = 13;
@@ -441,7 +456,7 @@ namespace PassoFirme
             // textBox_salario_funcionario
             // 
             this.textBox_salario_funcionario.Location = new System.Drawing.Point(152, 198);
-            this.textBox_salario_funcionario.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox_salario_funcionario.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_salario_funcionario.Name = "textBox_salario_funcionario";
             this.textBox_salario_funcionario.Size = new System.Drawing.Size(76, 21);
             this.textBox_salario_funcionario.TabIndex = 10;
@@ -449,7 +464,7 @@ namespace PassoFirme
             // textBox_id_funcionario
             // 
             this.textBox_id_funcionario.Location = new System.Drawing.Point(25, 198);
-            this.textBox_id_funcionario.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox_id_funcionario.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_id_funcionario.Name = "textBox_id_funcionario";
             this.textBox_id_funcionario.Size = new System.Drawing.Size(76, 21);
             this.textBox_id_funcionario.TabIndex = 9;
@@ -508,7 +523,7 @@ namespace PassoFirme
             // textBox_morada_funcionario
             // 
             this.textBox_morada_funcionario.Location = new System.Drawing.Point(77, 150);
-            this.textBox_morada_funcionario.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox_morada_funcionario.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_morada_funcionario.Name = "textBox_morada_funcionario";
             this.textBox_morada_funcionario.Size = new System.Drawing.Size(182, 21);
             this.textBox_morada_funcionario.TabIndex = 3;
@@ -516,7 +531,7 @@ namespace PassoFirme
             // textBox_numCC_funcionario
             // 
             this.textBox_numCC_funcionario.Location = new System.Drawing.Point(152, 118);
-            this.textBox_numCC_funcionario.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox_numCC_funcionario.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_numCC_funcionario.Name = "textBox_numCC_funcionario";
             this.textBox_numCC_funcionario.Size = new System.Drawing.Size(76, 21);
             this.textBox_numCC_funcionario.TabIndex = 2;
@@ -524,7 +539,7 @@ namespace PassoFirme
             // textBox_nif_funcionario
             // 
             this.textBox_nif_funcionario.Location = new System.Drawing.Point(25, 118);
-            this.textBox_nif_funcionario.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox_nif_funcionario.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_nif_funcionario.Name = "textBox_nif_funcionario";
             this.textBox_nif_funcionario.Size = new System.Drawing.Size(76, 21);
             this.textBox_nif_funcionario.TabIndex = 1;
@@ -532,7 +547,7 @@ namespace PassoFirme
             // textBox_nome_funcionario
             // 
             this.textBox_nome_funcionario.Location = new System.Drawing.Point(77, 66);
-            this.textBox_nome_funcionario.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox_nome_funcionario.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_nome_funcionario.Name = "textBox_nome_funcionario";
             this.textBox_nome_funcionario.Size = new System.Drawing.Size(139, 21);
             this.textBox_nome_funcionario.TabIndex = 0;
@@ -542,7 +557,7 @@ namespace PassoFirme
             this.listBox_funcionarios.FormattingEnabled = true;
             this.listBox_funcionarios.ItemHeight = 15;
             this.listBox_funcionarios.Location = new System.Drawing.Point(2, 6);
-            this.listBox_funcionarios.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listBox_funcionarios.Margin = new System.Windows.Forms.Padding(2);
             this.listBox_funcionarios.Name = "listBox_funcionarios";
             this.listBox_funcionarios.Size = new System.Drawing.Size(301, 319);
             this.listBox_funcionarios.TabIndex = 2;
@@ -553,9 +568,9 @@ namespace PassoFirme
             this.Fornecedores.Controls.Add(this.panel2);
             this.Fornecedores.Controls.Add(this.listBox_fornecedor);
             this.Fornecedores.Location = new System.Drawing.Point(4, 24);
-            this.Fornecedores.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Fornecedores.Margin = new System.Windows.Forms.Padding(2);
             this.Fornecedores.Name = "Fornecedores";
-            this.Fornecedores.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Fornecedores.Padding = new System.Windows.Forms.Padding(2);
             this.Fornecedores.Size = new System.Drawing.Size(578, 338);
             this.Fornecedores.TabIndex = 3;
             this.Fornecedores.Text = "Fornecedores";
@@ -575,7 +590,7 @@ namespace PassoFirme
             this.panel2.Controls.Add(this.textBox_nif_fornecedor);
             this.panel2.Controls.Add(this.textBox_nome_fornecedor);
             this.panel2.Location = new System.Drawing.Point(307, 6);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(271, 328);
             this.panel2.TabIndex = 3;
@@ -583,24 +598,22 @@ namespace PassoFirme
             // button_editar_fornecedor
             // 
             this.button_editar_fornecedor.Location = new System.Drawing.Point(185, 284);
-            this.button_editar_fornecedor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_editar_fornecedor.Margin = new System.Windows.Forms.Padding(2);
             this.button_editar_fornecedor.Name = "button_editar_fornecedor";
             this.button_editar_fornecedor.Size = new System.Drawing.Size(60, 32);
             this.button_editar_fornecedor.TabIndex = 12;
             this.button_editar_fornecedor.Text = "Editar";
             this.button_editar_fornecedor.UseVisualStyleBackColor = true;
-            this.button_editar_fornecedor.Click += new System.EventHandler(this.button2_Click);
             // 
             // button_apagar_fornecedor
             // 
             this.button_apagar_fornecedor.Location = new System.Drawing.Point(24, 284);
-            this.button_apagar_fornecedor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_apagar_fornecedor.Margin = new System.Windows.Forms.Padding(2);
             this.button_apagar_fornecedor.Name = "button_apagar_fornecedor";
             this.button_apagar_fornecedor.Size = new System.Drawing.Size(60, 32);
             this.button_apagar_fornecedor.TabIndex = 11;
             this.button_apagar_fornecedor.Text = "Apagar";
             this.button_apagar_fornecedor.UseVisualStyleBackColor = true;
-            this.button_apagar_fornecedor.Click += new System.EventHandler(this.button3_Click);
             // 
             // label_fornecedor
             // 
@@ -656,7 +669,7 @@ namespace PassoFirme
             // textBox_morada_fornecedor
             // 
             this.textBox_morada_fornecedor.Location = new System.Drawing.Point(77, 225);
-            this.textBox_morada_fornecedor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox_morada_fornecedor.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_morada_fornecedor.Name = "textBox_morada_fornecedor";
             this.textBox_morada_fornecedor.Size = new System.Drawing.Size(182, 21);
             this.textBox_morada_fornecedor.TabIndex = 3;
@@ -664,7 +677,7 @@ namespace PassoFirme
             // textBox_email_fornecedor
             // 
             this.textBox_email_fornecedor.Location = new System.Drawing.Point(77, 168);
-            this.textBox_email_fornecedor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox_email_fornecedor.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_email_fornecedor.Name = "textBox_email_fornecedor";
             this.textBox_email_fornecedor.Size = new System.Drawing.Size(182, 21);
             this.textBox_email_fornecedor.TabIndex = 2;
@@ -672,7 +685,7 @@ namespace PassoFirme
             // textBox_nif_fornecedor
             // 
             this.textBox_nif_fornecedor.Location = new System.Drawing.Point(77, 119);
-            this.textBox_nif_fornecedor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox_nif_fornecedor.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_nif_fornecedor.Name = "textBox_nif_fornecedor";
             this.textBox_nif_fornecedor.Size = new System.Drawing.Size(76, 21);
             this.textBox_nif_fornecedor.TabIndex = 1;
@@ -680,7 +693,7 @@ namespace PassoFirme
             // textBox_nome_fornecedor
             // 
             this.textBox_nome_fornecedor.Location = new System.Drawing.Point(77, 66);
-            this.textBox_nome_fornecedor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox_nome_fornecedor.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_nome_fornecedor.Name = "textBox_nome_fornecedor";
             this.textBox_nome_fornecedor.Size = new System.Drawing.Size(139, 21);
             this.textBox_nome_fornecedor.TabIndex = 0;
@@ -690,7 +703,7 @@ namespace PassoFirme
             this.listBox_fornecedor.FormattingEnabled = true;
             this.listBox_fornecedor.ItemHeight = 15;
             this.listBox_fornecedor.Location = new System.Drawing.Point(2, 6);
-            this.listBox_fornecedor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listBox_fornecedor.Margin = new System.Windows.Forms.Padding(2);
             this.listBox_fornecedor.Name = "listBox_fornecedor";
             this.listBox_fornecedor.Size = new System.Drawing.Size(301, 319);
             this.listBox_fornecedor.TabIndex = 2;
@@ -701,9 +714,9 @@ namespace PassoFirme
             this.Revendedores.Controls.Add(this.panel1);
             this.Revendedores.Controls.Add(this.listBox_revendedor);
             this.Revendedores.Location = new System.Drawing.Point(4, 24);
-            this.Revendedores.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Revendedores.Margin = new System.Windows.Forms.Padding(2);
             this.Revendedores.Name = "Revendedores";
-            this.Revendedores.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Revendedores.Padding = new System.Windows.Forms.Padding(2);
             this.Revendedores.Size = new System.Drawing.Size(578, 338);
             this.Revendedores.TabIndex = 4;
             this.Revendedores.Text = "Revendedores";
@@ -723,7 +736,7 @@ namespace PassoFirme
             this.panel1.Controls.Add(this.textBox_nif_revendedor);
             this.panel1.Controls.Add(this.textBox_nome_revendedor);
             this.panel1.Location = new System.Drawing.Point(307, 6);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(271, 328);
             this.panel1.TabIndex = 1;
@@ -731,7 +744,7 @@ namespace PassoFirme
             // button_editar_revendedor
             // 
             this.button_editar_revendedor.Location = new System.Drawing.Point(185, 284);
-            this.button_editar_revendedor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_editar_revendedor.Margin = new System.Windows.Forms.Padding(2);
             this.button_editar_revendedor.Name = "button_editar_revendedor";
             this.button_editar_revendedor.Size = new System.Drawing.Size(60, 32);
             this.button_editar_revendedor.TabIndex = 10;
@@ -742,7 +755,7 @@ namespace PassoFirme
             // button_apagar_revendedor
             // 
             this.button_apagar_revendedor.Location = new System.Drawing.Point(24, 284);
-            this.button_apagar_revendedor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_apagar_revendedor.Margin = new System.Windows.Forms.Padding(2);
             this.button_apagar_revendedor.Name = "button_apagar_revendedor";
             this.button_apagar_revendedor.Size = new System.Drawing.Size(60, 32);
             this.button_apagar_revendedor.TabIndex = 9;
@@ -804,7 +817,7 @@ namespace PassoFirme
             // textBox_morada_revendedor
             // 
             this.textBox_morada_revendedor.Location = new System.Drawing.Point(77, 225);
-            this.textBox_morada_revendedor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox_morada_revendedor.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_morada_revendedor.Name = "textBox_morada_revendedor";
             this.textBox_morada_revendedor.Size = new System.Drawing.Size(182, 21);
             this.textBox_morada_revendedor.TabIndex = 3;
@@ -812,7 +825,7 @@ namespace PassoFirme
             // textBox_email_revendedor
             // 
             this.textBox_email_revendedor.Location = new System.Drawing.Point(77, 168);
-            this.textBox_email_revendedor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox_email_revendedor.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_email_revendedor.Name = "textBox_email_revendedor";
             this.textBox_email_revendedor.Size = new System.Drawing.Size(182, 21);
             this.textBox_email_revendedor.TabIndex = 2;
@@ -820,7 +833,7 @@ namespace PassoFirme
             // textBox_nif_revendedor
             // 
             this.textBox_nif_revendedor.Location = new System.Drawing.Point(77, 119);
-            this.textBox_nif_revendedor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox_nif_revendedor.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_nif_revendedor.Name = "textBox_nif_revendedor";
             this.textBox_nif_revendedor.Size = new System.Drawing.Size(76, 21);
             this.textBox_nif_revendedor.TabIndex = 1;
@@ -828,7 +841,7 @@ namespace PassoFirme
             // textBox_nome_revendedor
             // 
             this.textBox_nome_revendedor.Location = new System.Drawing.Point(77, 66);
-            this.textBox_nome_revendedor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox_nome_revendedor.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_nome_revendedor.Name = "textBox_nome_revendedor";
             this.textBox_nome_revendedor.Size = new System.Drawing.Size(139, 21);
             this.textBox_nome_revendedor.TabIndex = 0;
@@ -839,7 +852,7 @@ namespace PassoFirme
             this.listBox_revendedor.FormattingEnabled = true;
             this.listBox_revendedor.ItemHeight = 15;
             this.listBox_revendedor.Location = new System.Drawing.Point(2, 6);
-            this.listBox_revendedor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listBox_revendedor.Margin = new System.Windows.Forms.Padding(2);
             this.listBox_revendedor.Name = "listBox_revendedor";
             this.listBox_revendedor.Size = new System.Drawing.Size(301, 319);
             this.listBox_revendedor.TabIndex = 0;
@@ -851,7 +864,7 @@ namespace PassoFirme
             this.Secções.Controls.Add(this.listBox_seccao);
             this.Secções.Location = new System.Drawing.Point(4, 24);
             this.Secções.Name = "Secções";
-            this.Secções.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.Secções.Padding = new System.Windows.Forms.Padding(3);
             this.Secções.Size = new System.Drawing.Size(578, 338);
             this.Secções.TabIndex = 5;
             this.Secções.Text = "Secções";
@@ -859,6 +872,8 @@ namespace PassoFirme
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.numFunc);
+            this.panel5.Controls.Add(this.label19);
             this.panel5.Controls.Add(this.textBox_concluido);
             this.panel5.Controls.Add(this.textBox_emProducao);
             this.panel5.Controls.Add(this.textBox_emEspera);
@@ -876,10 +891,26 @@ namespace PassoFirme
             this.panel5.Controls.Add(this.textBox_codigo_seccao);
             this.panel5.Controls.Add(this.textBox_designacao_seccao);
             this.panel5.Location = new System.Drawing.Point(305, 5);
-            this.panel5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel5.Margin = new System.Windows.Forms.Padding(2);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(271, 328);
             this.panel5.TabIndex = 2;
+            // 
+            // numFunc
+            // 
+            this.numFunc.Location = new System.Drawing.Point(234, 119);
+            this.numFunc.Name = "numFunc";
+            this.numFunc.Size = new System.Drawing.Size(25, 21);
+            this.numFunc.TabIndex = 17;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(116, 122);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(111, 15);
+            this.label19.TabIndex = 16;
+            this.label19.Text = "Num Funcionários:";
             // 
             // textBox_concluido
             // 
@@ -973,7 +1004,7 @@ namespace PassoFirme
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(40, 122);
+            this.label13.Location = new System.Drawing.Point(22, 122);
             this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(49, 15);
@@ -993,7 +1024,7 @@ namespace PassoFirme
             // mediaSal
             // 
             this.mediaSal.Location = new System.Drawing.Point(101, 220);
-            this.mediaSal.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.mediaSal.Margin = new System.Windows.Forms.Padding(2);
             this.mediaSal.Name = "mediaSal";
             this.mediaSal.Size = new System.Drawing.Size(85, 21);
             this.mediaSal.TabIndex = 3;
@@ -1001,15 +1032,15 @@ namespace PassoFirme
             // nomeGerente
             // 
             this.nomeGerente.Location = new System.Drawing.Point(101, 172);
-            this.nomeGerente.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.nomeGerente.Margin = new System.Windows.Forms.Padding(2);
             this.nomeGerente.Name = "nomeGerente";
             this.nomeGerente.Size = new System.Drawing.Size(158, 21);
             this.nomeGerente.TabIndex = 2;
             // 
             // textBox_codigo_seccao
             // 
-            this.textBox_codigo_seccao.Location = new System.Drawing.Point(101, 119);
-            this.textBox_codigo_seccao.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox_codigo_seccao.Location = new System.Drawing.Point(75, 119);
+            this.textBox_codigo_seccao.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_codigo_seccao.Name = "textBox_codigo_seccao";
             this.textBox_codigo_seccao.Size = new System.Drawing.Size(26, 21);
             this.textBox_codigo_seccao.TabIndex = 1;
@@ -1017,19 +1048,20 @@ namespace PassoFirme
             // textBox_designacao_seccao
             // 
             this.textBox_designacao_seccao.Location = new System.Drawing.Point(101, 66);
-            this.textBox_designacao_seccao.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox_designacao_seccao.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_designacao_seccao.Name = "textBox_designacao_seccao";
             this.textBox_designacao_seccao.Size = new System.Drawing.Size(139, 21);
             this.textBox_designacao_seccao.TabIndex = 0;
             // 
             // listBox_seccao
             // 
+            this.listBox_seccao.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBox_seccao.FormattingEnabled = true;
-            this.listBox_seccao.ItemHeight = 15;
+            this.listBox_seccao.ItemHeight = 20;
             this.listBox_seccao.Location = new System.Drawing.Point(5, 4);
-            this.listBox_seccao.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listBox_seccao.Margin = new System.Windows.Forms.Padding(2);
             this.listBox_seccao.Name = "listBox_seccao";
-            this.listBox_seccao.Size = new System.Drawing.Size(297, 319);
+            this.listBox_seccao.Size = new System.Drawing.Size(297, 324);
             this.listBox_seccao.TabIndex = 1;
             this.listBox_seccao.SelectedIndexChanged += new System.EventHandler(this.listBox_seccao_SelectedIndexChanged);
             // 
@@ -1039,11 +1071,13 @@ namespace PassoFirme
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(586, 368);
             this.Controls.Add(this.tabcontrol1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabcontrol1.ResumeLayout(false);
+            this.Início.ResumeLayout(false);
+            this.Início.PerformLayout();
             this.Produtos.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
@@ -1094,7 +1128,7 @@ namespace PassoFirme
         private System.Windows.Forms.TextBox textBox_nome_fornecedor;
         private System.Windows.Forms.ListBox listBox_fornecedor;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.TextBox textBox_numEncomenda_produto;
+        private System.Windows.Forms.TextBox textBox_numEncomendas_produto;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label_produto;
         private System.Windows.Forms.Label label3;
@@ -1103,7 +1137,7 @@ namespace PassoFirme
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBox_preco_produto;
         private System.Windows.Forms.TextBox textBox_custo_produto;
-        private System.Windows.Forms.TextBox textBox_codigo_produto;
+        private System.Windows.Forms.TextBox textBox_quantidade;
         private System.Windows.Forms.TextBox textBox_categoria_produto;
         private System.Windows.Forms.ListBox listBox_produtos;
         private System.Windows.Forms.Panel panel3;
@@ -1152,6 +1186,9 @@ namespace PassoFirme
         private System.Windows.Forms.Button button_apagar_produtos;
         private System.Windows.Forms.Button button_editar_funcionario;
         private System.Windows.Forms.Button button_apagar_funcionario;
+        private System.Windows.Forms.TextBox numFunc;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label20;
     }
 }
 

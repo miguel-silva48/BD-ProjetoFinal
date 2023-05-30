@@ -61,20 +61,26 @@ namespace PassoFirme
             if (!verifySGBDConnection())
                 return;
 
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Empresa.Produto JOIN Empresa.TipoProduto ON Produto.categoria_tipo = TipoProduto.categoria;", cn);
-            SqlDataReader reader = cmd.ExecuteReader();
+            SqlCommand cmd = new SqlCommand("getTiposProduto;", cn);
             listBox_produtos.Items.Clear();
 
-            while (reader.Read()) {
-                Produto P = new Produto();
-                P.Codigo = reader["codigo_produto"].ToString();
-                P.Categoria = reader["categoria"].ToString();
-                P.CustoFabrico = reader["custo_fabrico"].ToString();
-                P.PrecoVenda = reader["preco_venda"].ToString();
-                P.NumEncomenda = reader["num_encomenda"].ToString();
-                //P.QuantidadeArmazem = reader["quantidade_armazem"].ToString();
-                listBox_produtos.Items.Add(P);
+            using (SqlDataReader reader = cmd.ExecuteReader())
+            {
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        Produto P = new Produto();
+                        P.Categoria = reader["categoria"].ToString();
+                        P.CustoFabrico = reader["custo_fabrico"].ToString();
+                        P.PrecoVenda = reader["preco_venda"].ToString();
+                        P.NumProdutos = reader["numProdutos"].ToString();
+                        P.NumEncomendas = reader["numEncomendas"].ToString();
+                        listBox_produtos.Items.Add(P);
+                    }
+                }
             }
+
             cn.Close();
             currentProduto = 0;
             ShowProduto();
@@ -86,11 +92,10 @@ namespace PassoFirme
             Produto prod = new Produto();
             prod = (Produto)listBox_produtos.Items[currentProduto];
             textBox_categoria_produto.Text = prod.Categoria;
-            textBox_codigo_produto.Text = prod.Codigo;
+            textBox_quantidade.Text = prod.NumProdutos;
             textBox_custo_produto.Text = prod.CustoFabrico;
             textBox_preco_produto.Text = prod.PrecoVenda;
-            textBox_numEncomenda_produto.Text = prod.NumEncomenda;
-            //textBox_quantidade_produto.Text = prod.QuantidadeArmazem;
+            textBox_numEncomendas_produto.Text = prod.NumEncomendas;
         }
 
         private void listBox_produtos_SelectedIndexChanged(object sender, EventArgs e) {
@@ -103,7 +108,7 @@ namespace PassoFirme
         private void button_apagar_produtos_Click(object sender, EventArgs e) {
             if (listBox_produtos.SelectedIndex > -1) {
                 try {
-                    removeProduto(((Produto)listBox_produtos.SelectedItem).Codigo);
+                    removeProduto(((Produto)listBox_produtos.SelectedItem).Categoria);
                 } catch (Exception ex) {
                     MessageBox.Show(ex.Message);
                     return;
@@ -144,10 +149,10 @@ namespace PassoFirme
 
         public void ClearFieldsProduto() {
             textBox_categoria_produto.Text = "";
-            textBox_codigo_produto.Text = "";
+            textBox_quantidade.Text = "";
             textBox_custo_produto.Text = "";
             textBox_preco_produto.Text = "";
-            textBox_numEncomenda_produto.Text = "";
+            textBox_numEncomendas_produto.Text = "";
             //textBox_quantidade_produto.Text = "";
         }
 //End of Produto Stuff
@@ -158,39 +163,51 @@ namespace PassoFirme
             if (!verifySGBDConnection())
                 return;
 
-            SqlCommand cmd = new SqlCommand("SELECT * FROM (Empresa.Gerente JOIN Empresa.Funcionario ON ID_Funcionario=ID) JOIN Empresa.Seccao ON codigo_seccao=codigo;", cn);
-            SqlDataReader reader = cmd.ExecuteReader();
+            SqlCommand cmd = new SqlCommand("getGerentes", cn);
             listBox_funcionarios.Items.Clear();
 
-            while (reader.Read()) {
-                Funcionario F = new Funcionario();
-                F.Nif = reader["nif"].ToString();
-                F.Nome = reader["nome"].ToString();
-                F.NumCC = reader["numerocc"].ToString();
-                F.Morada = reader["morada"].ToString();
-                F.Id = reader["ID"].ToString();
-                F.Salario = reader["salario"].ToString();
-                F.Seccao = reader["designacao"].ToString();
-                F.SerGerente = "Sim";
-                listBox_funcionarios.Items.Add(F);
+            using (SqlDataReader reader = cmd.ExecuteReader())
+            {
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        Funcionario F = new Funcionario();
+                        F.Nif = reader["nif"].ToString();
+                        F.Nome = reader["nome"].ToString();
+                        F.NumCC = reader["numerocc"].ToString();
+                        F.Morada = reader["morada"].ToString();
+                        F.Id = reader["ID"].ToString();
+                        F.Salario = reader["salario"].ToString();
+                        F.Seccao = reader["designacao"].ToString();
+                        F.SerGerente = "Sim";
+                        listBox_funcionarios.Items.Add(F);
+                    }
+                }
             }
-            reader.Close();
 
-            SqlCommand cmd2 = new SqlCommand("SELECT * FROM (Empresa.Operario JOIN  Empresa.Seccao ON codigo_seccao=codigo) JOIN Empresa.Funcionario ON ID_Funcionario=ID WHERE Operario.ID_funcionario NOT IN (SELECT Gerente.ID_funcionario FROM Empresa.Gerente);", cn);
-            reader = cmd2.ExecuteReader();
+            SqlCommand cmd2 = new SqlCommand("getOperarios", cn);
 
-            while (reader.Read()) {
-                Funcionario F = new Funcionario();
-                F.Nif = reader["nif"].ToString();
-                F.Nome = reader["nome"].ToString();
-                F.NumCC = reader["numerocc"].ToString();
-                F.Morada = reader["morada"].ToString();
-                F.Id = reader["ID"].ToString();
-                F.Salario = reader["salario"].ToString();
-                F.Seccao = reader["designacao"].ToString();
-                F.SerGerente = "Não";
-                listBox_funcionarios.Items.Add(F);
+            using (SqlDataReader reader = cmd2.ExecuteReader())
+            {
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        Funcionario F = new Funcionario();
+                        F.Nif = reader["nif"].ToString();
+                        F.Nome = reader["nome"].ToString();
+                        F.NumCC = reader["numerocc"].ToString();
+                        F.Morada = reader["morada"].ToString();
+                        F.Id = reader["ID"].ToString();
+                        F.Salario = reader["salario"].ToString();
+                        F.Seccao = reader["designacao"].ToString();
+                        F.SerGerente = "Não";
+                        listBox_funcionarios.Items.Add(F);
+                    }
+                }
             }
+
             cn.Close();
             currentFuncionario = 0;
             ShowFuncionario();
@@ -531,6 +548,7 @@ namespace PassoFirme
             String numEmEspera;
             String numEmProducao;
             String numConcluido;
+            double media;
 
             cn.Open();
             using (SqlCommand cmd2 = new SqlCommand("getNumEstadoBySeccao", cn)) {
@@ -548,11 +566,26 @@ namespace PassoFirme
                 numEmProducao = Convert.ToString(cmd2.Parameters["@numEmProducao"].Value);
                 numConcluido = Convert.ToString(cmd2.Parameters["@numConcluido"].Value);
             }
+
+            using (SqlCommand cmd3 = new SqlCommand("getMediaSalarialBySeccao", cn))
+            {
+                cmd3.CommandType = CommandType.StoredProcedure;
+
+                cmd3.Parameters.Add("@codigo", SqlDbType.Int).Value = seccao.Codigo;
+
+                cmd3.Parameters.Add("@media", SqlDbType.Float).Direction = ParameterDirection.Output;
+
+                cmd3.ExecuteNonQuery();
+
+                media = Convert.ToDouble(cmd3.Parameters["@media"].Value);
+            }
             cn.Close();
 
             textBox_designacao_seccao.Text = seccao.Designacao;
             textBox_codigo_seccao.Text = seccao.Codigo;
             nomeGerente.Text = seccao.NomeGerente;
+            numFunc.Text = seccao.NumFunc;
+            mediaSal.Text = media.ToString();
             textBox_emEspera.Text = numEmEspera;
             textBox_emProducao.Text = numEmProducao;
             textBox_concluido.Text = numConcluido;
