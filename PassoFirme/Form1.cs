@@ -387,6 +387,18 @@ namespace PassoFirme
         }
 
 //TODO: criar as caixas de texto no design e testar
+//Operações de edição e remoção de revendedores
+
+        private void button_apagar_revendedor_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button_editar_revendedor_Click(object sender, EventArgs e)
+        {
+
+        }
+        
         private void removeRevendedor (String nif_revendedor)
         {
             if (!verifySGBDConnection())
@@ -497,6 +509,16 @@ namespace PassoFirme
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
         }
 
     }
