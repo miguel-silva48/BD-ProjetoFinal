@@ -118,4 +118,6 @@ go
 -- Retorna secções
 CREATE PROCEDURE getSeccoes
 AS
-	SELECT *,dbo.numFuncionariosSeccao(designacao) AS numFunc FROM Empresa.Seccao
+	SELECT designacao, codigo, nome, dbo.numFuncionariosSeccao(designacao) AS numFunc 
+	FROM Empresa.Seccao JOIN Empresa.Gerente ON codigo=codigo_seccao 
+	JOIN Empresa.Funcionario ON ID_funcionario=ID

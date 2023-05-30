@@ -18,6 +18,7 @@ namespace PassoFirme
         private String _numEmProducao;
         private String _numConcluido;
         private String _nomeGerente;
+        private String _numFunc;
 
         public String Codigo
         {
@@ -56,16 +57,16 @@ namespace PassoFirme
 
         public String NumEmProducao
         {
-            get { return _numEmEspera; }
+            get { return _numEmProducao; }
             set
             {
-                _numEmEspera = value;
+                _numEmProducao = value;
             }
         }
 
         public String NumConcluido
         {
-            get { return _numEmEspera; }
+            get { return _numConcluido; }
             set
             {
                 _numConcluido = value;
@@ -78,6 +79,15 @@ namespace PassoFirme
             set
             {
                 _nomeGerente = value;
+            }
+        }
+
+        public String NumFunc
+        {
+            get { return _numFunc; }
+            set
+            {
+                _numFunc = value;
             }
         }
 

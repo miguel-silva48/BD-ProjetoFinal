@@ -444,6 +444,8 @@ namespace PassoFirme
                         Seccao S = new Seccao();
                         S.Codigo = reader["codigo"].ToString();
                         S.Designacao = reader["designacao"].ToString();
+                        S.NumFunc = reader["numFunc"].ToString();
+                        S.NomeGerente = reader["nome"].ToString();
                         listBox_seccao.Items.Add(S);
                     }
                 }
@@ -489,6 +491,7 @@ namespace PassoFirme
 
             textBox_designacao_seccao.Text = seccao.Designacao;
             textBox_codigo_seccao.Text = seccao.Codigo;
+            nomeGerente.Text = seccao.NomeGerente;
             textBox_emEspera.Text = numEmEspera;
             textBox_emProducao.Text = numEmProducao;
             textBox_concluido.Text = numConcluido;
