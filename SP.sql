@@ -113,3 +113,9 @@ AS
 go 
 
 --EXEC AddFuncionario 690972623, 900, 'Rua da Redonda Azul 9',29309021, 'Jéssica Oliveira Silva', 107, 0, 4;
+
+
+-- Retorna secções
+CREATE PROCEDURE getSeccoes
+AS
+	SELECT *,dbo.numFuncionariosSeccao(designacao) AS numFunc FROM Empresa.Seccao
