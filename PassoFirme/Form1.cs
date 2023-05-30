@@ -116,7 +116,7 @@ namespace PassoFirme
 
             cmd.CommandText = "DELETE Empresa.Produto WHERE codigo_produto=@codigo_produto";
             cmd.Parameters.Clear();
-            cmd.Parameters.AddWithValue("@codigo_produto", ContactID);
+            cmd.Parameters.AddWithValue("@codigo_produto", codigo_produto);
             cmd.Connection = cn;
 
             try
@@ -216,9 +216,9 @@ namespace PassoFirme
                 return;
             SqlCommand cmd = new SqlCommand();
 
-            cmd.CommandText = "DELETE Empresa.Funcionario WHERE ID=@id_funcionario"; ";
+            cmd.CommandText = "DELETE Empresa.Funcionario WHERE ID=@id_funcionario";
             cmd.Parameters.Clear();
-            cmd.Parameters.AddWithValue("@id_funcionario", ContactID);
+            cmd.Parameters.AddWithValue("@id_funcionario", id_funcionario);
             cmd.Connection = cn;
 
             try
@@ -291,9 +291,9 @@ namespace PassoFirme
                 return;
             SqlCommand cmd = new SqlCommand();
 
-            cmd.CommandText = "DELETE Empresa.Fornecedor WHERE nif=@nif_fornecedor"; ";
+            cmd.CommandText = "DELETE Empresa.Fornecedor WHERE nif=@nif_fornecedor";
             cmd.Parameters.Clear();
-            cmd.Parameters.AddWithValue("@nif_fornecedor", ContactID);
+            cmd.Parameters.AddWithValue("@nif_fornecedor", nif_fornecedor);
             cmd.Connection = cn;
 
             try
@@ -393,9 +393,9 @@ namespace PassoFirme
                 return;
             SqlCommand cmd = new SqlCommand();
 
-            cmd.CommandText = "DELETE Empresa.Revendedor WHERE nif=@nif_revendedor"; ";
+            cmd.CommandText = "DELETE Empresa.Revendedor WHERE nif=@nif_revendedor";
             cmd.Parameters.Clear();
-            cmd.Parameters.AddWithValue("@nif_revendedor", ContactID);
+            cmd.Parameters.AddWithValue("@nif_revendedor", nif_revendedor);
             cmd.Connection = cn;
 
             try
