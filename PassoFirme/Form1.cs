@@ -57,8 +57,7 @@ namespace PassoFirme
         
         
 //Produto Stuff
-        private void loadProdutos(object sender, EventArgs e)
-        {
+        private void loadProdutos(object sender, EventArgs e) {
             if (!verifySGBDConnection())
                 return;
 
@@ -66,8 +65,7 @@ namespace PassoFirme
             SqlDataReader reader = cmd.ExecuteReader();
             listBox_produtos.Items.Clear();
 
-            while (reader.Read())
-            {
+            while (reader.Read()) {
                 Produto P = new Produto();
                 P.Codigo = reader["codigo_produto"].ToString();
                 P.Categoria = reader["categoria"].ToString();
@@ -77,15 +75,12 @@ namespace PassoFirme
                 //P.QuantidadeArmazem = reader["quantidade_armazem"].ToString();
                 listBox_produtos.Items.Add(P);
             }
-
             cn.Close();
-
             currentProduto = 0;
             ShowProduto();
         }
 
-        private void ShowProduto()
-        {
+        private void ShowProduto() {
             if (listBox_produtos.Items.Count == 0 | currentProduto < 0)
                 return;
             Produto prod = new Produto();
@@ -98,18 +93,37 @@ namespace PassoFirme
             //textBox_quantidade_produto.Text = prod.QuantidadeArmazem;
         }
 
-        private void listBox_produtos_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (listBox_produtos.SelectedIndex >= 0)
-            {
+        private void listBox_produtos_SelectedIndexChanged(object sender, EventArgs e) {
+            if (listBox_produtos.SelectedIndex >= 0) {
                 currentProduto = listBox_produtos.SelectedIndex;
                 ShowProduto();
             }
         }
 
-//TODO criar as caixas de texto no design e testar
-        private void removeProduto(String codigo_produto)
-        {
+        private void button_apagar_produtos_Click(object sender, EventArgs e) {
+            if (listBox_produtos.SelectedIndex > -1) {
+                try {
+                    removeProduto(((Produto)listBox_produtos.SelectedItem).Codigo);
+                } catch (Exception ex) {
+                    MessageBox.Show(ex.Message);
+                    return;
+                }
+                listBox_produtos.Items.RemoveAt(listBox_produtos.SelectedIndex);
+                MessageBox.Show("Produto removido com sucesso!");
+                if (currentProduto == listBox_produtos.Items.Count)
+                    currentProduto = listBox_produtos.Items.Count - 1;
+                if (currentProduto == -1) {
+                    ClearFieldsProduto();
+                    MessageBox.Show("Não existem mais produtos!");
+                } else
+                    ShowProduto();
+            }
+        }
+//TODO OP EDITAR
+        private void button_editar_produtos_Click(object sender, EventArgs e) {
+
+        }
+        private void removeProduto(String codigo_produto) {
             if (!verifySGBDConnection())
                 return;
             SqlCommand cmd = new SqlCommand();
@@ -119,25 +133,28 @@ namespace PassoFirme
             cmd.Parameters.AddWithValue("@codigo_produto", codigo_produto);
             cmd.Connection = cn;
 
-            try
-            {
+            try {
                 cmd.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 throw new Exception("ERRO: Nao foi possivel apagar o produto na BD! \n ERROR MESSAGE: \n" + ex.Message);
-            }
-            finally
-            {
+            } finally {
                 cn.Close();
             }
+        }
+
+        public void ClearFieldsProduto() {
+            textBox_categoria_produto.Text = "";
+            textBox_codigo_produto.Text = "";
+            textBox_custo_produto.Text = "";
+            textBox_preco_produto.Text = "";
+            textBox_numEncomenda_produto.Text = "";
+            //textBox_quantidade_produto.Text = "";
         }
 //End of Produto Stuff
 
 
 //Funcionario Stuff
-        private void loadFuncionarios(object sender, EventArgs e)
-        {
+        private void loadFuncionarios(object sender, EventArgs e) {
             if (!verifySGBDConnection())
                 return;
 
@@ -145,8 +162,7 @@ namespace PassoFirme
             SqlDataReader reader = cmd.ExecuteReader();
             listBox_funcionarios.Items.Clear();
 
-            while (reader.Read())
-            {
+            while (reader.Read()) {
                 Funcionario F = new Funcionario();
                 F.Nif = reader["nif"].ToString();
                 F.Nome = reader["nome"].ToString();
@@ -158,14 +174,12 @@ namespace PassoFirme
                 F.SerGerente = "Sim";
                 listBox_funcionarios.Items.Add(F);
             }
-
             reader.Close();
 
             SqlCommand cmd2 = new SqlCommand("SELECT * FROM (Empresa.Operario JOIN  Empresa.Seccao ON codigo_seccao=codigo) JOIN Empresa.Funcionario ON ID_Funcionario=ID WHERE Operario.ID_funcionario NOT IN (SELECT Gerente.ID_funcionario FROM Empresa.Gerente);", cn);
             reader = cmd2.ExecuteReader();
 
-            while (reader.Read())
-            {
+            while (reader.Read()) {
                 Funcionario F = new Funcionario();
                 F.Nif = reader["nif"].ToString();
                 F.Nome = reader["nome"].ToString();
@@ -177,15 +191,12 @@ namespace PassoFirme
                 F.SerGerente = "Não";
                 listBox_funcionarios.Items.Add(F);
             }
-
             cn.Close();
-
             currentFuncionario = 0;
             ShowFuncionario();
         }
 
-        private void ShowFuncionario()
-        {
+        private void ShowFuncionario() {
             if (listBox_funcionarios.Items.Count == 0 | currentFuncionario < 0)
                 return;
             Funcionario func = new Funcionario();
@@ -200,18 +211,39 @@ namespace PassoFirme
             textBox_gerente_funcionario.Text = func.SerGerente;
         }
 
-        private void listBox_funcionarios_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (listBox_funcionarios.SelectedIndex >= 0)
-            {
+        private void listBox_funcionarios_SelectedIndexChanged(object sender, EventArgs e) {
+            if (listBox_funcionarios.SelectedIndex >= 0) {
                 currentFuncionario = listBox_funcionarios.SelectedIndex;
                 ShowFuncionario();
             }
         }
 
-//TODO: criar as caixas de texto no design e testar
-        private void removeFuncionario(String id_funcionario)
-        {
+        private void button_apagar_funcionario_Click(object sender, EventArgs e) {
+            if (listBox_funcionarios.SelectedIndex > -1) {
+                try {
+                    removeFuncionario(((Funcionario)listBox_funcionarios.SelectedItem).Id);
+                } catch (Exception ex) {
+                    MessageBox.Show(ex.Message);
+                    return;
+                }
+                listBox_funcionarios.Items.RemoveAt(listBox_funcionarios.SelectedIndex);
+                MessageBox.Show("Funcionario removido com sucesso!");
+                if (currentFuncionario == listBox_funcionarios.Items.Count)
+                    currentFuncionario = listBox_funcionarios.Items.Count - 1;
+                if (currentFuncionario == -1) {
+                    ClearFieldsFuncionario();
+                    MessageBox.Show("Não existem mais funcionarios!");
+                } else
+                    ShowFuncionario();
+            }
+        }
+        
+//TODO OP EDITAR
+        private void button_editar_funcionario_Click(object sender, EventArgs e) {
+
+        }
+
+        private void removeFuncionario(String id_funcionario) {
             if (!verifySGBDConnection())
                 return;
             SqlCommand cmd = new SqlCommand();
@@ -221,25 +253,30 @@ namespace PassoFirme
             cmd.Parameters.AddWithValue("@id_funcionario", id_funcionario);
             cmd.Connection = cn;
 
-            try
-            {
+            try {
                 cmd.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 throw new Exception("ERRO: Nao foi possivel apagar o funcionario na BD! \n ERROR MESSAGE: \n" + ex.Message);
-            }
-            finally
-            {
+            } finally {
                 cn.Close();
             }
+        }
+
+        public void ClearFieldsFuncionario() {
+            textBox_nome_funcionario.Text = "";
+            textBox_nif_funcionario.Text = "";
+            textBox_numCC_funcionario.Text = "";
+            textBox_morada_funcionario.Text = "";
+            textBox_id_funcionario.Text = "";
+            textBox_salario_funcionario.Text = "";
+            textBox_seccao_funcionario.Text = "";
+            textBox_gerente_funcionario.Text = "";
         }
 //End of Funcionario Stuff
 
 
 //Fornecedor Stuff
-        private void loadFornecedor(object sender, EventArgs e)
-        {
+        private void loadFornecedor(object sender, EventArgs e) {
             if (!verifySGBDConnection())
                 return;
 
@@ -247,8 +284,7 @@ namespace PassoFirme
             SqlDataReader reader = cmd.ExecuteReader();
             listBox_fornecedor.Items.Clear();
 
-            while (reader.Read())
-            {
+            while (reader.Read()) {
                 Fornecedor F = new Fornecedor();
                 F.Nif = reader["nif"].ToString();
                 F.Nome = reader["nome"].ToString();
@@ -256,15 +292,12 @@ namespace PassoFirme
                 F.Email = reader["email"].ToString();
                 listBox_fornecedor.Items.Add(F);
             }
-
             cn.Close();
-
             currentFornecedor = 0;
             ShowFornecedor();
         }
 
-        private void ShowFornecedor()
-        {
+        private void ShowFornecedor() {
             if (listBox_fornecedor.Items.Count == 0 | currentFornecedor < 0)
                 return;
             Fornecedor forn = new Fornecedor();
@@ -275,18 +308,40 @@ namespace PassoFirme
             textBox_email_fornecedor.Text = forn.Email;
         }
 
-        private void listBox_fornecedor_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (listBox_fornecedor.SelectedIndex >= 0)
-            {
+        private void listBox_fornecedor_SelectedIndexChanged(object sender, EventArgs e) {
+            if (listBox_fornecedor.SelectedIndex >= 0) {
                 currentFornecedor = listBox_fornecedor.SelectedIndex;
                 ShowFornecedor();
             }
         }
 
-//TODO: criar as caixas de texto no design e testar
-        private void removeFornecedor(String nif_fornecedor)
+        private void button_apagar_fornecedor_Click(object sender, EventArgs e) {
+            if (listBox_fornecedor.SelectedIndex > -1) {
+                try {
+                    removeFornecedor(((Fornecedor)listBox_fornecedor.SelectedItem).Nif);
+                } catch (Exception ex) {
+                    MessageBox.Show(ex.Message);
+                    return;
+                }
+                listBox_fornecedor.Items.RemoveAt(listBox_fornecedor.SelectedIndex);
+                MessageBox.Show("Fornecedor removido com sucesso!");
+                if (currentFornecedor == listBox_fornecedor.Items.Count)
+                    currentFornecedor = listBox_fornecedor.Items.Count - 1;
+                if (currentFornecedor == -1) {
+                    ClearFieldsFornecedor();
+                    MessageBox.Show("Não existem mais fornecedores!");
+                } else
+                    ShowFornecedor();
+            }
+        }
+
+//TODO OP EDITAR
+        private void button_editar_fornecedor_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void removeFornecedor(String nif_fornecedor) {
             if (!verifySGBDConnection())
                 return;
             SqlCommand cmd = new SqlCommand();
@@ -296,18 +351,20 @@ namespace PassoFirme
             cmd.Parameters.AddWithValue("@nif_fornecedor", nif_fornecedor);
             cmd.Connection = cn;
 
-            try
-            {
+            try {
                 cmd.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 throw new Exception("ERRO: Nao foi possivel apagar o Fornecedor na BD! \n ERROR MESSAGE: \n" + ex.Message);
-            }
-            finally
-            {
+            } finally {
                 cn.Close();
             }
+        }
+
+        public void ClearFieldsFornecedor() {
+            textBox_nome_fornecedor.Text = "";
+            textBox_nif_fornecedor.Text = "";
+            textBox_email_fornecedor.Text = "";
+            textBox_morada_fornecedor.Text = "";
         }
 
 //End of Fornecedor Stuff
@@ -386,21 +443,34 @@ namespace PassoFirme
             }
         }
 
-//TODO: criar as caixas de texto no design e testar
+
 //Operações de edição e remoção de revendedores
-
-        private void button_apagar_revendedor_Click(object sender, EventArgs e)
-        {
-
+        private void button_apagar_revendedor_Click(object sender, EventArgs e) {
+            if (listBox_revendedor.SelectedIndex > -1) {
+                try {
+                    removeRevendedor(((Revendedor)listBox_revendedor.SelectedItem).Nif);
+                } catch (Exception ex) {
+                    MessageBox.Show(ex.Message);
+                    return;
+                }
+                listBox_revendedor.Items.RemoveAt(listBox_revendedor.SelectedIndex);
+                MessageBox.Show("Revendedor removido com sucesso!");
+                if (currentRevendedor == listBox_revendedor.Items.Count)
+                    currentRevendedor = listBox_revendedor.Items.Count - 1;
+                if (currentRevendedor == -1) {
+                    ClearFieldsRevendedor();
+                    MessageBox.Show("Não existem mais revendedores!");
+                } else
+                    ShowRevendedor();
+            }
         }
 
-        private void button_editar_revendedor_Click(object sender, EventArgs e)
-        {
-
+//TODO OP EDITAR
+        private void button_editar_revendedor_Click(object sender, EventArgs e) {
+            
         }
         
-        private void removeRevendedor (String nif_revendedor)
-        {
+        private void removeRevendedor(String nif_revendedor) {
             if (!verifySGBDConnection())
                 return;
             SqlCommand cmd = new SqlCommand();
@@ -410,18 +480,20 @@ namespace PassoFirme
             cmd.Parameters.AddWithValue("@nif_revendedor", nif_revendedor);
             cmd.Connection = cn;
 
-            try
-            {
+            try {
                 cmd.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 throw new Exception("ERRO: Nao foi possivel apagar o Revendedor na BD! \n ERROR MESSAGE: \n" + ex.Message);
-            }
-            finally
-            {
+            } finally {
                 cn.Close();
             }
+        }
+
+        public void ClearFieldsRevendedor() {
+            textBox_nome_revendedor.Text = "";
+            textBox_nif_revendedor.Text = "";
+            textBox_email_revendedor.Text = "";
+            textBox_morada_revendedor.Text = "";
         }
 //End of Revendedor Stuff
 
@@ -500,21 +572,8 @@ namespace PassoFirme
         }
 //End of Seccao Stuff
 
-
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e) {
             Application.Exit();
         }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-
-        }
-
     }
 }

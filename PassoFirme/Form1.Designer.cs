@@ -33,6 +33,8 @@ namespace PassoFirme
             this.Início = new System.Windows.Forms.TabPage();
             this.Produtos = new System.Windows.Forms.TabPage();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.button_editar_produtos = new System.Windows.Forms.Button();
+            this.button_apagar_produtos = new System.Windows.Forms.Button();
             this.textBox_numEncomenda_produto = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label_produto = new System.Windows.Forms.Label();
@@ -47,6 +49,8 @@ namespace PassoFirme
             this.listBox_produtos = new System.Windows.Forms.ListBox();
             this.Funcionários = new System.Windows.Forms.TabPage();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.button_editar_funcionario = new System.Windows.Forms.Button();
+            this.button_apagar_funcionario = new System.Windows.Forms.Button();
             this.textBox_gerente_funcionario = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -67,6 +71,8 @@ namespace PassoFirme
             this.listBox_funcionarios = new System.Windows.Forms.ListBox();
             this.Fornecedores = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.button_editar_fornecedor = new System.Windows.Forms.Button();
+            this.button_apagar_fornecedor = new System.Windows.Forms.Button();
             this.label_fornecedor = new System.Windows.Forms.Label();
             this.label_morada_fornecedor = new System.Windows.Forms.Label();
             this.label_email_fornecedor = new System.Windows.Forms.Label();
@@ -79,6 +85,8 @@ namespace PassoFirme
             this.listBox_fornecedor = new System.Windows.Forms.ListBox();
             this.Revendedores = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button_editar_revendedor = new System.Windows.Forms.Button();
+            this.button_apagar_revendedor = new System.Windows.Forms.Button();
             this.label_revendedor = new System.Windows.Forms.Label();
             this.label_morada_revendedor = new System.Windows.Forms.Label();
             this.label_email_revendedor = new System.Windows.Forms.Label();
@@ -108,14 +116,6 @@ namespace PassoFirme
             this.textBox_codigo_seccao = new System.Windows.Forms.TextBox();
             this.textBox_designacao_seccao = new System.Windows.Forms.TextBox();
             this.listBox_seccao = new System.Windows.Forms.ListBox();
-            this.button_apagar_revendedor = new System.Windows.Forms.Button();
-            this.button_editar_revendedor = new System.Windows.Forms.Button();
-            this.button_editar_fornecedor = new System.Windows.Forms.Button();
-            this.button_apagar_fornecedor = new System.Windows.Forms.Button();
-            this.button_editar_produtos = new System.Windows.Forms.Button();
-            this.button_apagar_produtos = new System.Windows.Forms.Button();
-            this.button_editar_funcionario = new System.Windows.Forms.Button();
-            this.button_apagar_funcionario = new System.Windows.Forms.Button();
             this.tabcontrol1.SuspendLayout();
             this.Produtos.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -147,11 +147,11 @@ namespace PassoFirme
             // 
             // Início
             // 
-            this.Início.Location = new System.Drawing.Point(4, 25);
+            this.Início.Location = new System.Drawing.Point(4, 27);
             this.Início.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Início.Name = "Início";
             this.Início.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Início.Size = new System.Drawing.Size(773, 421);
+            this.Início.Size = new System.Drawing.Size(773, 419);
             this.Início.TabIndex = 0;
             this.Início.Text = "Início";
             this.Início.UseVisualStyleBackColor = true;
@@ -190,9 +190,29 @@ namespace PassoFirme
             this.panel4.Size = new System.Drawing.Size(361, 404);
             this.panel4.TabIndex = 3;
             // 
+            // button_editar_produtos
+            // 
+            this.button_editar_produtos.Location = new System.Drawing.Point(247, 349);
+            this.button_editar_produtos.Name = "button_editar_produtos";
+            this.button_editar_produtos.Size = new System.Drawing.Size(80, 40);
+            this.button_editar_produtos.TabIndex = 12;
+            this.button_editar_produtos.Text = "Editar";
+            this.button_editar_produtos.UseVisualStyleBackColor = true;
+            this.button_editar_produtos.Click += new System.EventHandler(this.button_editar_produtos_Click);
+            // 
+            // button_apagar_produtos
+            // 
+            this.button_apagar_produtos.Location = new System.Drawing.Point(32, 349);
+            this.button_apagar_produtos.Name = "button_apagar_produtos";
+            this.button_apagar_produtos.Size = new System.Drawing.Size(80, 40);
+            this.button_apagar_produtos.TabIndex = 11;
+            this.button_apagar_produtos.Text = "Apagar";
+            this.button_apagar_produtos.UseVisualStyleBackColor = true;
+            this.button_apagar_produtos.Click += new System.EventHandler(this.button_apagar_produtos_Click);
+            // 
             // textBox_numEncomenda_produto
             // 
-            this.textBox_numEncomenda_produto.Location = new System.Drawing.Point(136, 263);
+            this.textBox_numEncomenda_produto.Location = new System.Drawing.Point(142, 263);
             this.textBox_numEncomenda_produto.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox_numEncomenda_produto.Name = "textBox_numEncomenda_produto";
             this.textBox_numEncomenda_produto.Size = new System.Drawing.Size(100, 24);
@@ -335,6 +355,26 @@ namespace PassoFirme
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(361, 404);
             this.panel3.TabIndex = 3;
+            // 
+            // button_editar_funcionario
+            // 
+            this.button_editar_funcionario.Location = new System.Drawing.Point(247, 349);
+            this.button_editar_funcionario.Name = "button_editar_funcionario";
+            this.button_editar_funcionario.Size = new System.Drawing.Size(80, 40);
+            this.button_editar_funcionario.TabIndex = 18;
+            this.button_editar_funcionario.Text = "Editar";
+            this.button_editar_funcionario.UseVisualStyleBackColor = true;
+            this.button_editar_funcionario.Click += new System.EventHandler(this.button_editar_funcionario_Click);
+            // 
+            // button_apagar_funcionario
+            // 
+            this.button_apagar_funcionario.Location = new System.Drawing.Point(32, 349);
+            this.button_apagar_funcionario.Name = "button_apagar_funcionario";
+            this.button_apagar_funcionario.Size = new System.Drawing.Size(80, 40);
+            this.button_apagar_funcionario.TabIndex = 17;
+            this.button_apagar_funcionario.Text = "Apagar";
+            this.button_apagar_funcionario.UseVisualStyleBackColor = true;
+            this.button_apagar_funcionario.Click += new System.EventHandler(this.button_apagar_funcionario_Click);
             // 
             // textBox_gerente_funcionario
             // 
@@ -525,6 +565,26 @@ namespace PassoFirme
             this.panel2.Size = new System.Drawing.Size(361, 404);
             this.panel2.TabIndex = 3;
             // 
+            // button_editar_fornecedor
+            // 
+            this.button_editar_fornecedor.Location = new System.Drawing.Point(247, 349);
+            this.button_editar_fornecedor.Name = "button_editar_fornecedor";
+            this.button_editar_fornecedor.Size = new System.Drawing.Size(80, 40);
+            this.button_editar_fornecedor.TabIndex = 12;
+            this.button_editar_fornecedor.Text = "Editar";
+            this.button_editar_fornecedor.UseVisualStyleBackColor = true;
+            this.button_editar_fornecedor.Click += new System.EventHandler(this.button_editar_fornecedor_Click);
+            // 
+            // button_apagar_fornecedor
+            // 
+            this.button_apagar_fornecedor.Location = new System.Drawing.Point(32, 349);
+            this.button_apagar_fornecedor.Name = "button_apagar_fornecedor";
+            this.button_apagar_fornecedor.Size = new System.Drawing.Size(80, 40);
+            this.button_apagar_fornecedor.TabIndex = 11;
+            this.button_apagar_fornecedor.Text = "Apagar";
+            this.button_apagar_fornecedor.UseVisualStyleBackColor = true;
+            this.button_apagar_fornecedor.Click += new System.EventHandler(this.button_apagar_fornecedor_Click);
+            // 
             // label_fornecedor
             // 
             this.label_fornecedor.AutoSize = true;
@@ -646,6 +706,26 @@ namespace PassoFirme
             this.panel1.Size = new System.Drawing.Size(361, 404);
             this.panel1.TabIndex = 1;
             // 
+            // button_editar_revendedor
+            // 
+            this.button_editar_revendedor.Location = new System.Drawing.Point(247, 349);
+            this.button_editar_revendedor.Name = "button_editar_revendedor";
+            this.button_editar_revendedor.Size = new System.Drawing.Size(80, 40);
+            this.button_editar_revendedor.TabIndex = 10;
+            this.button_editar_revendedor.Text = "Editar";
+            this.button_editar_revendedor.UseVisualStyleBackColor = true;
+            this.button_editar_revendedor.Click += new System.EventHandler(this.button_editar_revendedor_Click);
+            // 
+            // button_apagar_revendedor
+            // 
+            this.button_apagar_revendedor.Location = new System.Drawing.Point(32, 349);
+            this.button_apagar_revendedor.Name = "button_apagar_revendedor";
+            this.button_apagar_revendedor.Size = new System.Drawing.Size(80, 40);
+            this.button_apagar_revendedor.TabIndex = 9;
+            this.button_apagar_revendedor.Text = "Apagar";
+            this.button_apagar_revendedor.UseVisualStyleBackColor = true;
+            this.button_apagar_revendedor.Click += new System.EventHandler(this.button_apagar_revendedor_Click);
+            // 
             // label_revendedor
             // 
             this.label_revendedor.AutoSize = true;
@@ -740,11 +820,11 @@ namespace PassoFirme
             // 
             this.Secções.Controls.Add(this.panel5);
             this.Secções.Controls.Add(this.listBox_seccao);
-            this.Secções.Location = new System.Drawing.Point(4, 25);
-            this.Secções.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Secções.Location = new System.Drawing.Point(4, 27);
+            this.Secções.Margin = new System.Windows.Forms.Padding(4);
             this.Secções.Name = "Secções";
-            this.Secções.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.Secções.Size = new System.Drawing.Size(773, 421);
+            this.Secções.Padding = new System.Windows.Forms.Padding(4);
+            this.Secções.Size = new System.Drawing.Size(773, 419);
             this.Secções.TabIndex = 5;
             this.Secções.Text = "Secções";
             this.Secções.UseVisualStyleBackColor = true;
@@ -776,7 +856,7 @@ namespace PassoFirme
             // textBox_concluido
             // 
             this.textBox_concluido.Location = new System.Drawing.Point(271, 374);
-            this.textBox_concluido.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_concluido.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_concluido.Name = "textBox_concluido";
             this.textBox_concluido.Size = new System.Drawing.Size(43, 24);
             this.textBox_concluido.TabIndex = 15;
@@ -784,7 +864,7 @@ namespace PassoFirme
             // textBox_emProducao
             // 
             this.textBox_emProducao.Location = new System.Drawing.Point(135, 374);
-            this.textBox_emProducao.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_emProducao.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_emProducao.Name = "textBox_emProducao";
             this.textBox_emProducao.Size = new System.Drawing.Size(41, 24);
             this.textBox_emProducao.TabIndex = 14;
@@ -793,7 +873,7 @@ namespace PassoFirme
             // 
             this.textBox_emEspera.ForeColor = System.Drawing.SystemColors.WindowText;
             this.textBox_emEspera.Location = new System.Drawing.Point(24, 374);
-            this.textBox_emEspera.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_emEspera.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_emEspera.Name = "textBox_emEspera";
             this.textBox_emEspera.Size = new System.Drawing.Size(41, 24);
             this.textBox_emEspera.TabIndex = 13;
@@ -926,82 +1006,6 @@ namespace PassoFirme
             this.listBox_seccao.Size = new System.Drawing.Size(395, 400);
             this.listBox_seccao.TabIndex = 1;
             this.listBox_seccao.SelectedIndexChanged += new System.EventHandler(this.listBox_seccao_SelectedIndexChanged);
-            // 
-            // button_apagar_revendedor
-            // 
-            this.button_apagar_revendedor.Location = new System.Drawing.Point(32, 349);
-            this.button_apagar_revendedor.Name = "button_apagar_revendedor";
-            this.button_apagar_revendedor.Size = new System.Drawing.Size(80, 40);
-            this.button_apagar_revendedor.TabIndex = 9;
-            this.button_apagar_revendedor.Text = "Apagar";
-            this.button_apagar_revendedor.UseVisualStyleBackColor = true;
-            this.button_apagar_revendedor.Click += new System.EventHandler(this.button_apagar_revendedor_Click);
-            // 
-            // button_editar_revendedor
-            // 
-            this.button_editar_revendedor.Location = new System.Drawing.Point(247, 349);
-            this.button_editar_revendedor.Name = "button_editar_revendedor";
-            this.button_editar_revendedor.Size = new System.Drawing.Size(80, 40);
-            this.button_editar_revendedor.TabIndex = 10;
-            this.button_editar_revendedor.Text = "Editar";
-            this.button_editar_revendedor.UseVisualStyleBackColor = true;
-            this.button_editar_revendedor.Click += new System.EventHandler(this.button_editar_revendedor_Click);
-            // 
-            // button_editar_fornecedor
-            // 
-            this.button_editar_fornecedor.Location = new System.Drawing.Point(247, 349);
-            this.button_editar_fornecedor.Name = "button_editar_fornecedor";
-            this.button_editar_fornecedor.Size = new System.Drawing.Size(80, 40);
-            this.button_editar_fornecedor.TabIndex = 12;
-            this.button_editar_fornecedor.Text = "Editar";
-            this.button_editar_fornecedor.UseVisualStyleBackColor = true;
-            this.button_editar_fornecedor.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // button_apagar_fornecedor
-            // 
-            this.button_apagar_fornecedor.Location = new System.Drawing.Point(32, 349);
-            this.button_apagar_fornecedor.Name = "button_apagar_fornecedor";
-            this.button_apagar_fornecedor.Size = new System.Drawing.Size(80, 40);
-            this.button_apagar_fornecedor.TabIndex = 11;
-            this.button_apagar_fornecedor.Text = "Apagar";
-            this.button_apagar_fornecedor.UseVisualStyleBackColor = true;
-            this.button_apagar_fornecedor.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // button_editar_produtos
-            // 
-            this.button_editar_produtos.Location = new System.Drawing.Point(247, 349);
-            this.button_editar_produtos.Name = "button_editar_produtos";
-            this.button_editar_produtos.Size = new System.Drawing.Size(80, 40);
-            this.button_editar_produtos.TabIndex = 12;
-            this.button_editar_produtos.Text = "Editar";
-            this.button_editar_produtos.UseVisualStyleBackColor = true;
-            // 
-            // button_apagar_produtos
-            // 
-            this.button_apagar_produtos.Location = new System.Drawing.Point(32, 349);
-            this.button_apagar_produtos.Name = "button_apagar_produtos";
-            this.button_apagar_produtos.Size = new System.Drawing.Size(80, 40);
-            this.button_apagar_produtos.TabIndex = 11;
-            this.button_apagar_produtos.Text = "Apagar";
-            this.button_apagar_produtos.UseVisualStyleBackColor = true;
-            // 
-            // button_editar_funcionario
-            // 
-            this.button_editar_funcionario.Location = new System.Drawing.Point(247, 349);
-            this.button_editar_funcionario.Name = "button_editar_funcionario";
-            this.button_editar_funcionario.Size = new System.Drawing.Size(80, 40);
-            this.button_editar_funcionario.TabIndex = 18;
-            this.button_editar_funcionario.Text = "Editar";
-            this.button_editar_funcionario.UseVisualStyleBackColor = true;
-            // 
-            // button_apagar_funcionario
-            // 
-            this.button_apagar_funcionario.Location = new System.Drawing.Point(32, 349);
-            this.button_apagar_funcionario.Name = "button_apagar_funcionario";
-            this.button_apagar_funcionario.Size = new System.Drawing.Size(80, 40);
-            this.button_apagar_funcionario.TabIndex = 17;
-            this.button_apagar_funcionario.Text = "Apagar";
-            this.button_apagar_funcionario.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
