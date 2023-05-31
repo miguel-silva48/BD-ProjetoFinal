@@ -19,6 +19,7 @@ namespace PassoFirme
         private int currentFornecedor;
         private int currentRevendedor;
         private int currentSeccao;
+        private int seccaoFilter = 5;
         //private bool adding;
 
         public Form1()
@@ -126,8 +127,15 @@ namespace PassoFirme
         }
 //TODO OP EDITAR
         private void button_editar_produtos_Click(object sender, EventArgs e) {
-
+            currentProduto = listBox_produtos.SelectedIndex;
+            if (currentProduto < 0) {
+                MessageBox.Show("Por favor selecione um Produto a editar!");
+                return;
+            }
+            HideButtonsProduto();
+            listBox_produtos.Enabled = false;
         }
+
         private void removeProduto(String codigo_produto) {
             if (!verifySGBDConnection())
                 return;
@@ -153,21 +161,32 @@ namespace PassoFirme
             textBox_custo_produto.Text = "";
             textBox_preco_produto.Text = "";
             textBox_numEncomendas_produto.Text = "";
-            //textBox_quantidade_produto.Text = "";
+        }
+
+        public void HideButtonsProduto() {
+            button_apagar_produtos.Visible = false;
+            button_editar_produtos.Visible = false;
+            //TODO criar estes botoes e ações ao clicar neles
+            //button_ok_produtos.Visible = true;
+            //button_cancelar_produtos.Visible = true;
         }
 //End of Produto Stuff
 
 
 //Funcionario Stuff
+
         private void loadFuncionarios(object sender, EventArgs e) {
             if (!verifySGBDConnection())
                 return;
 
-            SqlCommand cmd = new SqlCommand("getGerentes", cn);
             listBox_funcionarios.Items.Clear();
 
-            using (SqlDataReader reader = cmd.ExecuteReader())
+            using (SqlCommand cmd = new SqlCommand("getGerentes", cn))
             {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@seccao", SqlDbType.Int).Value = seccaoFilter;
+
+                SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.HasRows)
                 {
                     while (reader.Read())
@@ -184,12 +203,16 @@ namespace PassoFirme
                         listBox_funcionarios.Items.Add(F);
                     }
                 }
+                reader.Close();
             }
 
-            SqlCommand cmd2 = new SqlCommand("getOperarios", cn);
 
-            using (SqlDataReader reader = cmd2.ExecuteReader())
+            using (SqlCommand cmd2 = new SqlCommand("getOperarios", cn))
             {
+                cmd2.CommandType = CommandType.StoredProcedure;
+                cmd2.Parameters.Add("@seccao", SqlDbType.Int).Value = seccaoFilter;
+
+                SqlDataReader reader = cmd2.ExecuteReader();
                 if (reader.HasRows)
                 {
                     while (reader.Read())
@@ -235,6 +258,16 @@ namespace PassoFirme
             }
         }
 
+
+        private void dropdownFunc_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (dropdownFunc.SelectedIndex >= 0)
+            {
+                seccaoFilter = dropdownFunc.SelectedIndex;
+                loadFuncionarios(sender, e);
+            }
+        }
+
         private void button_apagar_funcionario_Click(object sender, EventArgs e) {
             if (listBox_funcionarios.SelectedIndex > -1) {
                 try {
@@ -257,7 +290,13 @@ namespace PassoFirme
         
 //TODO OP EDITAR
         private void button_editar_funcionario_Click(object sender, EventArgs e) {
-
+            currentFuncionario = listBox_funcionarios.SelectedIndex;
+            if (currentFuncionario < 0) {
+                MessageBox.Show("Por favor selecione um Funcionario a editar!");
+                return;
+            }
+            //HideButtonsFuncionario();
+            listBox_funcionarios.Enabled = false;
         }
 
         private void removeFuncionario(String id_funcionario) {
@@ -289,6 +328,14 @@ namespace PassoFirme
             textBox_seccao_funcionario.Text = "";
             textBox_gerente_funcionario.Text = "";
         }
+
+        //public void HideButtonsFuncionario() {
+        //    button_apagar_funcionario.Visible = false;
+        //    button_editar_funcionario.Visible = false;
+        //    //TODO criar estes botoes e ações ao clicar neles
+        //    //button_ok_funcionario.Visible = true;
+        //    //button_cancelar_funcionario.Visible = true;
+        //}
 //End of Funcionario Stuff
 
 
@@ -376,8 +423,14 @@ namespace PassoFirme
         }
 
 //TODO OP EDITAR
-        private void button_editar_fornecedor_Click(object sender, EventArgs e)
-        {
+        private void button_editar_fornecedor_Click(object sender, EventArgs e) {
+            currentFornecedor = listBox_fornecedor.SelectedIndex;
+            if (currentFornecedor < 0) {
+                MessageBox.Show("Por favor selecione um Fornecedor a editar!");
+                return;
+            }
+            HideButtonsFornecedor();
+            listBox_fornecedor.Enabled = false;
 
         }
 
@@ -407,6 +460,13 @@ namespace PassoFirme
             textBox_morada_fornecedor.Text = "";
         }
 
+        public void HideButtonsFornecedor() {
+            button_apagar_fornecedor.Visible = false;
+            button_editar_fornecedor.Visible = false;
+            //TODO criar estes botoes e ações ao clicar neles
+            //button_ok_fornecedor.Visible = true;
+            //button_cancelar_fornecedor.Visible = true;
+        }
 //End of Fornecedor Stuff
 
 
@@ -504,9 +564,47 @@ namespace PassoFirme
             }
         }
 
-//TODO OP EDITAR
+
+
+
+//? __________________EDITAR DEVE FUNCIONAR________________________
+
+
+
         private void button_editar_revendedor_Click(object sender, EventArgs e) {
-            
+            currentRevendedor = listBox_revendedor.SelectedIndex;
+            if (currentRevendedor < 0) {
+                MessageBox.Show("Por favor selecione um Revendedor a editar!");
+                return;
+            }
+            HideButtonsRevendedor();
+            listBox_revendedor.Enabled = false;
+        }
+
+        private void OKRev_Click(object sender, EventArgs e) {
+            try {
+                SaveRevendedor();
+            } catch (Exception ex) {
+                MessageBox.Show(ex.Message);
+            }
+            listBox_revendedor.Enabled = true;
+            int idx = listBox_revendedor.FindString(textBox_nif_revendedor.Text);
+            listBox_revendedor.SelectedIndex = idx;
+            ShowButtonsRevendedor();
+        }
+
+        private void cancelarRev_Click(object sender, EventArgs e) {
+            listBox_revendedor.Enabled = true;
+            if (listBox_revendedor.Items.Count > 0) {
+                currentRevendedor = listBox_revendedor.SelectedIndex;
+                if (currentRevendedor < 0)
+                    currentRevendedor = 0;
+                ShowRevendedor();
+            } else {
+                ClearFieldsRevendedor();
+                LockControls();
+            }
+            ShowButtonsRevendedor();
         }
         
         private void removeRevendedor(String nif_revendedor) {
@@ -528,11 +626,84 @@ namespace PassoFirme
             }
         }
 
+        private bool SaveRevendedor() {
+            Revendedor rev = new Revendedor();
+            try {
+                rev.Nif = textBox_nif_revendedor.Text;
+                rev.Nome = textBox_nome_revendedor.Text;
+                rev.Morada = textBox_morada_revendedor.Text;
+                rev.Email = textBox_email_revendedor.Text;
+            } catch (Exception ex) {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+            UpdateRevendedor(rev);
+            listBox_revendedor.Items[currentRevendedor] = rev;
+            return true;
+        }
+
+        private void UpdateRevendedor(Revendedor r) {
+            int rows = 0;
+
+            if (!verifySGBDConnection())
+                return;
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.CommandText = "UPDATE Empresa.Revendedor SET nif=@nif, nome=@nome, morada=@morada, email=@email";
+            cmd.Parameters.Clear();
+            cmd.Parameters.AddWithValue("@nif", r.Nif);
+            cmd.Parameters.AddWithValue("@nome", r.Nome);
+            cmd.Parameters.AddWithValue("@morada", r.Morada);
+            cmd.Parameters.AddWithValue("@email", r.Email);
+            cmd.Connection = cn;
+
+            try {
+                rows = cmd.ExecuteNonQuery();
+            } catch (Exception ex) {
+                throw new Exception("Failed to update Revendedor in database. \n ERROR MESSAGE: \n" + ex.Message);
+            } finally {
+                if (rows == 1)
+                    MessageBox.Show("Update OK");
+                else
+                    MessageBox.Show("Update NOT OK");
+                cn.Close();
+            }
+        }
+
         public void ClearFieldsRevendedor() {
             textBox_nome_revendedor.Text = "";
             textBox_nif_revendedor.Text = "";
             textBox_email_revendedor.Text = "";
             textBox_morada_revendedor.Text = "";
+        }
+
+        public void HideButtonsRevendedor() {
+            button_apagar_revendedor.Visible = false;
+            button_editar_revendedor.Visible = false;
+            OKRev.Visible = true;
+            cancelarRev.Visible = true;
+        }
+
+        public void ShowButtonsRevendedor() {
+            button_apagar_revendedor.Visible = true;
+            button_editar_revendedor.Visible = true;
+            OKRev.Visible = false;
+            cancelarRev.Visible = false;
+        }
+
+        public void LockControls() {
+            textBox_nome_revendedor.ReadOnly = true;
+            textBox_nif_revendedor.ReadOnly = true;
+            textBox_email_revendedor.ReadOnly = true;
+            textBox_morada_revendedor.ReadOnly = true;
+
+        }
+
+        public void UnlockControls() {
+            textBox_nome_revendedor.ReadOnly = false;
+            textBox_nif_revendedor.ReadOnly = false;
+            textBox_email_revendedor.ReadOnly = false;
+            textBox_morada_revendedor.ReadOnly = false;
         }
 //End of Revendedor Stuff
 
@@ -540,6 +711,8 @@ namespace PassoFirme
         private void loadSeccao(object sender, EventArgs e) {
             if (!verifySGBDConnection())
                 return;
+
+            dropdownFunc.Items.Add("All");
 
             SqlCommand cmd = new SqlCommand("getSeccoes;", cn);
             listBox_seccao.Items.Clear();
@@ -553,6 +726,7 @@ namespace PassoFirme
                         S.NumFunc = reader["numFunc"].ToString();
                         S.NomeGerente = reader["nome"].ToString();
                         listBox_seccao.Items.Add(S);
+                        dropdownFunc.Items.Add(S);
                     }
                 }
             }
@@ -589,8 +763,7 @@ namespace PassoFirme
                 numConcluido = Convert.ToString(cmd2.Parameters["@numConcluido"].Value);
             }
 
-            using (SqlCommand cmd3 = new SqlCommand("getMediaSalarialBySeccao", cn))
-            {
+            using (SqlCommand cmd3 = new SqlCommand("getMediaSalarialBySeccao", cn)) {
                 cmd3.CommandType = CommandType.StoredProcedure;
 
                 cmd3.Parameters.Add("@codigo", SqlDbType.Int).Value = seccao.Codigo;
@@ -602,16 +775,14 @@ namespace PassoFirme
             }
 
             listBox_processos.Items.Clear();
-            using (SqlCommand cmd4 = new SqlCommand("getProcessos", cn))
-            {
+
+            using (SqlCommand cmd4 = new SqlCommand("getProcessos", cn)) {
                 cmd4.CommandType = CommandType.StoredProcedure;
                 cmd4.Parameters.Add("@seccao", SqlDbType.Int).Value = seccao.Codigo;
 
                 SqlDataReader reader = cmd4.ExecuteReader();
-                if (reader.HasRows)
-                {
-                    while (reader.Read())
-                    {
+                if (reader.HasRows) {
+                    while (reader.Read()){
                         Processo Proc = new Processo();
                         Proc.CodProduto = reader["codigo_produto"].ToString();
                         Proc.IDFuncionario = reader["ID_funcionario"].ToString();
@@ -633,7 +804,6 @@ namespace PassoFirme
             textBox_emProducao.Text = numEmProducao;
             textBox_concluido.Text = numConcluido;
         }
-
 
         private void listBox_seccao_SelectedIndexChanged(object sender, EventArgs e) {
                 if (listBox_seccao.SelectedIndex >= 0) {

@@ -136,16 +136,28 @@ AS
 
 
 -- Retorna gerentes
-CREATE PROCEDURE getGerentes
+CREATE PROCEDURE getGerentes (@seccao INT)
 AS
-	SELECT * FROM (Empresa.Gerente JOIN Empresa.Funcionario ON ID_Funcionario=ID) JOIN Empresa.Seccao ON codigo_seccao=codigo
+	IF @seccao BETWEEN 1 AND 4
+		SELECT * FROM (Empresa.Gerente JOIN Empresa.Funcionario ON ID_Funcionario=ID) JOIN Empresa.Seccao ON codigo_seccao=codigo
+		WHERE codigo_seccao = @seccao
+	ELSE
+	BEGIN
+		SELECT * FROM (Empresa.Gerente JOIN Empresa.Funcionario ON ID_Funcionario=ID) JOIN Empresa.Seccao ON codigo_seccao=codigo
+	END
 go
 
 -- Retorna operarios
-CREATE PROCEDURE getOperarios
+CREATE PROCEDURE getOperarios (@seccao INT)
 AS
-	SELECT * FROM (Empresa.Operario JOIN  Empresa.Seccao ON codigo_seccao=codigo) JOIN Empresa.Funcionario ON ID_Funcionario=ID 
-	WHERE Operario.ID_funcionario NOT IN (SELECT Gerente.ID_funcionario FROM Empresa.Gerente)
+	IF @seccao BETWEEN 1 AND 4
+		SELECT * FROM (Empresa.Operario JOIN  Empresa.Seccao ON codigo_seccao=codigo) JOIN Empresa.Funcionario ON ID_Funcionario=ID 
+		WHERE Operario.ID_funcionario NOT IN (SELECT Gerente.ID_funcionario FROM Empresa.Gerente) AND codigo_seccao = @seccao
+	ELSE
+	BEGIN
+		SELECT * FROM (Empresa.Operario JOIN  Empresa.Seccao ON codigo_seccao=codigo) JOIN Empresa.Funcionario ON ID_Funcionario=ID 
+		WHERE Operario.ID_funcionario NOT IN (SELECT Gerente.ID_funcionario FROM Empresa.Gerente)
+	END 
 go
 
 -- Retorn tipos de produto

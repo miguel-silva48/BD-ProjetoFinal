@@ -132,6 +132,10 @@ namespace PassoFirme
             this.label26 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
+            this.dropdownFunc = new System.Windows.Forms.ComboBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.OKRev = new System.Windows.Forms.Button();
+            this.cancelarRev = new System.Windows.Forms.Button();
             this.tabcontrol1.SuspendLayout();
             this.Início.SuspendLayout();
             this.Produtos.SuspendLayout();
@@ -353,6 +357,8 @@ namespace PassoFirme
             // 
             // Funcionários
             // 
+            this.Funcionários.Controls.Add(this.label29);
+            this.Funcionários.Controls.Add(this.dropdownFunc);
             this.Funcionários.Controls.Add(this.panel3);
             this.Funcionários.Controls.Add(this.listBox_funcionarios);
             this.Funcionários.Location = new System.Drawing.Point(4, 24);
@@ -413,7 +419,7 @@ namespace PassoFirme
             // 
             // textBox_gerente_funcionario
             // 
-            this.textBox_gerente_funcionario.Location = new System.Drawing.Point(183, 242);
+            this.textBox_gerente_funcionario.Location = new System.Drawing.Point(152, 243);
             this.textBox_gerente_funcionario.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_gerente_funcionario.Name = "textBox_gerente_funcionario";
             this.textBox_gerente_funcionario.Size = new System.Drawing.Size(76, 21);
@@ -422,7 +428,7 @@ namespace PassoFirme
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(129, 245);
+            this.label10.Location = new System.Drawing.Point(150, 225);
             this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(58, 15);
@@ -570,10 +576,10 @@ namespace PassoFirme
             // 
             this.listBox_funcionarios.FormattingEnabled = true;
             this.listBox_funcionarios.ItemHeight = 15;
-            this.listBox_funcionarios.Location = new System.Drawing.Point(2, 6);
+            this.listBox_funcionarios.Location = new System.Drawing.Point(2, 36);
             this.listBox_funcionarios.Margin = new System.Windows.Forms.Padding(2);
             this.listBox_funcionarios.Name = "listBox_funcionarios";
-            this.listBox_funcionarios.Size = new System.Drawing.Size(301, 319);
+            this.listBox_funcionarios.Size = new System.Drawing.Size(301, 289);
             this.listBox_funcionarios.TabIndex = 2;
             this.listBox_funcionarios.SelectedIndexChanged += new System.EventHandler(this.listBox_funcionarios_SelectedIndexChanged);
             // 
@@ -740,6 +746,8 @@ namespace PassoFirme
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.cancelarRev);
+            this.panel1.Controls.Add(this.OKRev);
             this.panel1.Controls.Add(this.numProdRevendedor);
             this.panel1.Controls.Add(this.label23);
             this.panel1.Controls.Add(this.label22);
@@ -1204,6 +1212,47 @@ namespace PassoFirme
             this.label28.TabIndex = 4;
             this.label28.Text = "Matéria-Prima";
             // 
+            // dropdownFunc
+            // 
+            this.dropdownFunc.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.dropdownFunc.FormattingEnabled = true;
+            this.dropdownFunc.Location = new System.Drawing.Point(118, 8);
+            this.dropdownFunc.Name = "dropdownFunc";
+            this.dropdownFunc.Size = new System.Drawing.Size(184, 23);
+            this.dropdownFunc.TabIndex = 4;
+            this.dropdownFunc.Text = "Filtrar...";
+            this.dropdownFunc.SelectedIndexChanged += new System.EventHandler(this.dropdownFunc_SelectedIndexChanged);
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(8, 11);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(104, 15);
+            this.label29.TabIndex = 5;
+            this.label29.Text = "Filtrar por secção:";
+            // 
+            // OKRev
+            // 
+            this.OKRev.Location = new System.Drawing.Point(25, 284);
+            this.OKRev.Name = "OKRev";
+            this.OKRev.Size = new System.Drawing.Size(59, 32);
+            this.OKRev.TabIndex = 15;
+            this.OKRev.Text = "OK";
+            this.OKRev.UseVisualStyleBackColor = true;
+            this.OKRev.Click += new System.EventHandler(this.OKRev_Click);
+            // 
+            // cancelarRev
+            // 
+            this.cancelarRev.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cancelarRev.Location = new System.Drawing.Point(185, 284);
+            this.cancelarRev.Name = "cancelarRev";
+            this.cancelarRev.Size = new System.Drawing.Size(60, 32);
+            this.cancelarRev.TabIndex = 16;
+            this.cancelarRev.Text = "Cancelar";
+            this.cancelarRev.UseVisualStyleBackColor = true;
+            this.cancelarRev.Click += new System.EventHandler(this.cancelarRev_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1221,6 +1270,7 @@ namespace PassoFirme
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.Funcionários.ResumeLayout(false);
+            this.Funcionários.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.Fornecedores.ResumeLayout(false);
@@ -1343,6 +1393,10 @@ namespace PassoFirme
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.ComboBox dropdownFunc;
+        private System.Windows.Forms.Button cancelarRev;
+        private System.Windows.Forms.Button OKRev;
     }
 }
 
