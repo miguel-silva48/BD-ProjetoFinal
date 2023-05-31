@@ -1,7 +1,7 @@
 # BD: Trabalho Prático APF-T
 
 **Grupo**: P5G5
-- Bárbara Galiza, MEC: 105937
+- Bárbara Nóbrega Galiza, MEC: 105937
 - Miguel da Silva Pinto, MEC: 107449
 
 # Instructions - TO REMOVE

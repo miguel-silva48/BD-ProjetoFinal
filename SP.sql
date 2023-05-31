@@ -25,6 +25,18 @@ go
 --PRINT @numEmProducao
 --PRINT @numConcluido
 
+-- Retorna os processos de cada secção
+CREATE PROCEDURE getProcessos (@seccao INT)
+AS
+
+SELECT Origina.ID_funcionario, codigo_produto, codigo_materia_prima, estado 
+FROM Empresa.Origina JOIN Empresa.Operario ON Origina.ID_funcionario=Operario.ID_funcionario
+WHERE codigo_seccao = @seccao
+
+go
+
+-- EXEC getProcessos 4
+
 
 -- Quantidade materiaPrima fornecida por Fornecedor
 CREATE PROCEDURE getMateriaPrimaFornecida (@nif INT, @num INT OUTPUT)

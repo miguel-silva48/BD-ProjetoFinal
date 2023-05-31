@@ -9,17 +9,20 @@ MUDAR REQUISITOS
 
 MUDANÇAS NO DER/ER
 FEITO - Adicionamos atributos (seccao_atual) no Processa, tiramos quant_armazem do Produto.
-FEITO - tirar codigo_materia_prima no Produto, n ta normalizado (?)
-FEITO -Tirar disjoint do der
-Mudar quantidade de lugar (tirar de materia prima e por no fornece)
+FEITO - Tirar codigo_materia_prima no Produto, n ta normalizado (?)
+FEITO - Tirar disjoint do der
+FEITO - Mudar quantidade de lugar (tirar de materia prima e por no fornece)
 
 FORMS
-Adicionar numero de funcionários na secção 
-Mudar página de produtos para mostrar tipo de produto ao invés do item
+FEITO - Adicionar numero de funcionários na secção 
+FEITO - Mudar página de produtos para mostrar tipo de produto ao invés do item
+FEITO - Num materia prima fornecedor
+FEITO - Num encomendas e num produtos Revendedor
 - Extra:
 Atribuir processo: produto, funcionário e materia prima
 
     Operações: ADD, UPDATE, REMOVE
+
     Produtos - ADD, REMOVE
     Funcionarios - ADD, UPDATE(salario, seccao), REMOVE
     Fornecedores - UPDATE, REMOVE
@@ -31,25 +34,24 @@ FEITO - Num de processos em um determinado estado por seccao
 FEITO - Tipo de produto + encomendado??
 FEITO - Média salarial por seccao
 FEITO - Quantidade materiaPrima fornecida Fornecedor (mudar para UDF??)
-Remover Funcionário, Revendedor, Fornecedor e Produto
-Adicionar ..
-Editar ..
+- Filtrar funcionários
+- Mostrar processos por secção (devolve tabela) 
+- Mudar todas as queries para SPs
+- Remover Funcionário, Revendedor, Fornecedor e Produto
+- Adicionar ..
+- Editar ..
 
 UDFs
 FEITO - Nº funcionários numa Secção
 FEITO - Nº encomendas pendentes Revendedor
 FEITO - Quantidade de Produto (itens) numa Encomenda
-- Filtrar funcionários
-- Em cada funcionário, número de produtos em q está a trabalhar
-- Filtrar produtos pela designacao atual, estado, tipo de produto, quant em armazem
-- Mostrar produtos em estado concluído por secção (devolve tabela) 
 
 
 TRIGGER
 FEITO - Não permitir que 1 secção tenha mais que 1 gerente
-- Algo para avisar que 1 secção está sem gerente e que tem que ser nomeado 1 
+FEITO* - Algo para avisar que 1 secção está sem gerente e que tem que ser nomeado 1 
 (talvez o que tiver ID mais baixo por estar lá há mais tempo I guess)??
-- Salário de 1 operário não pode ser superior ao do seu gestor
+FEITO* - Salário de 1 operário não pode ser superior ao do seu gestor
 
 
 Apresentação:

@@ -319,10 +319,33 @@ namespace PassoFirme
                 return;
             Fornecedor forn = new Fornecedor();
             forn = (Fornecedor)listBox_fornecedor.Items[currentFornecedor];
+
+            String numMatPrima;
+
+            cn.Open();
+
+            using (SqlCommand cmd2 = new SqlCommand("getMateriaPrimaFornecida", cn))
+            {
+                cmd2.CommandType = CommandType.StoredProcedure;
+
+                cmd2.Parameters.Add("@nif", SqlDbType.Int).Value = forn.Nif;
+                cmd2.Parameters.Add("@num", SqlDbType.Int).Direction = ParameterDirection.Output;
+
+                cmd2.ExecuteNonQuery();
+
+                numMatPrima = Convert.ToString(cmd2.Parameters["@num"].Value);
+
+                if (numMatPrima == "")
+                    numMatPrima = "0";
+            }
+
+            cn.Close();
+
             textBox_nome_fornecedor.Text = forn.Nome;
             textBox_nif_fornecedor.Text = forn.Nif;
             textBox_morada_fornecedor.Text = forn.Morada;
             textBox_email_fornecedor.Text = forn.Email;
+            quantMatPrima.Text = numMatPrima;
         }
 
         private void listBox_fornecedor_SelectedIndexChanged(object sender, EventArgs e) {
@@ -446,9 +469,8 @@ namespace PassoFirme
             textBox_nif_revendedor.Text = rev.Nif;
             textBox_morada_revendedor.Text = rev.Morada;
             textBox_email_revendedor.Text = rev.Email;
-            //TODO criar as caixas de texto no design
-            //textBox_numEncomendas_revendedor.Text = numEncomendas;
-            //textBox_numProdutosEncomendados_revendedor.Text = numProdutosEncomendados;
+            numEncomendasRevendedor.Text = numEncomendas;
+            numProdRevendedor.Text = numProdutosEncomendados;
         }
 
         private void listBox_revendedor_SelectedIndexChanged_1(object sender, EventArgs e)
@@ -572,13 +594,34 @@ namespace PassoFirme
                 cmd3.CommandType = CommandType.StoredProcedure;
 
                 cmd3.Parameters.Add("@codigo", SqlDbType.Int).Value = seccao.Codigo;
-
                 cmd3.Parameters.Add("@media", SqlDbType.Float).Direction = ParameterDirection.Output;
 
                 cmd3.ExecuteNonQuery();
 
                 media = Convert.ToDouble(cmd3.Parameters["@media"].Value);
             }
+
+            listBox_processos.Items.Clear();
+            using (SqlCommand cmd4 = new SqlCommand("getProcessos", cn))
+            {
+                cmd4.CommandType = CommandType.StoredProcedure;
+                cmd4.Parameters.Add("@seccao", SqlDbType.Int).Value = seccao.Codigo;
+
+                SqlDataReader reader = cmd4.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        Processo Proc = new Processo();
+                        Proc.CodProduto = reader["codigo_produto"].ToString();
+                        Proc.IDFuncionario = reader["ID_funcionario"].ToString();
+                        Proc.CodMatPrima = reader["codigo_materia_prima"].ToString();
+                        Proc.Estado = reader["estado"].ToString();
+                        listBox_processos.Items.Add(Proc);
+                    }
+                }
+            }
+   
             cn.Close();
 
             textBox_designacao_seccao.Text = seccao.Designacao;
