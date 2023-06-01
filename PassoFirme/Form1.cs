@@ -447,7 +447,7 @@ namespace PassoFirme
             try {
                 cmd.ExecuteNonQuery();
             } catch (Exception ex) {
-                throw new Exception("ERRO: Nao foi possivel apagar o Fornecedor na BD! \n ERROR MESSAGE: \n" + ex.Message);
+                throw new Exception("ERRO: Não foi possivel apagar o Fornecedor! \n ERROR MESSAGE: \n" + ex.Message);
             } finally {
                 cn.Close();
             }
@@ -471,8 +471,7 @@ namespace PassoFirme
 
 
 //Revendedor Stuff
-        private void loadRevendedor(object sender, EventArgs e)
-        {
+        private void loadRevendedor(object sender, EventArgs e) {
             if (!verifySGBDConnection())
                 return;
 
@@ -480,8 +479,7 @@ namespace PassoFirme
             SqlDataReader reader = cmd.ExecuteReader();
             listBox_revendedor.Items.Clear();
 
-            while (reader.Read())
-            {
+            while (reader.Read()) {
                 Revendedor R = new Revendedor();
                 R.Nif = reader["nif"].ToString();
                 R.Nome = reader["nome"].ToString();
@@ -489,15 +487,12 @@ namespace PassoFirme
                 R.Email = reader["email"].ToString();
                 listBox_revendedor.Items.Add(R);
             }
-
             cn.Close();
-
             currentRevendedor = 0;
             ShowRevendedor();
         }
 
-        public void ShowRevendedor()
-        {
+        public void ShowRevendedor() {
             if (listBox_revendedor.Items.Count == 0 | currentRevendedor < 0)
                 return;
             Revendedor rev = new Revendedor();
@@ -508,8 +503,7 @@ namespace PassoFirme
 
             cn.Open();
 
-            using (SqlCommand cmd2 = new SqlCommand("getEncomendasRevendedor", cn))
-            {
+            using (SqlCommand cmd2 = new SqlCommand("getEncomendasRevendedor", cn)) {
                 cmd2.CommandType = CommandType.StoredProcedure;
 
                 cmd2.Parameters.Add("@nif", SqlDbType.Int).Value = rev.Nif;
@@ -533,10 +527,8 @@ namespace PassoFirme
             numProdRevendedor.Text = numProdutosEncomendados;
         }
 
-        private void listBox_revendedor_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
-            if (listBox_revendedor.SelectedIndex >= 0)
-            {
+        private void listBox_revendedor_SelectedIndexChanged_1(object sender, EventArgs e) {
+            if (listBox_revendedor.SelectedIndex >= 0) {
                 currentRevendedor = listBox_revendedor.SelectedIndex;
                 ShowRevendedor();
             }
@@ -564,13 +556,6 @@ namespace PassoFirme
             }
         }
 
-
-
-
-//? __________________EDITAR DEVE FUNCIONAR________________________
-
-
-
         private void button_editar_revendedor_Click(object sender, EventArgs e) {
             currentRevendedor = listBox_revendedor.SelectedIndex;
             if (currentRevendedor < 0) {
@@ -578,6 +563,7 @@ namespace PassoFirme
                 return;
             }
             HideButtonsRevendedor();
+            UnlockControls();
             listBox_revendedor.Enabled = false;
         }
 
@@ -591,6 +577,7 @@ namespace PassoFirme
             int idx = listBox_revendedor.FindString(textBox_nif_revendedor.Text);
             listBox_revendedor.SelectedIndex = idx;
             ShowButtonsRevendedor();
+            LockControls();
         }
 
         private void cancelarRev_Click(object sender, EventArgs e) {
@@ -649,7 +636,7 @@ namespace PassoFirme
                 return;
             SqlCommand cmd = new SqlCommand();
 
-            cmd.CommandText = "UPDATE Empresa.Revendedor SET nif=@nif, nome=@nome, morada=@morada, email=@email";
+            cmd.CommandText = "UPDATE Empresa.Revendedor SET nome=@nome, morada=@morada, email=@email WHERE nif=@nif";
             cmd.Parameters.Clear();
             cmd.Parameters.AddWithValue("@nif", r.Nif);
             cmd.Parameters.AddWithValue("@nome", r.Nome);
@@ -663,9 +650,9 @@ namespace PassoFirme
                 throw new Exception("Failed to update Revendedor in database. \n ERROR MESSAGE: \n" + ex.Message);
             } finally {
                 if (rows == 1)
-                    MessageBox.Show("Update OK");
+                    MessageBox.Show("Dados do Revendedor atualizados com sucesso!");
                 else
-                    MessageBox.Show("Update NOT OK");
+                    MessageBox.Show("Erro ao atualizar dados do Revendedor!");
                 cn.Close();
             }
         }
@@ -693,15 +680,12 @@ namespace PassoFirme
 
         public void LockControls() {
             textBox_nome_revendedor.ReadOnly = true;
-            textBox_nif_revendedor.ReadOnly = true;
             textBox_email_revendedor.ReadOnly = true;
             textBox_morada_revendedor.ReadOnly = true;
-
         }
 
         public void UnlockControls() {
             textBox_nome_revendedor.ReadOnly = false;
-            textBox_nif_revendedor.ReadOnly = false;
             textBox_email_revendedor.ReadOnly = false;
             textBox_morada_revendedor.ReadOnly = false;
         }
