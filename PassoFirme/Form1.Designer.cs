@@ -34,6 +34,8 @@ namespace PassoFirme
             this.label20 = new System.Windows.Forms.Label();
             this.Produtos = new System.Windows.Forms.TabPage();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.button_ok_produto = new System.Windows.Forms.Button();
+            this.button_cancelar_produto = new System.Windows.Forms.Button();
             this.button_editar_produtos = new System.Windows.Forms.Button();
             this.button_apagar_produtos = new System.Windows.Forms.Button();
             this.textBox_numEncomendas_produto = new System.Windows.Forms.TextBox();
@@ -52,6 +54,8 @@ namespace PassoFirme
             this.label29 = new System.Windows.Forms.Label();
             this.dropdownFunc = new System.Windows.Forms.ComboBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.button_ok_funcionario = new System.Windows.Forms.Button();
+            this.button_cancelar_funcionario = new System.Windows.Forms.Button();
             this.button_editar_funcionario = new System.Windows.Forms.Button();
             this.button_apagar_funcionario = new System.Windows.Forms.Button();
             this.textBox_gerente_funcionario = new System.Windows.Forms.TextBox();
@@ -74,6 +78,8 @@ namespace PassoFirme
             this.listBox_funcionarios = new System.Windows.Forms.ListBox();
             this.Fornecedores = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.button_ok_fornecedor = new System.Windows.Forms.Button();
+            this.button_cancelar_fornecedor = new System.Windows.Forms.Button();
             this.quantMatPrima = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
             this.button_editar_fornecedor = new System.Windows.Forms.Button();
@@ -205,6 +211,8 @@ namespace PassoFirme
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.button_ok_produto);
+            this.panel4.Controls.Add(this.button_cancelar_produto);
             this.panel4.Controls.Add(this.button_editar_produtos);
             this.panel4.Controls.Add(this.button_apagar_produtos);
             this.panel4.Controls.Add(this.textBox_numEncomendas_produto);
@@ -224,6 +232,31 @@ namespace PassoFirme
             this.panel4.Size = new System.Drawing.Size(361, 404);
             this.panel4.TabIndex = 3;
             // 
+            // button_ok_produto
+            // 
+            this.button_ok_produto.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_ok_produto.Location = new System.Drawing.Point(50, 350);
+            this.button_ok_produto.Margin = new System.Windows.Forms.Padding(4);
+            this.button_ok_produto.Name = "button_ok_produto";
+            this.button_ok_produto.Size = new System.Drawing.Size(80, 39);
+            this.button_ok_produto.TabIndex = 22;
+            this.button_ok_produto.Text = "OK";
+            this.button_ok_produto.UseVisualStyleBackColor = true;
+            this.button_ok_produto.Visible = false;
+            this.button_ok_produto.Click += new System.EventHandler(this.button_ok_produto_Click);
+            // 
+            // button_cancelar_produto
+            // 
+            this.button_cancelar_produto.Location = new System.Drawing.Point(215, 350);
+            this.button_cancelar_produto.Margin = new System.Windows.Forms.Padding(4);
+            this.button_cancelar_produto.Name = "button_cancelar_produto";
+            this.button_cancelar_produto.Size = new System.Drawing.Size(98, 39);
+            this.button_cancelar_produto.TabIndex = 21;
+            this.button_cancelar_produto.Text = "Cancelar";
+            this.button_cancelar_produto.UseVisualStyleBackColor = true;
+            this.button_cancelar_produto.Visible = false;
+            this.button_cancelar_produto.Click += new System.EventHandler(this.button_cancelar_produto_Click);
+            // 
             // button_editar_produtos
             // 
             this.button_editar_produtos.Location = new System.Drawing.Point(247, 350);
@@ -233,6 +266,7 @@ namespace PassoFirme
             this.button_editar_produtos.TabIndex = 12;
             this.button_editar_produtos.Text = "Editar";
             this.button_editar_produtos.UseVisualStyleBackColor = true;
+            this.button_editar_produtos.Click += new System.EventHandler(this.button_editar_produtos_Click);
             // 
             // button_apagar_produtos
             // 
@@ -243,6 +277,7 @@ namespace PassoFirme
             this.button_apagar_produtos.TabIndex = 11;
             this.button_apagar_produtos.Text = "Apagar";
             this.button_apagar_produtos.UseVisualStyleBackColor = true;
+            this.button_apagar_produtos.Click += new System.EventHandler(this.button_apagar_produtos_Click);
             // 
             // textBox_numEncomendas_produto
             // 
@@ -382,10 +417,12 @@ namespace PassoFirme
             // 
             // dropdownFunc
             // 
+            this.dropdownFunc.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.dropdownFunc.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.dropdownFunc.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.dropdownFunc.FormattingEnabled = true;
             this.dropdownFunc.Location = new System.Drawing.Point(157, 10);
-            this.dropdownFunc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dropdownFunc.Margin = new System.Windows.Forms.Padding(4);
             this.dropdownFunc.Name = "dropdownFunc";
             this.dropdownFunc.Size = new System.Drawing.Size(244, 26);
             this.dropdownFunc.TabIndex = 4;
@@ -394,6 +431,8 @@ namespace PassoFirme
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.button_ok_funcionario);
+            this.panel3.Controls.Add(this.button_cancelar_funcionario);
             this.panel3.Controls.Add(this.button_editar_funcionario);
             this.panel3.Controls.Add(this.button_apagar_funcionario);
             this.panel3.Controls.Add(this.textBox_gerente_funcionario);
@@ -419,6 +458,31 @@ namespace PassoFirme
             this.panel3.Size = new System.Drawing.Size(361, 404);
             this.panel3.TabIndex = 3;
             // 
+            // button_ok_funcionario
+            // 
+            this.button_ok_funcionario.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_ok_funcionario.Location = new System.Drawing.Point(49, 350);
+            this.button_ok_funcionario.Margin = new System.Windows.Forms.Padding(4);
+            this.button_ok_funcionario.Name = "button_ok_funcionario";
+            this.button_ok_funcionario.Size = new System.Drawing.Size(80, 39);
+            this.button_ok_funcionario.TabIndex = 20;
+            this.button_ok_funcionario.Text = "OK";
+            this.button_ok_funcionario.UseVisualStyleBackColor = true;
+            this.button_ok_funcionario.Visible = false;
+            this.button_ok_funcionario.Click += new System.EventHandler(this.button_ok_funcionario_Click);
+            // 
+            // button_cancelar_funcionario
+            // 
+            this.button_cancelar_funcionario.Location = new System.Drawing.Point(214, 350);
+            this.button_cancelar_funcionario.Margin = new System.Windows.Forms.Padding(4);
+            this.button_cancelar_funcionario.Name = "button_cancelar_funcionario";
+            this.button_cancelar_funcionario.Size = new System.Drawing.Size(98, 39);
+            this.button_cancelar_funcionario.TabIndex = 19;
+            this.button_cancelar_funcionario.Text = "Cancelar";
+            this.button_cancelar_funcionario.UseVisualStyleBackColor = true;
+            this.button_cancelar_funcionario.Visible = false;
+            this.button_cancelar_funcionario.Click += new System.EventHandler(this.button_cancelar_funcionario_Click);
+            // 
             // button_editar_funcionario
             // 
             this.button_editar_funcionario.Location = new System.Drawing.Point(247, 350);
@@ -428,6 +492,7 @@ namespace PassoFirme
             this.button_editar_funcionario.TabIndex = 18;
             this.button_editar_funcionario.Text = "Editar";
             this.button_editar_funcionario.UseVisualStyleBackColor = true;
+            this.button_editar_funcionario.Click += new System.EventHandler(this.button_editar_funcionario_Click);
             // 
             // button_apagar_funcionario
             // 
@@ -438,6 +503,7 @@ namespace PassoFirme
             this.button_apagar_funcionario.TabIndex = 17;
             this.button_apagar_funcionario.Text = "Apagar";
             this.button_apagar_funcionario.UseVisualStyleBackColor = true;
+            this.button_apagar_funcionario.Click += new System.EventHandler(this.button_apagar_funcionario_Click);
             // 
             // textBox_gerente_funcionario
             // 
@@ -619,6 +685,8 @@ namespace PassoFirme
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.button_ok_fornecedor);
+            this.panel2.Controls.Add(this.button_cancelar_fornecedor);
             this.panel2.Controls.Add(this.quantMatPrima);
             this.panel2.Controls.Add(this.label21);
             this.panel2.Controls.Add(this.button_editar_fornecedor);
@@ -638,10 +706,35 @@ namespace PassoFirme
             this.panel2.Size = new System.Drawing.Size(361, 404);
             this.panel2.TabIndex = 3;
             // 
+            // button_ok_fornecedor
+            // 
+            this.button_ok_fornecedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_ok_fornecedor.Location = new System.Drawing.Point(50, 350);
+            this.button_ok_fornecedor.Margin = new System.Windows.Forms.Padding(4);
+            this.button_ok_fornecedor.Name = "button_ok_fornecedor";
+            this.button_ok_fornecedor.Size = new System.Drawing.Size(80, 39);
+            this.button_ok_fornecedor.TabIndex = 18;
+            this.button_ok_fornecedor.Text = "OK";
+            this.button_ok_fornecedor.UseVisualStyleBackColor = true;
+            this.button_ok_fornecedor.Visible = false;
+            this.button_ok_fornecedor.Click += new System.EventHandler(this.button_ok_fornecedor_Click);
+            // 
+            // button_cancelar_fornecedor
+            // 
+            this.button_cancelar_fornecedor.Location = new System.Drawing.Point(215, 350);
+            this.button_cancelar_fornecedor.Margin = new System.Windows.Forms.Padding(4);
+            this.button_cancelar_fornecedor.Name = "button_cancelar_fornecedor";
+            this.button_cancelar_fornecedor.Size = new System.Drawing.Size(98, 39);
+            this.button_cancelar_fornecedor.TabIndex = 17;
+            this.button_cancelar_fornecedor.Text = "Cancelar";
+            this.button_cancelar_fornecedor.UseVisualStyleBackColor = true;
+            this.button_cancelar_fornecedor.Visible = false;
+            this.button_cancelar_fornecedor.Click += new System.EventHandler(this.button_cancelar_fornecedor_Click);
+            // 
             // quantMatPrima
             // 
             this.quantMatPrima.Location = new System.Drawing.Point(103, 299);
-            this.quantMatPrima.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.quantMatPrima.Margin = new System.Windows.Forms.Padding(4);
             this.quantMatPrima.Name = "quantMatPrima";
             this.quantMatPrima.ReadOnly = true;
             this.quantMatPrima.Size = new System.Drawing.Size(83, 24);
@@ -667,6 +760,7 @@ namespace PassoFirme
             this.button_editar_fornecedor.TabIndex = 12;
             this.button_editar_fornecedor.Text = "Editar";
             this.button_editar_fornecedor.UseVisualStyleBackColor = true;
+            this.button_editar_fornecedor.Click += new System.EventHandler(this.button_editar_fornecedor_Click);
             // 
             // button_apagar_fornecedor
             // 
@@ -677,6 +771,7 @@ namespace PassoFirme
             this.button_apagar_fornecedor.TabIndex = 11;
             this.button_apagar_fornecedor.Text = "Apagar";
             this.button_apagar_fornecedor.UseVisualStyleBackColor = true;
+            this.button_apagar_fornecedor.Click += new System.EventHandler(this.button_apagar_fornecedor_Click);
             // 
             // label_fornecedor
             // 
@@ -812,10 +907,10 @@ namespace PassoFirme
             // cancelarRev
             // 
             this.cancelarRev.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cancelarRev.Location = new System.Drawing.Point(247, 350);
-            this.cancelarRev.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cancelarRev.Location = new System.Drawing.Point(206, 350);
+            this.cancelarRev.Margin = new System.Windows.Forms.Padding(4);
             this.cancelarRev.Name = "cancelarRev";
-            this.cancelarRev.Size = new System.Drawing.Size(80, 39);
+            this.cancelarRev.Size = new System.Drawing.Size(98, 39);
             this.cancelarRev.TabIndex = 16;
             this.cancelarRev.Text = "Cancelar";
             this.cancelarRev.UseVisualStyleBackColor = true;
@@ -824,8 +919,8 @@ namespace PassoFirme
             // 
             // OKRev
             // 
-            this.OKRev.Location = new System.Drawing.Point(33, 350);
-            this.OKRev.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.OKRev.Location = new System.Drawing.Point(50, 350);
+            this.OKRev.Margin = new System.Windows.Forms.Padding(4);
             this.OKRev.Name = "OKRev";
             this.OKRev.Size = new System.Drawing.Size(79, 39);
             this.OKRev.TabIndex = 15;
@@ -837,7 +932,7 @@ namespace PassoFirme
             // numProdRevendedor
             // 
             this.numProdRevendedor.Location = new System.Drawing.Point(265, 309);
-            this.numProdRevendedor.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numProdRevendedor.Margin = new System.Windows.Forms.Padding(4);
             this.numProdRevendedor.Name = "numProdRevendedor";
             this.numProdRevendedor.ReadOnly = true;
             this.numProdRevendedor.Size = new System.Drawing.Size(39, 24);
@@ -866,7 +961,7 @@ namespace PassoFirme
             // numEncomendasRevendedor
             // 
             this.numEncomendasRevendedor.Location = new System.Drawing.Point(175, 274);
-            this.numEncomendasRevendedor.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numEncomendasRevendedor.Margin = new System.Windows.Forms.Padding(4);
             this.numEncomendasRevendedor.Name = "numEncomendasRevendedor";
             this.numEncomendasRevendedor.ReadOnly = true;
             this.numEncomendasRevendedor.Size = new System.Drawing.Size(39, 24);
@@ -994,9 +1089,9 @@ namespace PassoFirme
             this.Secções.Controls.Add(this.panel5);
             this.Secções.Controls.Add(this.listBox_seccao);
             this.Secções.Location = new System.Drawing.Point(4, 27);
-            this.Secções.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Secções.Margin = new System.Windows.Forms.Padding(4);
             this.Secções.Name = "Secções";
-            this.Secções.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Secções.Padding = new System.Windows.Forms.Padding(4);
             this.Secções.Size = new System.Drawing.Size(773, 419);
             this.Secções.TabIndex = 5;
             this.Secções.Text = "Secções";
@@ -1011,7 +1106,7 @@ namespace PassoFirme
             this.panel6.Controls.Add(this.label24);
             this.panel6.Controls.Add(this.listBox_processos);
             this.panel6.Location = new System.Drawing.Point(7, 156);
-            this.panel6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel6.Margin = new System.Windows.Forms.Padding(4);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(393, 250);
             this.panel6.TabIndex = 3;
@@ -1071,7 +1166,7 @@ namespace PassoFirme
             this.listBox_processos.FormattingEnabled = true;
             this.listBox_processos.ItemHeight = 18;
             this.listBox_processos.Location = new System.Drawing.Point(4, 60);
-            this.listBox_processos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listBox_processos.Margin = new System.Windows.Forms.Padding(4);
             this.listBox_processos.Name = "listBox_processos";
             this.listBox_processos.SelectionMode = System.Windows.Forms.SelectionMode.None;
             this.listBox_processos.Size = new System.Drawing.Size(384, 184);
@@ -1117,7 +1212,7 @@ namespace PassoFirme
             // numFunc
             // 
             this.numFunc.Location = new System.Drawing.Point(312, 146);
-            this.numFunc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numFunc.Margin = new System.Windows.Forms.Padding(4);
             this.numFunc.Name = "numFunc";
             this.numFunc.ReadOnly = true;
             this.numFunc.Size = new System.Drawing.Size(32, 24);
@@ -1136,7 +1231,7 @@ namespace PassoFirme
             // textBox_concluido
             // 
             this.textBox_concluido.Location = new System.Drawing.Point(271, 374);
-            this.textBox_concluido.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_concluido.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_concluido.Name = "textBox_concluido";
             this.textBox_concluido.ReadOnly = true;
             this.textBox_concluido.Size = new System.Drawing.Size(43, 24);
@@ -1145,7 +1240,7 @@ namespace PassoFirme
             // textBox_emProducao
             // 
             this.textBox_emProducao.Location = new System.Drawing.Point(135, 374);
-            this.textBox_emProducao.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_emProducao.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_emProducao.Name = "textBox_emProducao";
             this.textBox_emProducao.ReadOnly = true;
             this.textBox_emProducao.Size = new System.Drawing.Size(41, 24);
@@ -1155,7 +1250,7 @@ namespace PassoFirme
             // 
             this.textBox_emEspera.ForeColor = System.Drawing.SystemColors.WindowText;
             this.textBox_emEspera.Location = new System.Drawing.Point(24, 374);
-            this.textBox_emEspera.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_emEspera.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_emEspera.Name = "textBox_emEspera";
             this.textBox_emEspera.ReadOnly = true;
             this.textBox_emEspera.Size = new System.Drawing.Size(41, 24);
@@ -1429,6 +1524,12 @@ namespace PassoFirme
         private System.Windows.Forms.ComboBox dropdownFunc;
         private System.Windows.Forms.Button cancelarRev;
         private System.Windows.Forms.Button OKRev;
+        private System.Windows.Forms.Button button_ok_fornecedor;
+        private System.Windows.Forms.Button button_cancelar_fornecedor;
+        private System.Windows.Forms.Button button_ok_funcionario;
+        private System.Windows.Forms.Button button_cancelar_funcionario;
+        private System.Windows.Forms.Button button_ok_produto;
+        private System.Windows.Forms.Button button_cancelar_produto;
     }
 }
 
