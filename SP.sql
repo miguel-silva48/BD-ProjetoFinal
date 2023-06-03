@@ -165,3 +165,38 @@ CREATE PROCEDURE getTiposProduto
 AS
 	SELECT * , dbo.numProdutosPorTipo(categoria) AS numProdutos, dbo.numEncomendasPorTipo(categoria) AS numEncomendas
 	FROM Empresa.TipoProduto
+GO
+
+--Remover todos os produtos de uma determinada categoria
+CREATE PROCEDURE removeTipoProduto (@categoria VARCHAR(40))
+AS
+    DELETE FROM Empresa.Produto
+    WHERE categoria_tipo=@categoria
+GO
+--EXEC removeTipoProduto 'Tênis Runner Branco'
+
+--Retorna todos os fornecedores
+CREATE PROCEDURE getFornecedores	
+AS
+	SELECT * FROM Empresa.Fornecedor
+GO
+
+--Retorna todos os revendedores
+CREATE PROCEDURE getRevendedores
+AS
+	SELECT * FROM Empresa.Revendedor
+GO
+
+--Remove um fornecedor
+CREATE PROCEDURE removeFornecedor (@nif INT)
+AS
+	DELETE FROM Empresa.Fornecedor
+	WHERE nif=@nif
+GO
+
+--Remove um revendedor
+CREATE PROCEDURE removeRevendedor (@nif INT)
+AS
+	DELETE FROM Empresa.Revendedor
+	WHERE nif=@nif
+GO

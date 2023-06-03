@@ -164,18 +164,14 @@ namespace PassoFirme
         private void removeProduto(String codigo_produto) {
             if (!verifySGBDConnection())
                 return;
-            SqlCommand cmd = new SqlCommand();
-
-//TODO apagar encomendas associadas ao produto e tipo de produto
-            cmd.CommandText = "DELETE Empresa.Produto WHERE codigo_produto=@codigo_produto";
+            SqlCommand cmd = new SqlCommand("removeTipoProduto", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Clear();
-            cmd.Parameters.AddWithValue("@codigo_produto", codigo_produto);
-            cmd.Connection = cn;
-
+            cmd.Parameters.AddWithValue("@categoria", codigo_produto);
             try {
                 cmd.ExecuteNonQuery();
             } catch (Exception ex) {
-                throw new Exception("ERRO: Nao foi possivel apagar o produto na BD! \n ERROR MESSAGE: \n" + ex.Message);
+                throw new Exception("ERRO: Não foi possivel apagar a Tipo de Produto! \n ERROR MESSAGE: \n" + ex.Message);
             } finally {
                 cn.Close();
             }
@@ -205,13 +201,11 @@ namespace PassoFirme
                 return;
             SqlCommand cmd = new SqlCommand();
 
-            cmd.CommandText = "UPDATE Empresa.Produto SET numProdutos=@numProdutos, custo_fabrico=@custo_fabrico, preco_venda=@preco_venda, numEncomendas=@numEncomendas WHERE categoria=@categoria";
+            cmd.CommandText = "UPDATE Empresa.Produto SET custo_fabrico=@custo_fabrico, preco_venda=@preco_venda, WHERE categoria_tipo=@categoria";
             cmd.Parameters.Clear();
             cmd.Parameters.AddWithValue("@categoria", p.Categoria);
-            cmd.Parameters.AddWithValue("@numProdutos", p.NumProdutos);
             cmd.Parameters.AddWithValue("@custo_fabrico", p.CustoFabrico);
             cmd.Parameters.AddWithValue("@preco_venda", p.PrecoVenda);
-            cmd.Parameters.AddWithValue("@numEncomendas", p.NumEncomendas);
             cmd.Connection = cn;
 
             try {
@@ -220,13 +214,14 @@ namespace PassoFirme
                 throw new Exception("Failed to update Produto in database. \n ERROR MESSAGE: \n" + ex.Message);
             } finally {
                 if (rows == 1)
-                    MessageBox.Show("Dados do Produto atualizados com sucesso!");
+                    MessageBox.Show("Dados do Tipo de Produto atualizados com sucesso!");
                 else
-                    MessageBox.Show("Erro ao atualizar dados do Produto!");
+                    MessageBox.Show("Erro ao atualizar dados do Tipo de Produto!");
                 cn.Close();
             }
         }
 
+//Helper functions
         public void ClearFieldsProduto() {
             textBox_categoria_produto.Text = "";
             textBox_quantidade.Text = "";
@@ -251,18 +246,14 @@ namespace PassoFirme
 
         public void LockControlsProduto() {
             textBox_categoria_produto.ReadOnly = true;
-            textBox_quantidade.ReadOnly = true;
             textBox_custo_produto.ReadOnly = true;
             textBox_preco_produto.ReadOnly = true;
-            textBox_numEncomendas_produto.ReadOnly = true;
         }
 
         public void UnlockcontrolsProduto() {
             textBox_categoria_produto.ReadOnly = false;
-            textBox_quantidade.ReadOnly = false;
             textBox_custo_produto.ReadOnly = false;
             textBox_preco_produto.ReadOnly = false;
-            textBox_numEncomendas_produto.ReadOnly = false;
         }
 //End of Produto Stuff
 
@@ -535,17 +526,20 @@ namespace PassoFirme
             if (!verifySGBDConnection())
                 return;
 
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Empresa.Fornecedor;", cn);
-            SqlDataReader reader = cmd.ExecuteReader();
+            SqlCommand cmd = new SqlCommand("getFornecedores;", cn);
             listBox_fornecedor.Items.Clear();
 
-            while (reader.Read()) {
-                Fornecedor F = new Fornecedor();
-                F.Nif = reader["nif"].ToString();
-                F.Nome = reader["nome"].ToString();
-                F.Morada = reader["morada"].ToString();
-                F.Email = reader["email"].ToString();
-                listBox_fornecedor.Items.Add(F);
+            using (SqlDataReader reader = cmd.ExecuteReader()) {
+                if (reader.HasRows) {
+                    while (reader.Read()) {
+                        Fornecedor F = new Fornecedor();
+                        F.Nif = reader["nif"].ToString();
+                        F.Nome = reader["nome"].ToString();
+                        F.Morada = reader["morada"].ToString();
+                        F.Email = reader["email"].ToString();
+                        listBox_fornecedor.Items.Add(F);
+                    }
+                }
             }
             cn.Close();
             currentFornecedor = 0;
@@ -562,21 +556,15 @@ namespace PassoFirme
 
             cn.Open();
 
-            using (SqlCommand cmd2 = new SqlCommand("getMateriaPrimaFornecida", cn))
-            {
+            using (SqlCommand cmd2 = new SqlCommand("getMateriaPrimaFornecida", cn)) {
                 cmd2.CommandType = CommandType.StoredProcedure;
-
                 cmd2.Parameters.Add("@nif", SqlDbType.Int).Value = forn.Nif;
                 cmd2.Parameters.Add("@num", SqlDbType.Int).Direction = ParameterDirection.Output;
-
                 cmd2.ExecuteNonQuery();
 
                 numMatPrima = Convert.ToString(cmd2.Parameters["@num"].Value);
-
-                if (numMatPrima == "")
-                    numMatPrima = "0";
+                if (numMatPrima == "") numMatPrima = "0";
             }
-
             cn.Close();
 
             textBox_nome_fornecedor.Text = forn.Nome;
@@ -655,12 +643,10 @@ namespace PassoFirme
         private void removeFornecedor(String nif_fornecedor) {
             if (!verifySGBDConnection())
                 return;
-            SqlCommand cmd = new SqlCommand();
-
-            cmd.CommandText = "DELETE Empresa.Fornecedor WHERE nif=@nif_fornecedor";
+            SqlCommand cmd = new SqlCommand("removeFornecedor", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Clear();
-            cmd.Parameters.AddWithValue("@nif_fornecedor", nif_fornecedor);
-            cmd.Connection = cn;
+            cmd.Parameters.AddWithValue("@nif", nif_fornecedor);
 
             try {
                 cmd.ExecuteNonQuery();
@@ -755,17 +741,20 @@ namespace PassoFirme
             if (!verifySGBDConnection())
                 return;
 
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Empresa.Revendedor;", cn);
-            SqlDataReader reader = cmd.ExecuteReader();
+            SqlCommand cmd = new SqlCommand("getRevendedores", cn);
             listBox_revendedor.Items.Clear();
 
-            while (reader.Read()) {
-                Revendedor R = new Revendedor();
-                R.Nif = reader["nif"].ToString();
-                R.Nome = reader["nome"].ToString();
-                R.Morada = reader["morada"].ToString();
-                R.Email = reader["email"].ToString();
-                listBox_revendedor.Items.Add(R);
+            using (SqlDataReader reader = cmd.ExecuteReader()) {
+                if (reader.HasRows) {
+                    while (reader.Read()) {
+                        Revendedor R = new Revendedor();
+                        R.Nif = reader["nif"].ToString();
+                        R.Nome = reader["nome"].ToString();
+                        R.Morada = reader["morada"].ToString();
+                        R.Email = reader["email"].ToString();
+                        listBox_revendedor.Items.Add(R);
+                    }
+                }
             }
             cn.Close();
             currentRevendedor = 0;
@@ -875,12 +864,11 @@ namespace PassoFirme
         private void removeRevendedor(String nif_revendedor) {
             if (!verifySGBDConnection())
                 return;
-            SqlCommand cmd = new SqlCommand();
-
-            cmd.CommandText = "DELETE Empresa.Revendedor WHERE nif=@nif_revendedor";
+                
+            SqlCommand cmd = new SqlCommand("removeRevendedor", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Clear();
-            cmd.Parameters.AddWithValue("@nif_revendedor", nif_revendedor);
-            cmd.Connection = cn;
+            cmd.Parameters.AddWithValue("@nif", nif_revendedor);
 
             try {
                 cmd.ExecuteNonQuery();
@@ -935,6 +923,7 @@ namespace PassoFirme
             }
         }
 
+//Helper Functions
         public void ClearFieldsRevendedor() {
             textBox_nome_revendedor.Text = "";
             textBox_nif_revendedor.Text = "";
