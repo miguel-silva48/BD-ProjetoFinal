@@ -6,14 +6,6 @@
 
 # Instructions - TO REMOVE
 
-Este template é flexível.
-É sugerido seguir a estrutura, links de ficheiros e imagens, mas adicione ou remova conteúdo sempre que achar necessário.
-
----
-
-This template is flexible.
-It is suggested to follow the structure, file links and images but add more content where necessary.
-
 The files should be organized with the following nomenclature:
 
 - sql\01_ddl.sql: mandatory for DDL
@@ -24,36 +16,34 @@ The files should be organized with the following nomenclature:
 
 Por favor remova esta secção antes de submeter.
 
-Please remove this section before submitting.
-
 ## Introdução / Introduction
  
-Escreva uma pequena introdução sobre o trabalho.
-Write a simple introduction about your project.
+O tema do nosso trabalho é a gestão de uma empresa de calçado à qual demos o nome 'Passo Firme'.
+Criamos este projeto para que do lado da empresa seja possível gerir entidades como: produtos, funcionários, fornecedores e revendedores.
+É possível obter várias estatísticas acerca de cada entidade com foco nas que pertececem à empresa (com visualização extensa de cada secção e processamento de cada produto).
+De notar que 'Produto' refere-se a 1 item (exemplo: par de sapatos), mas a visualização de estatísticas é feita por 'Tipo de Produto' (exemplo: Bota Timber Branca).
+
 
 ## ​Análise de Requisitos / Requirements
 
-## DER - Diagrama Entidade Relacionamento/Entity Relationship Diagram
+
+### APFE - melhorias no DER / ER
+
+A quantidade em armazém de um produto é agora um atributo calculado (faz mais sentido dada a abordagem descrita de 'produto').
+O ato de processar um está agora ligado à entidade 'Operário' em vez de 'Funcionário' (faz mais sentido dado que o processamento é feito por operários e a entidade 'Gerente' pode apenas coordenar se não for o único 'Funcionário' na secção).
+A relação 'is-a' deixou de ser disjunta, ou seja, um 'Funcionário' pode ser um 'Gerente' e um 'Operário' ao mesmo tempo (faz mais sentido dado que um 'Gerente' pode ser um 'Operário' caso seja o único 'Funcionário' na secção).
+
+## DER - Diagrama Entidade Relacionamento / Entity Relationship Diagram
 
 ### Versão final/Final version
 
 ![DER Diagram!](der.jpg "AnImage")
 
-### APFE 
-
-Descreva sumariamente as melhorias sobre a primeira entrega.
-Describe briefly the improvements made since the first delivery.
-
-## ER - Esquema Relacional/Relational Schema
+## ER - Esquema Relacional / Relational Schema
 
 ### Versão final/Final Version
 
 ![ER Diagram!](er.jpg "AnImage")
-
-### APFE
-
-Descreva sumariamente as melhorias sobre a primeira entrega.
-Describe briefly the improvements made since the first delivery.
 
 ## ​SQL DDL - Data Definition Language
 
@@ -64,7 +54,7 @@ Describe briefly the improvements made since the first delivery.
 Uma secção por formulário.
 A section for each form.
 
-### Formulario exemplo/Example Form
+### Formulario exemplo / Example Form
 
 ![Exemplo Screenshot!](screenshots/screenshot_1.jpg "AnImage")
 
@@ -78,14 +68,14 @@ INSERT INTO MY_TABLE ....;
 
 ...
 
-## Normalização/Normalization
+## Normalização / Normalization
 
 Descreva os passos utilizados para minimizar a duplicação de dados / redução de espaço.
 Justifique as opções tomadas.
 Describe the steps used to minimize data duplication / space reduction.
 Justify the choices made.
 
-## Índices/Indexes
+## Índices / Indexes
 
 Descreva os indices criados. Junte uma cópia do SQL de criação do indice.
 Describe the indexes created. Attach a copy of the SQL to create the index.
@@ -95,15 +85,15 @@ Describe the indexes created. Attach a copy of the SQL to create the index.
 CREATE INDEX index_name ON table_name (column1, column2, ...);
 ```
 
-## SQL Programming: Stored Procedures, Triggers, UDF
+## SQL Programming: Stored Procedures, Triggers, UDF, Insertion Data, Indexes
 
 [SQL SPs and Functions File](sql/02_sp_functions.sql "SQLFileQuestion")
 
 [SQL Triggers File](sql/03_triggers.sql "SQLFileQuestion")
 
-## Outras notas/Other notes
+[SQL DB Init File](sql/04_db_init.sql "SQLFileQuestion")
 
-### Dados iniciais da dabase de dados/Database init data
+[Indexes File](sql/05_idx.sql "SQLFileQuestion")
 
-[Indexes File](sql/01_ddl.sql "SQLFileQuestion")
+## ​Outras Notas / Other Notes
  
