@@ -8,11 +8,11 @@
 
 The files should be organized with the following nomenclature:
 
-- sql\01_ddl.sql: mandatory for DDL
-- sql\02_sp_functions.sql: mandatory for Store Procedure, Functions,... 
-- sql\03_triggers.sql: mandatory for triggers
-- sql\04_db_init.sql: scripts to init the database (i.e. inserts etc.)
-- sql\05_any_other_matter.sql: any other scripts.
+DONE - sql\01_ddl.sql: mandatory for DDL
+ALMOST - sql\02_sp_functions.sql: mandatory for Store Procedure, Functions,... 
+NEEDS CHECK - sql\03_triggers.sql: mandatory for triggers
+DONE - sql\04_db_init.sql: scripts to init the database (i.e. inserts etc.)
+DONE - sql\05_any_other_matter.sql: any other scripts.
 
 Por favor remova esta secção antes de submeter.
 
@@ -25,7 +25,18 @@ De notar que 'Produto' refere-se a 1 item (exemplo: par de sapatos), mas a visua
 
 
 ## ​Análise de Requisitos / Requirements
-
+ 
+-	Cada secção tem uma designação e código únicos assim como o nº funcionários que estão atualmente a trabalhar na mesma.
+-	Os funcionários são também classificados como: operário e/ou gerente, sendo que se deve guardar os respetivos nomes, nº de CC, morada, nif, ID de funcionário e salário.
+-	Cada secção exige que exista 1 gerente para a coordenar, assim como um funcionário só pode ser gerente se existir 1 secção. Além disso, cada funcionário deve trabalhar em uma das secções.
+-	É permitido que uma secção apenas possua 1 funcionário, que será também gerente da mesma.
+-	Os operários processam matéria-prima da qual se conhece a qualidade, pode-se calcular a quantidade em armazém e se atribui um código para a identificar.
+-	De modo a que exista matéria-prima, é necessário a existência de pelo menos 1 fornecedor que é caracterizado por: nome, email, morada e nif.
+-	Durante as várias fases do processamento da matéria-prima sabe-se o seu estado, e quando atinge-se o estado final origina-se um produto. 
+-	Tem que ser possível obter do produto informações como a sua categoria, custo de fabrico, preço de venda, quantidade de armazém e identificação através de um código. 
+-	Uma encomenda, caracterizada por um número único e data, contém um ou mais produtos. Podem ser encomendados vários itens do mesmo produto. 
+-	De maneira a que seja efetuada um certo nº de encomendas, é vital que exista um revendedor, caracterizado por: nome, email, morada e nif que as adquira.
+-	Vários fornecedores podem fornecer a mesma matéria-prima, mas apenas um revendedor pode adquirir determinada encomenda.
 
 ### APFE - melhorias no DER / ER
 
