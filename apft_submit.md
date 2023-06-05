@@ -21,20 +21,21 @@ Por favor remova esta secção antes de submeter.
 - O tema do nosso trabalho é a gestão de uma empresa de calçado à qual demos o nome 'Passo Firme'.
 - Criamos este projeto para que do lado da empresa seja possível gerir entidades como: produtos, funcionários, fornecedores e revendedores.
 - É possível obter várias estatísticas acerca de cada entidade com foco nas que pertececem à empresa (com visualização extensa de cada secção e processamento de cada produto).
-- De notar que 'Produto' refere-se a 1 item (exemplo: par de sapatos), mas a visualização de estatísticas é feita por 'Tipo de Produto' (exemplo: Bota Timber Branca).
+- De notar que 'Produto' refere-se a 1 item (exemplo: par de botas Timber Brancas 001), mas a visualização de estatísticas é feita por 'Tipo de Produto' (exemplo: Bota Timber Branca).
 
 
 ## ​Análise de Requisitos / Requirements
  
-- Cada secção tem uma designação e código únicos assim como o nº funcionários que estão atualmente a trabalhar na mesma.
+- Cada secção tem uma designação e código únicos, e é possível obter o nº funcionários que estão atualmente a trabalhar na mesma.
 - Os funcionários são também classificados como: operário e/ou gerente, sendo que se deve guardar os respetivos nomes, nº de CC, morada, nif, ID de funcionário e salário.
 - Cada secção exige que exista 1 gerente para a coordenar, assim como um funcionário só pode ser gerente se existir 1 secção. Além disso, cada funcionário deve trabalhar em uma das secções.
 - É permitido que uma secção apenas possua 1 funcionário, que será também gerente da mesma.
-- Os operários processam matéria-prima da qual se conhece a qualidade, pode-se calcular a quantidade em armazém e se atribui um código para a identificar.
+- Os operários processam matéria-prima da qual se conhece a qualidade, e o código de identificação. Pode-se calcular a quantidade em armazém.
 - De modo a que exista matéria-prima, é necessário a existência de pelo menos 1 fornecedor que é caracterizado por: nome, email, morada e nif.
-- Durante as várias fases do processamento da matéria-prima sabe-se o seu estado, e quando atinge-se o estado final origina-se um produto. 
-- Tem que ser possível obter do produto informações como a sua categoria, custo de fabrico, preço de venda, quantidade de armazém e identificação através de um código. 
-- Uma encomenda, caracterizada por um número único e data, contém um ou mais produtos. Podem ser encomendados vários itens do mesmo produto. 
+- Durante as várias fases do processamento da matéria-prima sabe-se o seu estado, e quando atinge-se o estado final origina-se um produto. Porém, nas fases anteriores já se sabe o produto que vai vir a ser gerado.
+- Cada produto (item) possui um código único e um tipo.
+- Tem que ser possível obter do tipo de produto informações como a sua categoria (denominação), custo de fabrico e preço de venda. 
+- Uma encomenda, caracterizada por um número único e data, contém um ou mais produtos. Podem ser encomendados vários itens do mesmo tipo de produto. 
 - De maneira a que seja efetuada um certo nº de encomendas, é vital que exista um revendedor, caracterizado por: nome, email, morada e nif que as adquira.
 - Vários fornecedores podem fornecer a mesma matéria-prima, mas apenas um revendedor pode adquirir determinada encomenda.
 
