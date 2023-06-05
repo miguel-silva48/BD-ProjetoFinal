@@ -278,3 +278,26 @@ AS
 	WHERE categoria = @categoria;
 GO
 
+-- Atualizar funcionario
+ALTER PROCEDURE updateFuncionario @salario DECIMAL(8,2), @ID int, @isGerente INT, @codigo_seccao int
+AS
+    BEGIN TRANSACTION
+    UPDATE Empresa.Funcionario SET salario=@salario WHERE ID=@ID
+
+    IF @isGerente = 1
+    BEGIN
+        UPDATE Empresa.Gerente SET codigo_seccao=@codigo_seccao WHERE ID_funcionario=@ID
+        COMMIT TRAN
+    END
+    ELSE IF @isGerente = 0
+    BEGIN
+		DELETE Empresa.Gerente WHERE ID_funcionario=@ID
+        UPDATE Empresa.Operario SET codigo_seccao=@codigo_seccao WHERE ID_funcionario=@ID
+        COMMIT TRAN
+    END
+    ELSE
+    BEGIN
+		RAISERROR ('ERRO: Deve informar se o funcionário é gerente ou não!', 16, 1);
+        ROLLBACK TRANSACTION
+    END
+GO
