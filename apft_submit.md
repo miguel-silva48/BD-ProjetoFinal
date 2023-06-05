@@ -77,12 +77,21 @@ Justify the choices made.
 
 ## Índices / Indexes
 
-Descreva os indices criados. Junte uma cópia do SQL de criação do indice.
-Describe the indexes created. Attach a copy of the SQL to create the index.
-
 ```sql
--- Create an index to speed
-CREATE INDEX index_name ON table_name (column1, column2, ...);
+--Indexar os operários de cada secção e por ordem de código
+CREATE CLUSTERED INDEX idx_operarioSeccao ON Empresa.Operario(codigo_seccao, ID_funcionario);
+--Facilitará o acesso aos operários de cada secção para saber quem será o próximo gerente
+--Não faz sentido indexar os gerentes pois são só 4 (1 por secção)
+
+--Num cenário real, as Encomendas dos Revendedores têm centenas de produtos, assim como as matérias primas fornecidas, logo criamos os 2 índices abaixo:
+
+--Indexar os produtos das encomendas de cada revendedor
+CREATE INDEX idx_prodEncomenda_revendedor ON Empresa.Produto(num_encomenda)
+WHERE num_encomenda IS NOT NULL;
+--Indexa apenas os produtos que pertencem a uma encomenda (não os que estão em armazém)
+
+--Indexar a matéria prima fornecida por cada fornecedor
+CREATE INDEX idx_materiaPrima_fornecedor ON Empresa.Fornece(nif_fornecedor);
 ```
 
 ## SQL Programming: Stored Procedures, Triggers, UDF, Insertion Data, Indexes

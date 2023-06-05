@@ -29,7 +29,6 @@ CREATE TABLE Empresa.Fornecedor(
 CREATE TABLE Empresa.MateriaPrima(
 	nome					VARCHAR(40),
 	qualidade				VARCHAR(20),
-	--quant_armazem			INT,
 	codigo					INT		PRIMARY KEY	NOT NULL,
 );
 
@@ -94,7 +93,6 @@ CREATE TABLE Empresa.TipoProduto(
 -- Produto
 CREATE TABLE Empresa.Produto(
 	codigo_produto		 INT	PRIMARY KEY		NOT NULL,
-	--quant_armazem 		 INT, CALCULADO COM BASE NA CATEGORIA DE TipoProduto
 	categoria_tipo		 VARCHAR(40)		FOREIGN KEY REFERENCES Empresa.TipoProduto(categoria) ON DELETE CASCADE,
 	num_encomenda		 INT				FOREIGN KEY REFERENCES Empresa.Encomenda(numero) ON DELETE CASCADE,
 );
