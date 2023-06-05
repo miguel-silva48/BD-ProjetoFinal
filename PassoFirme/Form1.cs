@@ -203,17 +203,16 @@ namespace PassoFirme
 
             if (!verifySGBDConnection())
                 return;
-            SqlCommand cmd = new SqlCommand();
 
             p.CustoFabrico = p.CustoFabrico.Replace(',', '.');
             p.PrecoVenda = p.PrecoVenda.Replace(',', '.');
 
-            cmd.CommandText = "UPDATE Empresa.TipoProduto SET custo_fabrico = @custo_fabrico, preco_venda = @preco_venda WHERE categoria = @categoria;";
+            SqlCommand cmd = new SqlCommand("updateProduto", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Clear();
             cmd.Parameters.AddWithValue("@categoria", p.Categoria);
             cmd.Parameters.AddWithValue("@custo_fabrico", p.CustoFabrico);
             cmd.Parameters.AddWithValue("@preco_venda", p.PrecoVenda);
-            cmd.Connection = cn;
 
             try {
                 rows = cmd.ExecuteNonQuery();
@@ -421,12 +420,11 @@ namespace PassoFirme
         private void removeFuncionario(String id_funcionario) {
             if (!verifySGBDConnection())
                 return;
-            SqlCommand cmd = new SqlCommand();
 
-            cmd.CommandText = "DELETE Empresa.Funcionario WHERE ID=@id_funcionario";
+            SqlCommand cmd = new SqlCommand("RemoveFuncionario", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Clear();
-            cmd.Parameters.AddWithValue("@id_funcionario", id_funcionario);
-            cmd.Connection = cn;
+            cmd.Parameters.AddWithValue("@id", id_funcionario);
 
             try {
                 cmd.ExecuteNonQuery();
@@ -538,38 +536,58 @@ namespace PassoFirme
                 
             f.Salario = f.Salario.Replace(',', '.');
 
+            int tempSeccao = 0;
+
             switch (f.Seccao) {
                 case "1":
                 case "Corte":
                     f.Seccao = "1";
+                    tempSeccao = 1;
                     break;
                 case "2":
                 case "Costura":
                     f.Seccao = "2";
+                    tempSeccao = 2;
                     break;
                 case "3":
                 case "Montagem":
                     f.Seccao = "3";
+                    tempSeccao = 3;
                     break;
                 case "4":
                 case "Acabamento":
                     f.Seccao = "4";
+                    tempSeccao = 4;
                     break;
                 default:
                     MessageBox.Show("Secção inválida! (Insira um valor entre 1 e 4 ou o nome da secção)");
                     return;
             }
 
-            SqlCommand cmd = new SqlCommand("addFuncionario", cn);
+            int isGerente = 0;
+            switch (f.SerGerente)
+            {
+                case "1":
+                case "Sim":
+                    isGerente = 1;
+                    break;
+                case "0":
+                case "Não":
+                    isGerente = 0;
+                    break;
+                default:
+                    //TODO por alguma razão aparece sempre
+                    MessageBox.Show("Ser gerente inválido! (Insira Sim ou Não)");
+                    return;
+            }
+
+            SqlCommand cmd = new SqlCommand("updateFuncionario", cn); // ainda falta testar o trigger
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Clear();
             cmd.Parameters.AddWithValue("@id", f.Id);
-            cmd.Parameters.AddWithValue("@nome", f.Nome);
-            cmd.Parameters.AddWithValue("@nif", f.Nif);
-            cmd.Parameters.AddWithValue("@numerocc", f.NumCC);
-            cmd.Parameters.AddWithValue("@morada", f.Morada);
             cmd.Parameters.AddWithValue("@salario", f.Salario);
-            cmd.Parameters.AddWithValue("@codigo_seccao", f.Seccao);
+            cmd.Parameters.AddWithValue("@codigo_seccao", tempSeccao);
+            cmd.Parameters.AddWithValue("@serGerente", isGerente);
 
 
             try {
@@ -793,15 +811,14 @@ namespace PassoFirme
 
             if (!verifySGBDConnection())
                 return;
-            SqlCommand cmd = new SqlCommand();
-
-            cmd.CommandText = "UPDATE Empresa.Fornecedor SET nome=@nome, morada=@morada, email=@email WHERE nif=@nif";
+            SqlCommand cmd = new SqlCommand("updateFornecedor", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Clear();
+
             cmd.Parameters.AddWithValue("@nif", f.Nif);
             cmd.Parameters.AddWithValue("@nome", f.Nome);
             cmd.Parameters.AddWithValue("@morada", f.Morada);
             cmd.Parameters.AddWithValue("@email", f.Email);
-            cmd.Connection = cn;
 
             try {
                 rows = cmd.ExecuteNonQuery();
@@ -1015,15 +1032,14 @@ namespace PassoFirme
 
             if (!verifySGBDConnection())
                 return;
-            SqlCommand cmd = new SqlCommand();
+            SqlCommand cmd = new SqlCommand("updateRevendedor", cn);
 
-            cmd.CommandText = "UPDATE Empresa.Revendedor SET nome=@nome, morada=@morada, email=@email WHERE nif=@nif";
+            cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Clear();
             cmd.Parameters.AddWithValue("@nif", r.Nif);
             cmd.Parameters.AddWithValue("@nome", r.Nome);
             cmd.Parameters.AddWithValue("@morada", r.Morada);
             cmd.Parameters.AddWithValue("@email", r.Email);
-            cmd.Connection = cn;
 
             try {
                 rows = cmd.ExecuteNonQuery();

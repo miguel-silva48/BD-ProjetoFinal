@@ -96,35 +96,6 @@ GO
 -- PRINT @categoria
 
 
--- Remove Funcionario (on delete cascade garante que tambem remove de gerente ou operario)
-CREATE PROCEDURE RemoveFuncionario @id int
-AS
-    DELETE FROM Empresa.Funcionario WHERE ID = @id
-go 
-
---EXEC RemoveFuncionario 107
-
-
--- Adiciona Funcionario
-CREATE PROCEDURE AddFuncionario @nif int, @salario DECIMAL(8,2), @morada varchar(50), @numeroCC int, @nome VARCHAR(40), @ID int, @isGerente INT, @codigo_seccao int
-AS
-    INSERT INTO Empresa.Funcionario
-	VALUES 
-	(@nif, @salario, @morada, @numeroCC, @nome, @ID);
-
-	IF @isGerente = 1
-		INSERT INTO Empresa.Gerente
-		VALUES 
-		(@ID, @codigo_seccao);
-	ELSE
-		INSERT INTO Empresa.Operario
-		VALUES 
-		(@ID, @codigo_seccao);
-go 
-
---EXEC AddFuncionario 690972623, 900, 'Rua da Redonda Azul 9',29309021, 'Jéssica Oliveira Silva', 107, 0, 4;
-
-
 -- Retorna secções
 CREATE PROCEDURE getSeccoes
 AS
@@ -158,20 +129,12 @@ AS
 	END 
 go
 
--- Retorn tipos de produto
+-- Retorna tipos de produto
 CREATE PROCEDURE getTiposProduto
 AS
 	SELECT * , dbo.numProdutosPorTipo(categoria) AS numProdutos, dbo.numEncomendasPorTipo(categoria) AS numEncomendas
 	FROM Empresa.TipoProduto
 GO
-
---Remover todos os produtos de uma determinada categoria
-CREATE PROCEDURE removeTipoProduto (@categoria VARCHAR(40))
-AS
-    DELETE FROM Empresa.Produto
-    WHERE categoria_tipo=@categoria
-GO
---EXEC removeTipoProduto 'Tênis Runner Branco'
 
 --Retorna todos os fornecedores
 CREATE PROCEDURE getFornecedores	
@@ -185,12 +148,80 @@ AS
 	SELECT * FROM Empresa.Revendedor
 GO
 
+
+-- INSERTS, REMOVES, UPDATES
+
+-- Remove Funcionario (on delete cascade garante que tambem remove de gerente ou operario)
+CREATE PROCEDURE RemoveFuncionario @id int
+AS
+    DELETE FROM Empresa.Funcionario WHERE ID = @id
+go 
+
+--EXEC RemoveFuncionario 107
+
+
+-- Adiciona Funcionario
+CREATE PROCEDURE AddFuncionario @nif int, @salario DECIMAL(8,2), @morada varchar(50), @numeroCC int, @nome VARCHAR(40), @ID int, @isGerente INT, @codigo_seccao int
+AS
+    INSERT INTO Empresa.Funcionario
+	VALUES 
+	(@nif, @salario, @morada, @numeroCC, @nome, @ID);
+
+	IF @isGerente = 1
+		INSERT INTO Empresa.Gerente
+		VALUES 
+		(@ID, @codigo_seccao);
+	ELSE
+		INSERT INTO Empresa.Operario
+		VALUES 
+		(@ID, @codigo_seccao);
+go 
+
+--EXEC AddFuncionario 690972623, 900, 'Rua da Redonda Azul 9',29309021, 'Jéssica Oliveira Silva', 107, 0, 4;
+
+-- Update funcionario
+CREATE PROCEDURE updateFuncionario @salario DECIMAL(8,2), @ID int, @isGerente INT, @codigo_seccao int
+AS
+    UPDATE Empresa.Funcionario SET salario=@salario WHERE ID=@ID
+
+	IF @isGerente = 1
+		UPDATE Empresa.Gerente SET codigo_seccao=@codigo_seccao WHERE ID_funcionario=@ID
+	ELSE IF @isGerente IS NOT NULL
+		UPDATE Empresa.Operario SET codigo_seccao=@codigo_seccao WHERE ID_funcionario=@ID
+	ELSE
+		PRINT 'Informe se o funcionário é gerente ou não!'
+go 
+
+
 --Remove um fornecedor
 CREATE PROCEDURE removeFornecedor (@nif INT)
 AS
 	DELETE FROM Empresa.Fornecedor
 	WHERE nif=@nif
 GO
+
+
+-- Update fornecedor
+CREATE PROCEDURE updateFornecedor (@nif INT, @email VARCHAR(30), @morada VARCHAR(50), @nome VARCHAR(40))
+AS
+	IF (@email = '') 
+	BEGIN	
+		SET @email = null
+	END
+
+	IF (@morada = '') 
+	BEGIN	
+		SET @morada = null
+	END
+
+	IF (@nome = '') 
+	BEGIN	
+		SET @nome = null
+	END
+
+	UPDATE Empresa.Fornecedor SET nome=@nome, morada=@morada, email=@email WHERE nif=@nif
+GO
+
 
 --Remove um revendedor
 CREATE PROCEDURE removeRevendedor (@nif INT)
@@ -199,11 +230,51 @@ AS
 	WHERE nif=@nif
 GO
 
---Adiciona um funcionário
-CREATE PROCEDURE addFuncionario (@nif INT, @salario DECIMAL(8,2), @morada VARCHAR(50), @numeroCC INT, @nome VARCHAR(40), @ID INT, @codigo_seccao INT)
+-- Update revendedor
+CREATE PROCEDURE updateRevendedor (@nif INT, @email VARCHAR(30), @morada VARCHAR(50), @nome VARCHAR(40))
 AS
-	INSERT INTO Empresa.Funcionario
-	VALUES (@nif, @salario, @morada, @numeroCC, @nome, @ID)
-	INSERT INTO Empresa.Operario
-	VALUES (@ID, @codigo_seccao)
+	IF (@email = '') 
+	BEGIN	
+		SET @email = null
+	END
+
+	IF (@morada = '') 
+	BEGIN	
+		SET @morada = null
+	END
+
+	IF (@nome = '') 
+	BEGIN	
+		SET @nome = null
+	END
+
+	UPDATE Empresa.Revendedor SET nome=@nome, morada=@morada, email=@email WHERE nif=@nif
 GO
+
+
+-- Adiciona tipo de produto
+CREATE PROCEDURE addProduto @custo_fabrico DECIMAL(6,2), @preco_venda DECIMAL(6,2), @categoria VARCHAR(40)
+AS
+    INSERT INTO Empresa.TipoProduto (custo_fabrico, preco_venda, categoria)
+	VALUES
+    (@custo_fabrico, @preco_venda,  @categoria);
+
+go 
+
+
+-- Remover um tipo de produto e por cascade todos os produtos que são desse tipo
+CREATE PROCEDURE removeTipoProduto (@categoria VARCHAR(40))
+AS
+    DELETE FROM Empresa.TipoProduto
+    WHERE categoria=@categoria
+GO
+--EXEC removeTipoProduto 'Tênis Runner Branco'
+
+
+-- Update tipo de produto
+CREATE PROCEDURE updateProduto (@categoria VARCHAR(40), @custo_fabrico DECIMAL(6,2), @preco_venda DECIMAL(6,2))
+AS
+	UPDATE Empresa.TipoProduto SET custo_fabrico = @custo_fabrico, preco_venda = @preco_venda 
+	WHERE categoria = @categoria;
+GO
+

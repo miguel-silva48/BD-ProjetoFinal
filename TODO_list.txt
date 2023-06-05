@@ -23,10 +23,10 @@ Atribuir processo: produto, funcionário e materia prima
 
     Operações: ADD, UPDATE, REMOVE
 
-    Produtos - ADD, REMOVE
-    Funcionarios - ADD, UPDATE(salario, seccao), REMOVE
-    Fornecedores - UPDATE, REMOVE
-    Revendedores - UPDATE, REMOVE
+    Produtos - ADD, UPDATE*, REMOVE*
+    Funcionarios - ADD*, UPDATE(salario, seccao), REMOVE*
+    Fornecedores - UPDATE*, REMOVE*
+    Revendedores - UPDATE*, REMOVE*
     Secções - Nenhuma operação faz sentido 
 
 STORED PROCEDURES
