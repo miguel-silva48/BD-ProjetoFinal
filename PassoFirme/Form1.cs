@@ -462,19 +462,64 @@ namespace PassoFirme
         private void AddFuncionario(Funcionario f) {
             if (!verifySGBDConnection())
                 return;
-            SqlCommand cmd = new SqlCommand();
 
             f.Salario = f.Salario.Replace(',', '.');
 
-            cmd.CommandText = "INSERT INTO Empresa.Funcionario (nome, nif, numerocc, morada, salario, seccao) VALUES (@nome, @nif, @numerocc, @morada, @salario, @seccao)";
+
+            int tempSeccao = 0;
+            switch (f.Seccao) {
+                case "1":
+                case "Corte":
+                    f.Seccao = "Corte";
+                    tempSeccao = 1;
+                    break;
+                case "2":
+                case "Costura":
+                    f.Seccao = "Costura";
+                    tempSeccao = 2;
+                    break;
+                case "3":
+                case "Montagem":
+                    f.Seccao = "Montagem";
+                    tempSeccao = 3;
+                    break;
+                case "4":
+                case "Acabamento":
+                    f.Seccao = "Acabamento";
+                    tempSeccao = 4;
+                    break;
+                default:
+                    MessageBox.Show("Secção inválida! (Insira um valor entre 1 e 4 ou o nome da secção)");
+                    return;
+            }
+
+            int isGerente = 0;
+            switch (f.SerGerente) {
+                case "1":
+                case "Sim":
+                    isGerente = 1;
+                    break;
+                case "0":
+                case "Não":
+                    isGerente = 0;
+                    break;
+                default:
+                    //TODO por alguma razão aparece sempre
+                    MessageBox.Show("Ser gerente inválido! (Insira Sim ou Não)");
+                    return;
+            }
+
+            SqlCommand cmd = new SqlCommand("AddFuncionario", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Clear();
+            cmd.Parameters.AddWithValue("@id", f.Id);
             cmd.Parameters.AddWithValue("@nome", f.Nome);
             cmd.Parameters.AddWithValue("@nif", f.Nif);
             cmd.Parameters.AddWithValue("@numerocc", f.NumCC);
             cmd.Parameters.AddWithValue("@morada", f.Morada);
             cmd.Parameters.AddWithValue("@salario", f.Salario);
-            cmd.Parameters.AddWithValue("@seccao", f.Seccao);
-            cmd.Connection = cn;
+            cmd.Parameters.AddWithValue("@codigo_seccao", tempSeccao);
+            cmd.Parameters.AddWithValue("@serGerente", isGerente);
 
             try {
                 cmd.ExecuteNonQuery();
@@ -515,8 +560,7 @@ namespace PassoFirme
                     return;
             }
 
-
-            SqlCommand cmd = new SqlCommand("removeFuncionario", cn);
+            SqlCommand cmd = new SqlCommand("addFuncionario", cn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Clear();
             cmd.Parameters.AddWithValue("@id", f.Id);

@@ -104,8 +104,6 @@ go
 
 --EXEC RemoveFuncionario 107
 
-go
-
 
 -- Adiciona Funcionario
 CREATE PROCEDURE AddFuncionario @nif int, @salario DECIMAL(8,2), @morada varchar(50), @numeroCC int, @nome VARCHAR(40), @ID int, @isGerente INT, @codigo_seccao int
@@ -199,13 +197,6 @@ CREATE PROCEDURE removeRevendedor (@nif INT)
 AS
 	DELETE FROM Empresa.Revendedor
 	WHERE nif=@nif
-GO
-
---TODO ver se é grenet xD Remove um funcionário
-CREATE PROCEDURE removeFuncionario (@id INT)
-AS
-	DELETE FROM Empresa.Funcionario
-	WHERE ID=@id
 GO
 
 --Adiciona um funcionário
