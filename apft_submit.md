@@ -38,12 +38,21 @@ Por favor remova esta secção antes de submeter.
 - Uma encomenda, caracterizada por um número único e data, contém um ou mais produtos. Podem ser encomendados vários itens do mesmo tipo de produto. 
 - De maneira a que seja efetuada um certo nº de encomendas, é vital que exista um revendedor, caracterizado por: nome, email, morada e nif que as adquira.
 - Vários fornecedores podem fornecer a mesma matéria-prima, mas apenas um revendedor pode adquirir determinada encomenda.
+- Cada fornecimento de matéria prima possui informação sobre a quantidade fornecida.
 
 ## APFE - melhorias no DER / ER
 
-- A quantidade em armazém de um produto é agora um atributo calculado (faz mais sentido dada a abordagem descrita de 'produto').
-- O ato de processar um está agora ligado à entidade 'Operário' em vez de 'Funcionário' (faz mais sentido dado que o processamento é feito por operários e a entidade 'Gerente' pode apenas coordenar se não for o único 'Funcionário' na secção).
-- A relação 'is-a' deixou de ser disjunta, ou seja, um 'Funcionário' pode ser um 'Gerente' e um 'Operário' ao mesmo tempo (faz mais sentido dado que um 'Gerente' pode ser um 'Operário' caso seja o único 'Funcionário' na secção).
+DER:
+- A quantidade em armazém de um produto é agora um atributo calculado, o que faz mais sentido dada a abordagem descrita de 'produto'.
+- A quantidade em armazém da matéria prima deixou de ser um atributo da entidade Matéria Prima, visto que faz mais sentido calcular essa quantidade a partir de cada fornecimento, que possui uma quantidade.
+- O ato de processar um está agora ligado à entidade 'Operário' em vez de 'Funcionário. Faz mais sentido dado que o processamento é feito por operários e a entidade 'Gerente' pode apenas exigir a função de coordenar os operários (caso não seja o único 'Funcionário' na secção).
+- A relação 'is-a' deixou de ser disjunta, ou seja, um 'Funcionário' pode ser um 'Gerente' e um 'Operário' ao mesmo tempo. Faz mais sentido dado que um 'Gerente' pode também ser um 'Operário' segundo os requisitos.
+- A multiplicidade da relação Origina foi alterada de 1 Processa : N Produtos para 1:1. Percebeu-se que de cada processo orgina-se apenas um produto, pois cada produto é um item. 
+- A obrigatoriedade da relação Origina foi alterada. Antes, era obrigatória apenas para o Produto, agora é obrigatória para ambos. Faz mais sentido pois um processo só existe se houver um produto a ser criado, que está a ser monitorado e cotado para fazer parte de uma encomenda.
+
+ER 
+- Anteriormente, o produto estava ligado à matéria-prima, o que obrigava a cada produto ter apenas uma matéria-prima e produto era ligado ao funcionário, o que obrigava que apenas um funcionário trabalhasse naquele produto. Ambas ligações causavam situações indesejadas frente aos requisitos, por isso foram desfeitas. Para manter a relação de produto e essas entidades, foi importada a foreign key para a tabela Origina, que mantém as informações de cada processo.
+
 
 ## DER - Diagrama Entidade Relacionamento / Entity Relationship Diagram
 
