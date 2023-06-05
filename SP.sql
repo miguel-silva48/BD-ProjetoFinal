@@ -200,3 +200,19 @@ AS
 	DELETE FROM Empresa.Revendedor
 	WHERE nif=@nif
 GO
+
+--TODO ver se é grenet xD Remove um funcionário
+CREATE PROCEDURE removeFuncionario (@id INT)
+AS
+	DELETE FROM Empresa.Funcionario
+	WHERE ID=@id
+GO
+
+--Adiciona um funcionário
+CREATE PROCEDURE addFuncionario (@nif INT, @salario DECIMAL(8,2), @morada VARCHAR(50), @numeroCC INT, @nome VARCHAR(40), @ID INT, @codigo_seccao INT)
+AS
+	INSERT INTO Empresa.Funcionario
+	VALUES (@nif, @salario, @morada, @numeroCC, @nome, @ID)
+	INSERT INTO Empresa.Operario
+	VALUES (@ID, @codigo_seccao)
+GO

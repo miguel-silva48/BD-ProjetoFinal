@@ -20,7 +20,7 @@ namespace PassoFirme
         private int currentRevendedor;
         private int currentSeccao;
         private int seccaoFilter = 5;
-        //private bool adding;
+        private bool adding = false;
 
         public Form1()
         {
@@ -64,13 +64,17 @@ namespace PassoFirme
 
             SqlCommand cmd = new SqlCommand("getTiposProduto;", cn);
             listBox_produtos.Items.Clear();
+            String temp = "";
 
             using (SqlDataReader reader = cmd.ExecuteReader()) {
                 if (reader.HasRows) {
                     while (reader.Read()) {
                         Produto P = new Produto();
                         P.Categoria = reader["categoria"].ToString();
-                        P.CustoFabrico = reader["custo_fabrico"].ToString();
+                        temp = reader["custo_fabrico"].ToString();
+                        P.CustoFabrico = temp.Replace(',', '.');
+                        temp = reader["preco_venda"].ToString();
+                        P.PrecoVenda = temp.Replace(',', '.');
                         P.PrecoVenda = reader["preco_venda"].ToString();
                         P.NumProdutos = reader["numProdutos"].ToString();
                         P.NumEncomendas = reader["numEncomendas"].ToString();
@@ -201,7 +205,10 @@ namespace PassoFirme
                 return;
             SqlCommand cmd = new SqlCommand();
 
-            cmd.CommandText = "UPDATE Empresa.Produto SET custo_fabrico=@custo_fabrico, preco_venda=@preco_venda, WHERE categoria_tipo=@categoria";
+            p.CustoFabrico = p.CustoFabrico.Replace(',', '.');
+            p.PrecoVenda = p.PrecoVenda.Replace(',', '.');
+
+            cmd.CommandText = "UPDATE Empresa.TipoProduto SET custo_fabrico = @custo_fabrico, preco_venda = @preco_venda WHERE categoria = @categoria;";
             cmd.Parameters.Clear();
             cmd.Parameters.AddWithValue("@categoria", p.Categoria);
             cmd.Parameters.AddWithValue("@custo_fabrico", p.CustoFabrico);
@@ -362,6 +369,14 @@ namespace PassoFirme
                     ShowFuncionario();
             }
         }
+
+        private void button_add_funcionario_Click(object sender, EventArgs e) {
+            adding = true;
+            ClearFieldsFuncionario();
+            HideButtonsFuncionario();
+            UnlockControlsFuncionario();
+            listBox_funcionarios.Enabled = false;
+        }
         
         private void button_editar_funcionario_Click(object sender, EventArgs e) {
             currentFuncionario = listBox_funcionarios.SelectedIndex;
@@ -385,6 +400,7 @@ namespace PassoFirme
             listBox_funcionarios.SelectedIndex = idx;
             ShowButtonsFuncionario();
             LockControlsFuncionario();
+            adding = false;
         }
 
         private void button_cancelar_funcionario_Click(object sender, EventArgs e) {
@@ -399,6 +415,7 @@ namespace PassoFirme
                 LockControlsFuncionario();
             }
             ShowButtonsFuncionario();
+            adding = false;
         }
 
         private void removeFuncionario(String id_funcionario) {
@@ -414,7 +431,7 @@ namespace PassoFirme
             try {
                 cmd.ExecuteNonQuery();
             } catch (Exception ex) {
-                throw new Exception("ERRO: Nao foi possivel apagar o funcionario na BD! \n ERROR MESSAGE: \n" + ex.Message);
+                throw new Exception("ERRO: Não foi possível apagar o funcionario na BD! \n ERROR MESSAGE: \n" + ex.Message);
             } finally {
                 cn.Close();
             }
@@ -430,25 +447,77 @@ namespace PassoFirme
                 func.Id = textBox_id_funcionario.Text;
                 func.Salario = textBox_salario_funcionario.Text;
                 func.Seccao = textBox_seccao_funcionario.Text;
-                //func.SerGerente = textBox_gerente_funcionario.Text;
             } catch (Exception ex) {
                 MessageBox.Show(ex.Message);
                 return false;
             }
-            UpdateFuncionario(func);
+            if (adding)
+                AddFuncionario(func);
+            else
+                UpdateFuncionario(func);
             listBox_funcionarios.Items[currentFuncionario] = func;
             return true;
         }
 
-//TODO erro ao converter string para decimal no salario
+        private void AddFuncionario(Funcionario f) {
+            if (!verifySGBDConnection())
+                return;
+            SqlCommand cmd = new SqlCommand();
+
+            f.Salario = f.Salario.Replace(',', '.');
+
+            cmd.CommandText = "INSERT INTO Empresa.Funcionario (nome, nif, numerocc, morada, salario, seccao) VALUES (@nome, @nif, @numerocc, @morada, @salario, @seccao)";
+            cmd.Parameters.Clear();
+            cmd.Parameters.AddWithValue("@nome", f.Nome);
+            cmd.Parameters.AddWithValue("@nif", f.Nif);
+            cmd.Parameters.AddWithValue("@numerocc", f.NumCC);
+            cmd.Parameters.AddWithValue("@morada", f.Morada);
+            cmd.Parameters.AddWithValue("@salario", f.Salario);
+            cmd.Parameters.AddWithValue("@seccao", f.Seccao);
+            cmd.Connection = cn;
+
+            try {
+                cmd.ExecuteNonQuery();
+            } catch (Exception ex) {
+                throw new Exception("ERRO: Não foi possível adicionar o funcionario na BD! \n ERROR MESSAGE: \n" + ex.Message);
+            } finally {
+                cn.Close();
+            }
+        }
+
         private void UpdateFuncionario(Funcionario f) {
             int rows = 0;
 
             if (!verifySGBDConnection())
                 return;
-            SqlCommand cmd = new SqlCommand();
+                
+            f.Salario = f.Salario.Replace(',', '.');
 
-            cmd.CommandText = "UPDATE Empresa.Funcionario SET nome=@nome, nif=@nif, numerocc=@numerocc, morada=@morada, salario=@salario WHERE ID=@id";
+            switch (f.Seccao) {
+                case "1":
+                case "Corte":
+                    f.Seccao = "1";
+                    break;
+                case "2":
+                case "Costura":
+                    f.Seccao = "2";
+                    break;
+                case "3":
+                case "Montagem":
+                    f.Seccao = "3";
+                    break;
+                case "4":
+                case "Acabamento":
+                    f.Seccao = "4";
+                    break;
+                default:
+                    MessageBox.Show("Secção inválida! (Insira um valor entre 1 e 4 ou o nome da secção)");
+                    return;
+            }
+
+
+            SqlCommand cmd = new SqlCommand("removeFuncionario", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Clear();
             cmd.Parameters.AddWithValue("@id", f.Id);
             cmd.Parameters.AddWithValue("@nome", f.Nome);
@@ -456,8 +525,8 @@ namespace PassoFirme
             cmd.Parameters.AddWithValue("@numerocc", f.NumCC);
             cmd.Parameters.AddWithValue("@morada", f.Morada);
             cmd.Parameters.AddWithValue("@salario", f.Salario);
-            //cmd.Parameters.AddWithValue("@seccao", f.Seccao);
-            cmd.Connection = cn;
+            cmd.Parameters.AddWithValue("@codigo_seccao", f.Seccao);
+
 
             try {
                 rows = cmd.ExecuteNonQuery();
@@ -485,6 +554,7 @@ namespace PassoFirme
 
         public void HideButtonsFuncionario() {
            button_apagar_funcionario.Visible = false;
+           button_add_funcionario.Visible = false;
            button_editar_funcionario.Visible = false;
            button_ok_funcionario.Visible = true;
            button_cancelar_funcionario.Visible = true;
@@ -492,6 +562,7 @@ namespace PassoFirme
 
         public void ShowButtonsFuncionario() {
             button_apagar_funcionario.Visible = true;
+            button_add_funcionario.Visible = true;
             button_editar_funcionario.Visible = true;
             button_ok_funcionario.Visible = false;
             button_cancelar_funcionario.Visible = false;
@@ -502,10 +573,10 @@ namespace PassoFirme
             textBox_nif_funcionario.ReadOnly = true;
             textBox_numCC_funcionario.ReadOnly = true;
             textBox_morada_funcionario.ReadOnly = true;
-            //textBox_id_funcionario.ReadOnly = true;
+            textBox_id_funcionario.ReadOnly = true;
             textBox_salario_funcionario.ReadOnly = true;
-            //textBox_seccao_funcionario.ReadOnly = true;
-            //textBox_gerente_funcionario.ReadOnly = true;
+            textBox_seccao_funcionario.ReadOnly = true;
+            textBox_gerente_funcionario.ReadOnly = true;
         }
 
         public void UnlockControlsFuncionario() {
@@ -513,10 +584,10 @@ namespace PassoFirme
             textBox_nif_funcionario.ReadOnly = false;
             textBox_numCC_funcionario.ReadOnly = false;
             textBox_morada_funcionario.ReadOnly = false;
-            //textBox_id_funcionario.ReadOnly = false;
+            textBox_id_funcionario.ReadOnly = false;
             textBox_salario_funcionario.ReadOnly = false;
-            //textBox_seccao_funcionario.ReadOnly = false;
-            //textBox_gerente_funcionario.ReadOnly = false;
+            textBox_seccao_funcionario.ReadOnly = false;
+            textBox_gerente_funcionario.ReadOnly = false;
         }
 //End of Funcionario Stuff
 

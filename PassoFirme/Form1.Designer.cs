@@ -142,6 +142,7 @@ namespace PassoFirme
             this.textBox_codigo_seccao = new System.Windows.Forms.TextBox();
             this.textBox_designacao_seccao = new System.Windows.Forms.TextBox();
             this.listBox_seccao = new System.Windows.Forms.ListBox();
+            this.button_add_funcionario = new System.Windows.Forms.Button();
             this.tabcontrol1.SuspendLayout();
             this.Início.SuspendLayout();
             this.Produtos.SuspendLayout();
@@ -431,6 +432,7 @@ namespace PassoFirme
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.button_add_funcionario);
             this.panel3.Controls.Add(this.button_ok_funcionario);
             this.panel3.Controls.Add(this.button_cancelar_funcionario);
             this.panel3.Controls.Add(this.button_editar_funcionario);
@@ -1380,6 +1382,18 @@ namespace PassoFirme
             this.listBox_seccao.TabIndex = 1;
             this.listBox_seccao.SelectedIndexChanged += new System.EventHandler(this.listBox_seccao_SelectedIndexChanged);
             // 
+            // button_add_funcionario
+            // 
+            this.button_add_funcionario.AutoSize = true;
+            this.button_add_funcionario.Location = new System.Drawing.Point(133, 343);
+            this.button_add_funcionario.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button_add_funcionario.Name = "button_add_funcionario";
+            this.button_add_funcionario.Size = new System.Drawing.Size(80, 40);
+            this.button_add_funcionario.TabIndex = 21;
+            this.button_add_funcionario.Text = "Adicionar";
+            this.button_add_funcionario.UseVisualStyleBackColor = true;
+            this.button_add_funcionario.Click += new System.EventHandler(this.button_add_funcionario_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1530,6 +1544,7 @@ namespace PassoFirme
         private System.Windows.Forms.Button button_cancelar_funcionario;
         private System.Windows.Forms.Button button_ok_produto;
         private System.Windows.Forms.Button button_cancelar_produto;
+        private System.Windows.Forms.Button button_add_funcionario;
     }
 }
 
