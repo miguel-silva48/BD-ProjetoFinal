@@ -81,10 +81,11 @@ INSERT INTO MY_TABLE ....;
 
 ## Normalização / Normalization
 
-Descreva os passos utilizados para minimizar a duplicação de dados / redução de espaço.
-Justifique as opções tomadas.
-Describe the steps used to minimize data duplication / space reduction.
-Justify the choices made.
+Todas as tabelas que representam entidades apresentam chaves primárias e dependência funcional entre os atributos.
+Exemplos: Fornecedor, MateriaPrima, Revendedor, Seccao, Funcionario, TipoProduto.
+
+As restantes (as que fazem a ligação entre outras tabelas) utilizam chaves estrangeiras e têm chaves primárias compostas quando necessário.
+Exemplos: Fornece, Encomenda, Gerente, Operario, Processa e Produto.
 
 ## Índices / Indexes
 

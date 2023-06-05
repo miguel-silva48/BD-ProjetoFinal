@@ -63,7 +63,7 @@ CREATE TABLE Empresa.Seccao(
 
 -- Funcionario
 CREATE TABLE Empresa.Funcionario(
-	nif 			INT		CHECK (nif BETWEEN 000000000 AND 999999999),
+	nif 			INT		UNIQUE CHECK (nif BETWEEN 000000000 AND 999999999),
 	salario			DECIMAL(8,2),
 	morada			VARCHAR(50),
 	numeroCC		INT,
