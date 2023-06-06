@@ -182,14 +182,24 @@ go
 -- Update funcionario
 CREATE PROCEDURE updateFuncionario @salario DECIMAL(8,2), @ID int, @isGerente INT, @codigo_seccao int
 AS
+	BEGIN TRANSACTION
     UPDATE Empresa.Funcionario SET salario=@salario WHERE ID=@ID
 
 	IF @isGerente = 1
+	BEGIN
 		UPDATE Empresa.Gerente SET codigo_seccao=@codigo_seccao WHERE ID_funcionario=@ID
+		COMMIT TRAN
+	END
 	ELSE IF @isGerente IS NOT NULL
+	BEGIN
 		UPDATE Empresa.Operario SET codigo_seccao=@codigo_seccao WHERE ID_funcionario=@ID
+		COMMIT TRAN
+	END
 	ELSE
+	BEGIN
 		PRINT 'Informe se o funcionário é gerente ou não!'
+		ROLLBACK TRANSACTION
+	END
 go 
 
 

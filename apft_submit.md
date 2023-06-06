@@ -30,6 +30,7 @@ Por favor remova esta secção antes de submeter.
 - Os funcionários são também classificados como: operário e/ou gerente, sendo que se deve guardar os respetivos nomes, nº de CC, morada, nif, ID de funcionário e salário.
 - Cada secção exige que exista 1 gerente para a coordenar, assim como um funcionário só pode ser gerente se existir 1 secção. Além disso, cada funcionário deve trabalhar em uma das secções.
 - É permitido que uma secção apenas possua 1 funcionário, que será também gerente da mesma.
+- Em caso de uma secção ficar sem gerente, o operário com menor id de funcionário é eleito.
 - Os operários processam matéria-prima da qual se conhece a qualidade, e o código de identificação. Pode-se calcular a quantidade em armazém.
 - De modo a que exista matéria-prima, é necessário a existência de pelo menos 1 fornecedor que é caracterizado por: nome, email, morada e nif.
 - Durante as várias fases do processamento da matéria-prima sabe-se o seu estado, e quando atinge-se o estado final origina-se um produto. Porém, nas fases anteriores já se sabe o produto que vai vir a ser gerado.
@@ -50,7 +51,7 @@ DER:
 - A multiplicidade da relação Origina foi alterada de 1 Processa : N Produtos para 1:1. Percebeu-se que de cada processo orgina-se apenas um produto, pois cada produto é um item. 
 - A obrigatoriedade da relação Origina foi alterada. Antes, era obrigatória apenas para o Produto, agora é obrigatória para ambos. Faz mais sentido pois um processo só existe se houver um produto a ser criado, que está a ser monitorado e cotado para fazer parte de uma encomenda.
 
-ER 
+ER: 
 - Anteriormente, o produto estava ligado à matéria-prima, o que obrigava a cada produto ter apenas uma matéria-prima e produto era ligado ao funcionário, o que obrigava que apenas um funcionário trabalhasse naquele produto. Ambas ligações causavam situações indesejadas frente aos requisitos, por isso foram desfeitas. Para manter a relação de produto e essas entidades, foi importada a foreign key para a tabela Origina, que mantém as informações de cada processo.
 
 
