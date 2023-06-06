@@ -1,5 +1,5 @@
 --Indexar os operários de cada secção
-CREATE CLUSTERED INDEX idx_operarioSeccao ON Empresa.Operario(codigo_seccao, ID_funcionario);
+CREATE NONCLUSTERED INDEX idx_operarioSeccao ON Empresa.Operario(codigo_seccao, ID_funcionario);
 
 --Indexar os produtos das encomendas de cada revendedor
 CREATE INDEX idx_prodEncomenda_revendedor ON Empresa.Produto (num_encomenda)

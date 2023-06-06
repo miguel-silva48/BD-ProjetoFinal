@@ -60,10 +60,10 @@ AS
 		JOIN Empresa.Gerente AS G ON F.ID = G.ID_funcionario
 		WHERE codigo_seccao = @codigo;
 
-		IF (@sal_gerente <= @sal_novoFunc)
+		IF (@sal_gerente < @sal_novoFunc)
         
 			BEGIN
-                RAISERROR ('ERRO: Salario de operario tem que ser inferior ao do gerente da seccao!', 16, 1);
+                RAISERROR ('ERRO: Salario de operario nao pode ser superior ao do gerente da seccao!', 16, 1);
                 ROLLBACK TRANSACTION;
             END;
     END;

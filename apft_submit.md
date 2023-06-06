@@ -148,9 +148,9 @@ Exemplos: Fornece, Encomenda, Gerente, Operario, Processa e Produto.
 ## Índices / Indexes
 
 ```sql
---Indexar os operários de cada secção e por ordem de código
-CREATE CLUSTERED INDEX idx_operarioSeccao ON Empresa.Operario(codigo_seccao, ID_funcionario);
---Facilitará o acesso aos operários de cada secção para saber quem será o próximo gerente
+--A ideia era indexar os operários de cada secção e por ordem de código, mas não é permitido criar outro CLUSTERED INDEX na tabela Operario, logo criamos um NONCLUSTERED INDEX
+CREATE NONCLUSTERED INDEX idx_operarioSeccao ON Empresa.Operario(codigo_seccao, ID_funcionario);
+--Dará um acesso eficiente aos operários de cada secção para saber quem será o próximo gerente
 --Não faz sentido indexar os gerentes pois são só 4 (1 por secção)
 
 --Num cenário real, as Encomendas dos Revendedores têm centenas de produtos, assim como as matérias primas fornecidas, logo criamos os 2 índices abaixo:
