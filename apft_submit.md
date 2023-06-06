@@ -75,14 +75,38 @@ ER:
 
 Todas as queries foram feitas a partir de stored procedures, a fim de garantir uma camada de abstração entre a base de dados e o frontend da aplicação. Essa camada permite uma maior segurança (inserts, updates e deletes não poderão ser alterados diretamente no código) e uma maior facilidade caso futuramente se queira alterar a implememtação interna de uma SP sem que se altere o frontend.
 
-### Formulario exemplo / Example Form
+### Página "Produtos" 
 
-![Exemplo Screenshot!](screenshots/screenshot_1.jpg "AnImage")
+![Produtos Screenshot!](screenshots/screenshot_1.jpg "AnImage")
 
-```sql
+Stored Procedures: 
+- getTiposProduto
+    Utiliza UDFs: dbo.numProdutosPorTipo e dbo.numEncomendasPorTipo
+- addProduto
+- removeTipoProduto
+- updateProduto
 
-```
+### Página "Funcionários" 
 
+![Funcionários Screenshot!](screenshots/screenshot_2.jpg "AnImage")
+
+Stored Procedures: 
+- getGerentes
+- getOperarios
+- AddFuncionario
+- RemoveFuncionario
+- updateFuncionario
+
+### Página "Fornecedores" 
+
+![Funcionários Screenshot!](screenshots/screenshot_3.jpg "AnImage")
+
+Stored Procedures: 
+- getGerentes
+- getOperarios
+- AddFuncionario
+- RemoveFuncionario
+- updateFuncionario
 
 ## Normalização / Normalization
 
