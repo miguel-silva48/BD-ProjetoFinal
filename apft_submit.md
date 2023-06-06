@@ -4,17 +4,6 @@
 - Bárbara Nóbrega Galiza, MEC: 105937
 - Miguel da Silva Pinto, MEC: 107449
 
-# Instructions - TO REMOVE
-
-The files should be organized with the following nomenclature:
-
-DONE - sql\01_ddl.sql: mandatory for DDL
-ALMOST - sql\02_sp_functions.sql: mandatory for Store Procedure, Functions,... 
-NEEDS CHECK - sql\03_triggers.sql: mandatory for triggers
-DONE - sql\04_db_init.sql: scripts to init the database (i.e. inserts etc.)
-DONE - sql\05_any_other_matter.sql: any other scripts.
-
-Por favor remova esta secção antes de submeter.
 
 ## Introdução / Introduction
  
@@ -73,20 +62,33 @@ ER:
 
 ## SQL DML - Data Manipulation Language
 
-Todas as queries foram feitas a partir de stored procedures, a fim de garantir uma camada de abstração entre a base de dados e o frontend da aplicação. Essa camada permite uma maior segurança (inserts, updates e deletes não poderão ser alterados diretamente no código) e uma maior facilidade caso futuramente se queira alterar a implememtação interna de uma SP sem que se altere o frontend.
+Todas as queries foram feitas a partir de stored procedures, a fim de garantir uma camada de abstração entre a base de dados e o frontend da aplicação. Essa camada permite uma maior segurança (inserts, updates e deletes não poderão ser alterados diretamente no código) e uma maior facilidade caso futuramente se queira alterar a implementação interna de uma SP sem que se altere o frontend.
+
+### Página Inicial 
+
+Página inicial da aplicação, apenas mostra o produto mais encomendado.
+
+![Inicial Screenshot!](screenshots/screenshot_6.jpg "AnImage")
+
+Stored Procedures: 
+- getCategoriaProdutoMaisEncomendado
 
 ### Página "Produtos" 
+
+Página com a informação dos tipos de produtos. Para cada tipo, contém informações da tabela TipoProduto (preço de venda/compra, nome, código) e informações calculadas como o número existente de produtos daquele tipo e o número de encomendas que contém esse tipo de produto. Ainda é permitido adicionar um novo tipo e remover/atualizar um já existente.
 
 ![Produtos Screenshot!](screenshots/screenshot_1.jpg "AnImage")
 
 Stored Procedures: 
 - getTiposProduto
-    Utiliza UDFs: dbo.numProdutosPorTipo e dbo.numEncomendasPorTipo
+    - Utiliza UDFs: dbo.numProdutosPorTipo e dbo.numEncomendasPorTipo
 - addProduto
 - removeTipoProduto
 - updateProduto
 
 ### Página "Funcionários" 
+
+Página com a informação dos funcionários. Para cada funcionário, há um campo "gerente?" que indica se aquele funcionário é gerente ou não. Além disso, mostra o salário, nome, numCC, nif, id e secção. É possível adicionar, remover e atualizar.
 
 ![Funcionários Screenshot!](screenshots/screenshot_2.jpg "AnImage")
 
@@ -99,14 +101,39 @@ Stored Procedures:
 
 ### Página "Fornecedores" 
 
-![Funcionários Screenshot!](screenshots/screenshot_3.jpg "AnImage")
+Página com informações acerca dos Fornecedores associados à BD: nome, nif, email, morada e também um certo número que indica o total da Matéria-Prima fornecida à Passo Firme. Ainda é permitido remover/atualizar um Fornecedor.
+
+![Forncedores Screenshot!](screenshots/screenshot_3.jpg "AnImage")
 
 Stored Procedures: 
-- getGerentes
-- getOperarios
-- AddFuncionario
-- RemoveFuncionario
-- updateFuncionario
+- getFornecedores
+- getMateriaPrimaFornecida
+- removeFornecedor
+- updateFornecedor
+
+### Página "Revendedores" 
+
+Página com informações acerca dos Revendedores associados à BD: nome, nif, email, morada e também um certo número de encomendas totais e o número total de itens encomendados nas mesmas. Ainda é permitido remover/atualizar um Revendedor.
+
+![Revendedores Screenshot!](screenshots/screenshot_4.jpg "AnImage")
+
+Stored Procedures:
+- getRevendedores
+- removeRevendedor
+- updateRevendedor
+- getEncomendasRevendedor
+
+### Página "Secções" 
+
+Página com a informação sobre as 4 secções da fábrica. Para cada secção, contém informações como designação, id, num de funcionários que lá trabalham, seu gerente e a média salarial. Além disso, mostra o número de produtos em cada estado de processamento em tempo real, e uma lista indicando quais os processos que estão a correr. Para cada processo, é possível consultar o item a ser criado, o funcionário, a matéria prima e o estado.
+
+![Secções Screenshot!](screenshots/screenshot_5.jpg "AnImage")
+
+Stored Procedures: 
+- getSeccoes
+    - Utiliza dbo.numFuncionariosSeccao
+- getMediaSalarialBySeccao
+- getProcessos
 
 ## Normalização / Normalization
 
@@ -150,4 +177,5 @@ CREATE INDEX idx_materiaPrima_fornecedor ON Empresa.Fornece(nif_fornecedor);
 ## ​Outras Notas / Other Notes
 
 A contribuição no desenvolvimento do projeto de cada membro do grupo foi igual.
+Mudar ligação a base de dados: linha 45.
  
