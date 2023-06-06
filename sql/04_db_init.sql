@@ -70,12 +70,12 @@ INSERT INTO Empresa.Funcionario (nif, salario, morada, numeroCC, nome, ID)
 	(609121212, 1500,  'Rua do Complexo Pequeno - Edf 1',78931289,'José Carlos Costa', 102),
 	(609294734, 1450, 'Rua Poente 846', 12378791,'João Miguel Arruda', 103),
 	(609827353, 1300,  NULL,73828291,'Felipe Manoel do Carmo', 104),
-	(609836433, 1000,  'Rua Sol 323',90901111,'Maria Gomes de Sousa', 105),
+	(609836433, 1000,  'Rua Sol 323',90901112,'Maria Gomes de Sousa', 105),
 	(609987654, 1000,  'Estrada de Fátima 23',11888912,'Miguel Silva do Campo', 106),
 	(690972623, 900, 'Rua da Redonda Azul 9',29309021, 'Jéssica Oliveira Silva', 107),
 	(609836437, 1000,  'Rua Lua 323',90901111,'Joana Gomes da Silva', 108),
-	(609987657, 1000, 'Estrada de Santiago 23',11888912, 'Roberto Castro Almeida', 109),
-	(690972627, 900,  'Rua de Coimbra 91',29309021,'Inês Oliveira Silva', 110);
+	(609987657, 1000, 'Estrada de Santiago 23',11888913, 'Roberto Castro Almeida', 109),
+	(690972627, 900,  'Rua de Coimbra 91',29309024,'Inês Oliveira Silva', 110);
 
 
 INSERT INTO Empresa.Gerente (ID_funcionario, codigo_seccao)

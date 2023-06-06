@@ -52,22 +52,22 @@ CREATE TABLE Empresa.Revendedor(
 CREATE TABLE Empresa.Encomenda(
 	numero			INT		PRIMARY KEY		NOT NULL,
 	data_			DATE,
-	nif_revendedor  INT	FOREIGN KEY REFERENCES Empresa.Revendedor(nif) ON DELETE CASCADE,	
+	nif_revendedor  INT		FOREIGN KEY REFERENCES Empresa.Revendedor(nif) ON DELETE CASCADE,	
 );
 
 -- Seccao
 CREATE TABLE Empresa.Seccao(
-	designacao		VARCHAR(20)	UNIQUE NOT NULL CHECK (designacao in ('Corte', 'Costura','Montagem','Acabamento')),
-	codigo			INT		PRIMARY KEY		NOT NULL,
+	designacao		VARCHAR(20)	UNIQUE 			NOT NULL CHECK (designacao in ('Corte', 'Costura','Montagem','Acabamento')),
+	codigo			INT			PRIMARY KEY		NOT NULL,
 );
 
 -- Funcionario
 CREATE TABLE Empresa.Funcionario(
-	nif 			INT		UNIQUE CHECK (nif BETWEEN 000000000 AND 999999999),
-	salario			DECIMAL(8,2),
+	nif 			INT		UNIQUE 			NOT NULL CHECK (nif BETWEEN 100000000 AND 999999999),
+	salario			DECIMAL(8,2)			NOT NULL,
 	morada			VARCHAR(50),
-	numeroCC		INT,
-	nome			VARCHAR(40),
+	numeroCC		INT		UNIQUE			NOT NULL,
+	nome			VARCHAR(40)				NOT NULL,
 	ID				INT		PRIMARY KEY		NOT NULL,
 );
 

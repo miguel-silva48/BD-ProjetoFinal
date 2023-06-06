@@ -73,24 +73,20 @@ ER:
 
 ## SQL DML - Data Manipulation Language
 
-Uma secção por formulário.
-A section for each form.
+Todas as queries foram feitas a partir de stored procedures, a fim de garantir uma camada de abstração entre a base de dados e o frontend da aplicação. Essa camada permite uma maior segurança (inserts, updates e deletes não poderão ser alterados diretamente no código) e uma maior facilidade caso futuramente se queira alterar a implememtação interna de uma SP sem que se altere o frontend.
 
 ### Formulario exemplo / Example Form
 
 ![Exemplo Screenshot!](screenshots/screenshot_1.jpg "AnImage")
 
 ```sql
--- Show data on the form
-SELECT * FROM MY_TABLE ....;
 
--- Insert new element
-INSERT INTO MY_TABLE ....;
 ```
 
-...
 
 ## Normalização / Normalization
+
+As tabelas que constituem o esquema relacional previamente apresentado encontram-se na 3FN, pois atendem aos critérios da 1FN, da 2FN e não apresentam dependências transitivas (nenhum atributo não chave depende de outro atributo não chave).
 
 Todas as tabelas que representam entidades apresentam chaves primárias e dependência funcional entre os atributos.
 Exemplos: Fornecedor, MateriaPrima, Revendedor, Seccao, Funcionario, TipoProduto.
@@ -128,4 +124,6 @@ CREATE INDEX idx_materiaPrima_fornecedor ON Empresa.Fornece(nif_fornecedor);
 [SQL Indexes File](sql/05_idx.sql "SQLFileQuestion")
 
 ## ​Outras Notas / Other Notes
+
+A contribuição no desenvolvimento do projeto de cada membro do grupo foi igual.
  

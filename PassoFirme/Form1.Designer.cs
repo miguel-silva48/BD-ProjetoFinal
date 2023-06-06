@@ -54,6 +54,7 @@ namespace PassoFirme
             this.label29 = new System.Windows.Forms.Label();
             this.dropdownFunc = new System.Windows.Forms.ComboBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.button_add_funcionario = new System.Windows.Forms.Button();
             this.button_ok_funcionario = new System.Windows.Forms.Button();
             this.button_cancelar_funcionario = new System.Windows.Forms.Button();
             this.button_editar_funcionario = new System.Windows.Forms.Button();
@@ -142,7 +143,7 @@ namespace PassoFirme
             this.textBox_codigo_seccao = new System.Windows.Forms.TextBox();
             this.textBox_designacao_seccao = new System.Windows.Forms.TextBox();
             this.listBox_seccao = new System.Windows.Forms.ListBox();
-            this.button_add_funcionario = new System.Windows.Forms.Button();
+            this.button_add_produto = new System.Windows.Forms.Button();
             this.tabcontrol1.SuspendLayout();
             this.Início.SuspendLayout();
             this.Produtos.SuspendLayout();
@@ -199,6 +200,7 @@ namespace PassoFirme
             // 
             // Produtos
             // 
+            this.Produtos.Controls.Add(this.button_add_produto);
             this.Produtos.Controls.Add(this.panel4);
             this.Produtos.Controls.Add(this.listBox_produtos);
             this.Produtos.Location = new System.Drawing.Point(4, 27);
@@ -387,12 +389,13 @@ namespace PassoFirme
             this.listBox_produtos.Location = new System.Drawing.Point(3, 7);
             this.listBox_produtos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listBox_produtos.Name = "listBox_produtos";
-            this.listBox_produtos.Size = new System.Drawing.Size(400, 382);
+            this.listBox_produtos.Size = new System.Drawing.Size(400, 364);
             this.listBox_produtos.TabIndex = 2;
             this.listBox_produtos.SelectedIndexChanged += new System.EventHandler(this.listBox_produtos_SelectedIndexChanged);
             // 
             // Funcionários
             // 
+            this.Funcionários.Controls.Add(this.button_add_funcionario);
             this.Funcionários.Controls.Add(this.label29);
             this.Funcionários.Controls.Add(this.dropdownFunc);
             this.Funcionários.Controls.Add(this.panel3);
@@ -432,7 +435,6 @@ namespace PassoFirme
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.button_add_funcionario);
             this.panel3.Controls.Add(this.button_ok_funcionario);
             this.panel3.Controls.Add(this.button_cancelar_funcionario);
             this.panel3.Controls.Add(this.button_editar_funcionario);
@@ -459,6 +461,18 @@ namespace PassoFirme
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(361, 404);
             this.panel3.TabIndex = 3;
+            // 
+            // button_add_funcionario
+            // 
+            this.button_add_funcionario.AutoSize = true;
+            this.button_add_funcionario.Location = new System.Drawing.Point(8, 375);
+            this.button_add_funcionario.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button_add_funcionario.Name = "button_add_funcionario";
+            this.button_add_funcionario.Size = new System.Drawing.Size(161, 40);
+            this.button_add_funcionario.TabIndex = 21;
+            this.button_add_funcionario.Text = "Adicionar Funcionário";
+            this.button_add_funcionario.UseVisualStyleBackColor = true;
+            this.button_add_funcionario.Click += new System.EventHandler(this.button_add_funcionario_Click);
             // 
             // button_ok_funcionario
             // 
@@ -668,7 +682,7 @@ namespace PassoFirme
             this.listBox_funcionarios.Location = new System.Drawing.Point(3, 44);
             this.listBox_funcionarios.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listBox_funcionarios.Name = "listBox_funcionarios";
-            this.listBox_funcionarios.Size = new System.Drawing.Size(400, 346);
+            this.listBox_funcionarios.Size = new System.Drawing.Size(400, 328);
             this.listBox_funcionarios.TabIndex = 2;
             this.listBox_funcionarios.SelectedIndexChanged += new System.EventHandler(this.listBox_funcionarios_SelectedIndexChanged);
             // 
@@ -1382,17 +1396,17 @@ namespace PassoFirme
             this.listBox_seccao.TabIndex = 1;
             this.listBox_seccao.SelectedIndexChanged += new System.EventHandler(this.listBox_seccao_SelectedIndexChanged);
             // 
-            // button_add_funcionario
+            // button_add_produto
             // 
-            this.button_add_funcionario.AutoSize = true;
-            this.button_add_funcionario.Location = new System.Drawing.Point(133, 343);
-            this.button_add_funcionario.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button_add_funcionario.Name = "button_add_funcionario";
-            this.button_add_funcionario.Size = new System.Drawing.Size(80, 40);
-            this.button_add_funcionario.TabIndex = 21;
-            this.button_add_funcionario.Text = "Adicionar";
-            this.button_add_funcionario.UseVisualStyleBackColor = true;
-            this.button_add_funcionario.Click += new System.EventHandler(this.button_add_funcionario_Click);
+            this.button_add_produto.AutoSize = true;
+            this.button_add_produto.Location = new System.Drawing.Point(8, 375);
+            this.button_add_produto.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button_add_produto.Name = "button_add_produto";
+            this.button_add_produto.Size = new System.Drawing.Size(189, 36);
+            this.button_add_produto.TabIndex = 23;
+            this.button_add_produto.Text = "Adicionar Tipo de Produto";
+            this.button_add_produto.UseVisualStyleBackColor = true;
+            this.button_add_produto.Click += new System.EventHandler(this.button_add_produto_Click);
             // 
             // Form1
             // 
@@ -1408,6 +1422,7 @@ namespace PassoFirme
             this.Início.ResumeLayout(false);
             this.Início.PerformLayout();
             this.Produtos.ResumeLayout(false);
+            this.Produtos.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.Funcionários.ResumeLayout(false);
@@ -1545,6 +1560,7 @@ namespace PassoFirme
         private System.Windows.Forms.Button button_ok_produto;
         private System.Windows.Forms.Button button_cancelar_produto;
         private System.Windows.Forms.Button button_add_funcionario;
+        private System.Windows.Forms.Button button_add_produto;
     }
 }
 

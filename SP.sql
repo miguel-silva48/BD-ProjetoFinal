@@ -161,47 +161,66 @@ go
 
 
 -- Adiciona Funcionario
-CREATE PROCEDURE AddFuncionario @nif int, @salario DECIMAL(8,2), @morada varchar(50), @numeroCC int, @nome VARCHAR(40), @ID int, @isGerente INT, @codigo_seccao int
+CREATE PROCEDURE AddFuncionario @nif int, @salario DECIMAL(8,2), @morada varchar(50), @numeroCC int, @nome VARCHAR(40), @isGerente INT, @codigo_seccao int
 AS
+
+	IF (@morada = '') SET @morada = NULL
+
+	DECLARE @ID_seguinte INT
+	SELECT @ID_seguinte = MAX(ID)+1 FROM Empresa.Funcionario
+
+	BEGIN TRANSACTION
+
     INSERT INTO Empresa.Funcionario
 	VALUES 
-	(@nif, @salario, @morada, @numeroCC, @nome, @ID);
+	(@nif, @salario, @morada, @numeroCC, @nome, @ID_seguinte);
 
 	IF @isGerente = 1
+	BEGIN
 		INSERT INTO Empresa.Gerente
 		VALUES 
-		(@ID, @codigo_seccao);
-	ELSE
+		(@ID_seguinte, @codigo_seccao);
+		COMMIT TRAN
+	END
+	ELSE IF @isGerente = 0
+	BEGIN
 		INSERT INTO Empresa.Operario
 		VALUES 
-		(@ID, @codigo_seccao);
-go 
+		(@ID_seguinte, @codigo_seccao);
+		COMMIT TRAN
+	END
+	ELSE
+    BEGIN
+		RAISERROR ('ERRO: Deve informar se o funcionário é gerente ou não!', 16, 1);
+        ROLLBACK TRANSACTION
+    END
+GO 
 
 --EXEC AddFuncionario 690972623, 900, 'Rua da Redonda Azul 9',29309021, 'Jéssica Oliveira Silva', 107, 0, 4;
 
--- Update funcionario
+-- Atualizar funcionario
 CREATE PROCEDURE updateFuncionario @salario DECIMAL(8,2), @ID int, @isGerente INT, @codigo_seccao int
 AS
-	BEGIN TRANSACTION
+    BEGIN TRANSACTION
     UPDATE Empresa.Funcionario SET salario=@salario WHERE ID=@ID
 
-	IF @isGerente = 1
-	BEGIN
-		UPDATE Empresa.Gerente SET codigo_seccao=@codigo_seccao WHERE ID_funcionario=@ID
-		COMMIT TRAN
-	END
-	ELSE IF @isGerente IS NOT NULL
-	BEGIN
-		UPDATE Empresa.Operario SET codigo_seccao=@codigo_seccao WHERE ID_funcionario=@ID
-		COMMIT TRAN
-	END
-	ELSE
-	BEGIN
-		PRINT 'Informe se o funcionário é gerente ou não!'
-		ROLLBACK TRANSACTION
-	END
-go 
-
+    IF @isGerente = 1
+    BEGIN
+        UPDATE Empresa.Gerente SET codigo_seccao=@codigo_seccao WHERE ID_funcionario=@ID
+        COMMIT TRAN
+    END
+    ELSE IF @isGerente = 0
+    BEGIN
+		DELETE Empresa.Gerente WHERE ID_funcionario=@ID
+        UPDATE Empresa.Operario SET codigo_seccao=@codigo_seccao WHERE ID_funcionario=@ID
+        COMMIT TRAN
+    END
+    ELSE
+    BEGIN
+		RAISERROR ('ERRO: Deve informar se o funcionário é gerente ou não!', 16, 1);
+        ROLLBACK TRANSACTION
+    END
+GO
 
 --Remove um fornecedor
 CREATE PROCEDURE removeFornecedor (@nif INT)
@@ -209,7 +228,6 @@ AS
 	DELETE FROM Empresa.Fornecedor
 	WHERE nif=@nif
 GO
-
 
 -- Update fornecedor
 CREATE PROCEDURE updateFornecedor (@nif INT, @email VARCHAR(30), @morada VARCHAR(50), @nome VARCHAR(40))
@@ -269,8 +287,7 @@ AS
 	VALUES
     (@custo_fabrico, @preco_venda,  @categoria);
 
-go 
-
+GO 
 
 -- Remover um tipo de produto e por cascade todos os produtos que são desse tipo
 CREATE PROCEDURE removeTipoProduto (@categoria VARCHAR(40))
@@ -286,28 +303,4 @@ CREATE PROCEDURE updateProduto (@categoria VARCHAR(40), @custo_fabrico DECIMAL(6
 AS
 	UPDATE Empresa.TipoProduto SET custo_fabrico = @custo_fabrico, preco_venda = @preco_venda 
 	WHERE categoria = @categoria;
-GO
-
--- Atualizar funcionario
-ALTER PROCEDURE updateFuncionario @salario DECIMAL(8,2), @ID int, @isGerente INT, @codigo_seccao int
-AS
-    BEGIN TRANSACTION
-    UPDATE Empresa.Funcionario SET salario=@salario WHERE ID=@ID
-
-    IF @isGerente = 1
-    BEGIN
-        UPDATE Empresa.Gerente SET codigo_seccao=@codigo_seccao WHERE ID_funcionario=@ID
-        COMMIT TRAN
-    END
-    ELSE IF @isGerente = 0
-    BEGIN
-		DELETE Empresa.Gerente WHERE ID_funcionario=@ID
-        UPDATE Empresa.Operario SET codigo_seccao=@codigo_seccao WHERE ID_funcionario=@ID
-        COMMIT TRAN
-    END
-    ELSE
-    BEGIN
-		RAISERROR ('ERRO: Deve informar se o funcionário é gerente ou não!', 16, 1);
-        ROLLBACK TRANSACTION
-    END
 GO

@@ -107,6 +107,15 @@ namespace PassoFirme
         }
 
 //Operações de edição e remoção de produtos
+
+        private void button_add_produto_Click(object sender, EventArgs e) {
+            adding = true;
+            ClearFieldsProduto();
+            HideButtonsProduto();
+            UnlockcontrolsProduto();
+            listBox_produtos.Enabled = false;
+        }
+
         private void button_apagar_produtos_Click(object sender, EventArgs e) {
             if (listBox_produtos.SelectedIndex > -1) {
                 try {
@@ -149,6 +158,8 @@ namespace PassoFirme
             listBox_produtos.SelectedIndex = idx;
             ShowButtonsProduto();
             LockControlsProduto();
+            adding = false;
+            loadProdutos(sender, e);
         }
 
         private void button_cancelar_produto_Click(object sender, EventArgs e) {
@@ -159,10 +170,11 @@ namespace PassoFirme
                     currentProduto = 0;
                 ShowProduto();
             } else {
-                ClearFieldsProduto();
-                LockControlsProduto();
+                ClearFieldsProduto();    
             }
+            LockControlsProduto();
             ShowButtonsProduto();
+            adding = false;
         }
 
         private void removeProduto(String codigo_produto) {
@@ -193,9 +205,38 @@ namespace PassoFirme
                 MessageBox.Show(ex.Message);
                 return false;
             }
-            UpdateProduto(prod);
+            if (adding)
+                AddProduto(prod);
+            else
+                UpdateProduto(prod);
             listBox_produtos.Items[currentProduto] = prod;
             return true;
+        }
+
+        private void AddProduto(Produto p) {
+            if (!verifySGBDConnection())
+                return;
+
+            if (p.CustoFabrico == "") p.CustoFabrico = "0";
+            if (p.PrecoVenda == "") p.PrecoVenda = "0";
+
+            p.CustoFabrico = p.CustoFabrico.Replace(',', '.');
+            p.PrecoVenda = p.PrecoVenda.Replace(',', '.');
+
+            SqlCommand cmd = new SqlCommand("addProduto", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Clear();
+            cmd.Parameters.AddWithValue("@custo_fabrico", p.CustoFabrico);
+            cmd.Parameters.AddWithValue("@preco_venda", p.PrecoVenda);
+            cmd.Parameters.AddWithValue("@categoria", p.Categoria);
+
+            try {
+                cmd.ExecuteNonQuery();
+            } catch (Exception ex) {
+                throw new Exception("ERRO: Não foi possivel adicionar o Tipo de Produto! \n ERROR MESSAGE: \n" + ex.Message);
+            } finally {
+                cn.Close();
+            }
         }
 
         private void UpdateProduto(Produto p) {
@@ -203,6 +244,9 @@ namespace PassoFirme
 
             if (!verifySGBDConnection())
                 return;
+
+            if (p.CustoFabrico == "") p.CustoFabrico = "0";
+            if (p.PrecoVenda == "") p.PrecoVenda = "0";
 
             p.CustoFabrico = p.CustoFabrico.Replace(',', '.');
             p.PrecoVenda = p.PrecoVenda.Replace(',', '.');
@@ -230,13 +274,14 @@ namespace PassoFirme
 //Helper functions
         public void ClearFieldsProduto() {
             textBox_categoria_produto.Text = "";
-            textBox_quantidade.Text = "";
+            textBox_quantidade.Text = "Bloqueado";
             textBox_custo_produto.Text = "";
             textBox_preco_produto.Text = "";
-            textBox_numEncomendas_produto.Text = "";
+            textBox_numEncomendas_produto.Text = "Bloqueado";
         }
 
         public void HideButtonsProduto() {
+            button_add_produto.Visible = false;
             button_apagar_produtos.Visible = false;
             button_editar_produtos.Visible = false;
             button_ok_produto.Visible = true;
@@ -244,6 +289,7 @@ namespace PassoFirme
         }
 
         public void ShowButtonsProduto() {
+            button_add_produto.Visible = true;
             button_apagar_produtos.Visible = true;
             button_editar_produtos.Visible = true;
             button_ok_produto.Visible = false;
@@ -400,6 +446,7 @@ namespace PassoFirme
             ShowButtonsFuncionario();
             LockControlsFuncionario();
             adding = false;
+            loadFuncionarios(sender, e);
         }
 
         private void button_cancelar_funcionario_Click(object sender, EventArgs e) {
@@ -410,9 +457,9 @@ namespace PassoFirme
                     currentFuncionario = 0;
                 ShowFuncionario();
             } else {
-                ClearFieldsFuncionario();
-                LockControlsFuncionario();
+                ClearFieldsFuncionario();   
             }
+            LockControlsFuncionario();
             ShowButtonsFuncionario();
             adding = false;
         }
@@ -425,7 +472,6 @@ namespace PassoFirme
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Clear();
             cmd.Parameters.AddWithValue("@id", id_funcionario);
-
             try {
                 cmd.ExecuteNonQuery();
             } catch (Exception ex) {
@@ -445,6 +491,7 @@ namespace PassoFirme
                 func.Id = textBox_id_funcionario.Text;
                 func.Salario = textBox_salario_funcionario.Text;
                 func.Seccao = textBox_seccao_funcionario.Text;
+                func.SerGerente = textBox_gerente_funcionario.Text;
             } catch (Exception ex) {
                 MessageBox.Show(ex.Message);
                 return false;
@@ -461,8 +508,18 @@ namespace PassoFirme
             if (!verifySGBDConnection())
                 return;
 
-            f.Salario = f.Salario.Replace(',', '.');
-
+            if (f.Nif == "") {
+                MessageBox.Show("Deve introduzir um NIF!");
+                return;
+            }
+            if (f.NumCC == "") {
+                MessageBox.Show("Deve introduzir um Número de Cartão de Cidadão!");
+                return;
+            }
+            if (f.Salario == "") {
+                MessageBox.Show("Deve introduzir um Salário!");
+                return;
+            }
 
             int tempSeccao = 0;
             switch (f.Seccao) {
@@ -502,22 +559,20 @@ namespace PassoFirme
                     isGerente = 0;
                     break;
                 default:
-                    //TODO por alguma razão aparece sempre
-                    MessageBox.Show("Ser gerente inválido! (Insira Sim ou Não)");
+                    MessageBox.Show("Valor de ser gerente inválido! (Insira Sim ou Não)");
                     return;
             }
 
             SqlCommand cmd = new SqlCommand("AddFuncionario", cn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Clear();
-            cmd.Parameters.AddWithValue("@id", f.Id);
             cmd.Parameters.AddWithValue("@nome", f.Nome);
             cmd.Parameters.AddWithValue("@nif", f.Nif);
             cmd.Parameters.AddWithValue("@numerocc", f.NumCC);
             cmd.Parameters.AddWithValue("@morada", f.Morada);
             cmd.Parameters.AddWithValue("@salario", f.Salario);
             cmd.Parameters.AddWithValue("@codigo_seccao", tempSeccao);
-            cmd.Parameters.AddWithValue("@serGerente", isGerente);
+            cmd.Parameters.AddWithValue("@isGerente", isGerente);
 
             try {
                 cmd.ExecuteNonQuery();
@@ -534,10 +589,20 @@ namespace PassoFirme
             if (!verifySGBDConnection())
                 return;
                 
-            f.Salario = f.Salario.Replace(',', '.');
+            if (f.Nif == "") {
+                MessageBox.Show("Deve introduzir um NIF!");
+                return;
+            }
+            if (f.NumCC == "") {
+                MessageBox.Show("Deve introduzir um Número de Cartão de Cidadão!");
+                return;
+            }
+            if (f.Salario == "") {
+                MessageBox.Show("Deve introduzir um Salário!");
+                return;
+            }
 
             int tempSeccao = 0;
-
             switch (f.Seccao) {
                 case "1":
                 case "Corte":
@@ -565,8 +630,7 @@ namespace PassoFirme
             }
 
             int isGerente = 0;
-            switch (f.SerGerente)
-            {
+            switch (f.SerGerente) {
                 case "1":
                 case "Sim":
                     isGerente = 1;
@@ -576,18 +640,17 @@ namespace PassoFirme
                     isGerente = 0;
                     break;
                 default:
-                    //TODO por alguma razão aparece sempre
                     MessageBox.Show("Ser gerente inválido! (Insira Sim ou Não)");
                     return;
             }
 
-            SqlCommand cmd = new SqlCommand("updateFuncionario", cn); // ainda falta testar o trigger
+            SqlCommand cmd = new SqlCommand("updateFuncionario", cn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Clear();
             cmd.Parameters.AddWithValue("@id", f.Id);
             cmd.Parameters.AddWithValue("@salario", f.Salario);
             cmd.Parameters.AddWithValue("@codigo_seccao", tempSeccao);
-            cmd.Parameters.AddWithValue("@serGerente", isGerente);
+            cmd.Parameters.AddWithValue("@isGerente", isGerente);
 
 
             try {
@@ -595,7 +658,7 @@ namespace PassoFirme
             } catch (Exception ex) {
                 throw new Exception("Failed to update Funcionario in database. \n ERROR MESSAGE: \n" + ex.Message);
             } finally {
-                if (rows == 1)
+                if (rows > 0)
                     MessageBox.Show("Dados do Funcionario atualizados com sucesso!");
                 else
                     MessageBox.Show("Erro ao atualizar dados do Funcionario!");
@@ -603,12 +666,13 @@ namespace PassoFirme
             }
         }
 
+//Helper functions
         public void ClearFieldsFuncionario() {
             textBox_nome_funcionario.Text = "";
             textBox_nif_funcionario.Text = "";
             textBox_numCC_funcionario.Text = "";
             textBox_morada_funcionario.Text = "";
-            textBox_id_funcionario.Text = "";
+            textBox_id_funcionario.Text = "0";
             textBox_salario_funcionario.Text = "";
             textBox_seccao_funcionario.Text = "";
             textBox_gerente_funcionario.Text = "";
@@ -646,7 +710,7 @@ namespace PassoFirme
             textBox_nif_funcionario.ReadOnly = false;
             textBox_numCC_funcionario.ReadOnly = false;
             textBox_morada_funcionario.ReadOnly = false;
-            textBox_id_funcionario.ReadOnly = false;
+            //textBox_id_funcionario.ReadOnly = false;
             textBox_salario_funcionario.ReadOnly = false;
             textBox_seccao_funcionario.ReadOnly = false;
             textBox_gerente_funcionario.ReadOnly = false;
@@ -754,9 +818,9 @@ namespace PassoFirme
                     currentFornecedor = 0;
                 ShowFornecedor();
             } else {
-                ClearFieldsFornecedor();
-                LockControlsFornecedor();
+                ClearFieldsFornecedor();   
             }
+            LockControlsFornecedor();
             ShowButtonsFornecedor();
         }
 
@@ -771,6 +835,7 @@ namespace PassoFirme
             listBox_fornecedor.SelectedIndex = idx;
             ShowButtonsFornecedor();
             LockControlsFornecedor();
+            loadFornecedor(sender, e);
         }
 
         private void removeFornecedor(String nif_fornecedor) {
@@ -977,6 +1042,7 @@ namespace PassoFirme
             listBox_revendedor.SelectedIndex = idx;
             ShowButtonsRevendedor();
             LockControlsRevendedor();
+            loadRevendedor(sender, e);
         }
 
         private void cancelarRev_Click(object sender, EventArgs e) {
@@ -987,9 +1053,9 @@ namespace PassoFirme
                     currentRevendedor = 0;
                 ShowRevendedor();
             } else {
-                ClearFieldsRevendedor();
-                LockControlsRevendedor();
+                ClearFieldsRevendedor();    
             }
+            LockControlsRevendedor();
             ShowButtonsRevendedor();
         }
         
