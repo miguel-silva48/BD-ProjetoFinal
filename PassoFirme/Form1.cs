@@ -31,6 +31,7 @@ namespace PassoFirme
         private void Form1_Load(object sender, EventArgs e)
         {
             cn = getSGBDConnection();
+            loadInicio(sender, e);
             loadProdutos(sender, e);
             loadFuncionarios(sender, e);
             loadFornecedor(sender, e);
@@ -56,7 +57,28 @@ namespace PassoFirme
         }
 //End of SQL connection stuff
         
-        
+//Inicio Stuff
+        private void loadInicio(object sender, EventArgs e) {
+            if (!verifySGBDConnection())
+                return;
+
+            SqlCommand cmd = new SqlCommand("getCategoriaProdutoMaisEncomendado", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@categoria", SqlDbType.VarChar, 40).Direction = ParameterDirection.Output;
+            try {
+                cmd.ExecuteNonQuery();
+            } catch (Exception ex) {
+                throw new Exception("ERRO: Não foi possível carregar os dados da página inicial! \n ERROR MESSAGE: \n" + ex.Message);
+            } finally {
+                cn.Close();
+            }
+
+            string categoria = cmd.Parameters["@categoria"].Value.ToString();
+            textBox_prodMaisEncomendado.Text = categoria;
+        }
+//End of Inicio Stuff
+
+
 //Produto Stuff
         private void loadProdutos(object sender, EventArgs e) {
             if (!verifySGBDConnection())

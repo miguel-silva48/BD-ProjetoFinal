@@ -31,8 +31,11 @@ namespace PassoFirme
         {
             this.tabcontrol1 = new System.Windows.Forms.TabControl();
             this.Início = new System.Windows.Forms.TabPage();
+            this.label_since = new System.Windows.Forms.Label();
+            this.textBox_prodMaisEncomendado = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
             this.Produtos = new System.Windows.Forms.TabPage();
+            this.button_add_produto = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.button_ok_produto = new System.Windows.Forms.Button();
             this.button_cancelar_produto = new System.Windows.Forms.Button();
@@ -51,10 +54,10 @@ namespace PassoFirme
             this.textBox_categoria_produto = new System.Windows.Forms.TextBox();
             this.listBox_produtos = new System.Windows.Forms.ListBox();
             this.Funcionários = new System.Windows.Forms.TabPage();
+            this.button_add_funcionario = new System.Windows.Forms.Button();
             this.label29 = new System.Windows.Forms.Label();
             this.dropdownFunc = new System.Windows.Forms.ComboBox();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.button_add_funcionario = new System.Windows.Forms.Button();
             this.button_ok_funcionario = new System.Windows.Forms.Button();
             this.button_cancelar_funcionario = new System.Windows.Forms.Button();
             this.button_editar_funcionario = new System.Windows.Forms.Button();
@@ -143,7 +146,7 @@ namespace PassoFirme
             this.textBox_codigo_seccao = new System.Windows.Forms.TextBox();
             this.textBox_designacao_seccao = new System.Windows.Forms.TextBox();
             this.listBox_seccao = new System.Windows.Forms.ListBox();
-            this.button_add_produto = new System.Windows.Forms.Button();
+            this.label_prodMaisEncomendado = new System.Windows.Forms.Label();
             this.tabcontrol1.SuspendLayout();
             this.Início.SuspendLayout();
             this.Produtos.SuspendLayout();
@@ -177,6 +180,9 @@ namespace PassoFirme
             // 
             // Início
             // 
+            this.Início.Controls.Add(this.label_prodMaisEncomendado);
+            this.Início.Controls.Add(this.label_since);
+            this.Início.Controls.Add(this.textBox_prodMaisEncomendado);
             this.Início.Controls.Add(this.label20);
             this.Início.Location = new System.Drawing.Point(4, 27);
             this.Início.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -186,6 +192,26 @@ namespace PassoFirme
             this.Início.TabIndex = 0;
             this.Início.Text = "Início";
             this.Início.UseVisualStyleBackColor = true;
+            // 
+            // label_since
+            // 
+            this.label_since.AutoSize = true;
+            this.label_since.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label_since.Location = new System.Drawing.Point(339, 258);
+            this.label_since.Name = "label_since";
+            this.label_since.Size = new System.Drawing.Size(99, 20);
+            this.label_since.TabIndex = 2;
+            this.label_since.Text = "Desde 2023";
+            // 
+            // textBox_prodMaisEncomendado
+            // 
+            this.textBox_prodMaisEncomendado.Location = new System.Drawing.Point(434, 353);
+            this.textBox_prodMaisEncomendado.Name = "textBox_prodMaisEncomendado";
+            this.textBox_prodMaisEncomendado.ReadOnly = true;
+            this.textBox_prodMaisEncomendado.Size = new System.Drawing.Size(276, 24);
+            this.textBox_prodMaisEncomendado.TabIndex = 1;
+            this.textBox_prodMaisEncomendado.TabStop = false;
+            this.textBox_prodMaisEncomendado.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label20
             // 
@@ -211,6 +237,18 @@ namespace PassoFirme
             this.Produtos.TabIndex = 1;
             this.Produtos.Text = "Produtos";
             this.Produtos.UseVisualStyleBackColor = true;
+            // 
+            // button_add_produto
+            // 
+            this.button_add_produto.AutoSize = true;
+            this.button_add_produto.Location = new System.Drawing.Point(8, 375);
+            this.button_add_produto.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button_add_produto.Name = "button_add_produto";
+            this.button_add_produto.Size = new System.Drawing.Size(189, 36);
+            this.button_add_produto.TabIndex = 23;
+            this.button_add_produto.Text = "Adicionar Tipo de Produto";
+            this.button_add_produto.UseVisualStyleBackColor = true;
+            this.button_add_produto.Click += new System.EventHandler(this.button_add_produto_Click);
             // 
             // panel4
             // 
@@ -409,6 +447,18 @@ namespace PassoFirme
             this.Funcionários.Text = "Funcionários";
             this.Funcionários.UseVisualStyleBackColor = true;
             // 
+            // button_add_funcionario
+            // 
+            this.button_add_funcionario.AutoSize = true;
+            this.button_add_funcionario.Location = new System.Drawing.Point(8, 375);
+            this.button_add_funcionario.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button_add_funcionario.Name = "button_add_funcionario";
+            this.button_add_funcionario.Size = new System.Drawing.Size(161, 40);
+            this.button_add_funcionario.TabIndex = 21;
+            this.button_add_funcionario.Text = "Adicionar Funcionário";
+            this.button_add_funcionario.UseVisualStyleBackColor = true;
+            this.button_add_funcionario.Click += new System.EventHandler(this.button_add_funcionario_Click);
+            // 
             // label29
             // 
             this.label29.AutoSize = true;
@@ -461,18 +511,6 @@ namespace PassoFirme
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(361, 404);
             this.panel3.TabIndex = 3;
-            // 
-            // button_add_funcionario
-            // 
-            this.button_add_funcionario.AutoSize = true;
-            this.button_add_funcionario.Location = new System.Drawing.Point(8, 375);
-            this.button_add_funcionario.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button_add_funcionario.Name = "button_add_funcionario";
-            this.button_add_funcionario.Size = new System.Drawing.Size(161, 40);
-            this.button_add_funcionario.TabIndex = 21;
-            this.button_add_funcionario.Text = "Adicionar Funcionário";
-            this.button_add_funcionario.UseVisualStyleBackColor = true;
-            this.button_add_funcionario.Click += new System.EventHandler(this.button_add_funcionario_Click);
             // 
             // button_ok_funcionario
             // 
@@ -1396,17 +1434,15 @@ namespace PassoFirme
             this.listBox_seccao.TabIndex = 1;
             this.listBox_seccao.SelectedIndexChanged += new System.EventHandler(this.listBox_seccao_SelectedIndexChanged);
             // 
-            // button_add_produto
+            // label_prodMaisEncomendado
             // 
-            this.button_add_produto.AutoSize = true;
-            this.button_add_produto.Location = new System.Drawing.Point(8, 375);
-            this.button_add_produto.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button_add_produto.Name = "button_add_produto";
-            this.button_add_produto.Size = new System.Drawing.Size(189, 36);
-            this.button_add_produto.TabIndex = 23;
-            this.button_add_produto.Text = "Adicionar Tipo de Produto";
-            this.button_add_produto.UseVisualStyleBackColor = true;
-            this.button_add_produto.Click += new System.EventHandler(this.button_add_produto_Click);
+            this.label_prodMaisEncomendado.AutoSize = true;
+            this.label_prodMaisEncomendado.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label_prodMaisEncomendado.Location = new System.Drawing.Point(79, 355);
+            this.label_prodMaisEncomendado.Name = "label_prodMaisEncomendado";
+            this.label_prodMaisEncomendado.Size = new System.Drawing.Size(282, 20);
+            this.label_prodMaisEncomendado.TabIndex = 3;
+            this.label_prodMaisEncomendado.Text = "Tipo de Produto mais encomendado:";
             // 
             // Form1
             // 
@@ -1561,6 +1597,9 @@ namespace PassoFirme
         private System.Windows.Forms.Button button_cancelar_produto;
         private System.Windows.Forms.Button button_add_funcionario;
         private System.Windows.Forms.Button button_add_produto;
+        private System.Windows.Forms.Label label_since;
+        private System.Windows.Forms.TextBox textBox_prodMaisEncomendado;
+        private System.Windows.Forms.Label label_prodMaisEncomendado;
     }
 }
 
